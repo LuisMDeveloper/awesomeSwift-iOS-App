@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Awesome Swift-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="awesomeswift" customModuleProvider="target" sceneMemberID="viewController">
@@ -14,17 +14,17 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="101" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="WPW-JZ-K9x">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="101" sectionHeaderHeight="18" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="WPW-JZ-K9x">
+                                <rect key="frame" x="0.0" y="44" width="600" height="492"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="separatorColor" red="0.3803921569" green="0.1215686275" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="repoCell" rowHeight="101" id="lze-KY-qfE" customClass="RepoTableViewCell" customModule="awesomeswift" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="114" width="600" height="101"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lze-KY-qfE" id="Jh0-YC-IVT">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
@@ -87,17 +87,65 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="czS-dz-12C"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" placeholder="filter libs" translatesAutoresizingMaskIntoConstraints="NO" id="60f-Ka-2xA">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="wSE-gI-knk"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.38823529410000002" green="0.1843137255" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WPW-JZ-K9x" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="63u-Yy-QeS"/>
+                            <constraint firstItem="60f-Ka-2xA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6m2-pn-RFj"/>
+                            <constraint firstItem="WPW-JZ-K9x" firstAttribute="top" secondItem="60f-Ka-2xA" secondAttribute="bottom" id="6vI-bl-Tsu"/>
                             <constraint firstItem="WPW-JZ-K9x" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NvH-94-X09"/>
+                            <constraint firstItem="WPW-JZ-K9x" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Vwu-ly-0FL"/>
+                            <constraint firstAttribute="trailing" secondItem="WPW-JZ-K9x" secondAttribute="trailing" id="ayz-Hf-KgF"/>
                             <constraint firstAttribute="trailing" secondItem="WPW-JZ-K9x" secondAttribute="trailing" id="fgj-28-BC4"/>
+                            <constraint firstItem="WPW-JZ-K9x" firstAttribute="top" secondItem="60f-Ka-2xA" secondAttribute="bottom" id="m5e-ns-SGw"/>
+                            <constraint firstAttribute="trailing" secondItem="60f-Ka-2xA" secondAttribute="trailing" id="n8E-IT-rGh"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WPW-JZ-K9x" secondAttribute="bottom" id="nZq-hU-but"/>
+                            <constraint firstItem="60f-Ka-2xA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="nbw-Z8-n3Q"/>
                             <constraint firstItem="WPW-JZ-K9x" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="yWF-nX-Zgr"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="63u-Yy-QeS"/>
+                                <exclude reference="6vI-bl-Tsu"/>
+                                <exclude reference="NvH-94-X09"/>
+                                <exclude reference="fgj-28-BC4"/>
+                                <exclude reference="yWF-nX-Zgr"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Awesome Swift" id="MsR-Jo-3xy"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="MsR-Jo-3xy">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="YNQ-BG-Edf">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="All"/>
+                                <segment title="Only New"/>
+                            </segments>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="changeFilter" destination="BYZ-38-t0r" eventType="valueChanged" id="tsz-Yk-M6M"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="ICq-wC-fQX">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="toggleSearch" destination="BYZ-38-t0r" id="daH-kb-Yu9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="searchConstant" destination="wSE-gI-knk" id="d8D-Xs-P5l"/>
+                        <outlet property="segmentedFilter" destination="YNQ-BG-Edf" id="3o9-4V-6cs"/>
                         <outlet property="tableView" destination="WPW-JZ-K9x" id="41S-Eo-hQ7"/>
                     </connections>
                 </viewController>

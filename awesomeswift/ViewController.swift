@@ -9,19 +9,38 @@
 import UIKit
 import Parse
 import Bolts
+import SwiftDate
 
 class ViewController: UIViewController {
     
     @IBOutlet var tableView : UITableView!
+    
+    @IBOutlet var segmentedFilter : UISegmentedControl!
 
-    var repos = [PFObject]()
+    @IBOutlet var searchConstant : NSLayoutConstraint!
+    
+    var repos = [String:[PFObject]]()
+    
+    var repoCats = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // hide search
+        self.searchConstant.constant = 0
         
-        self.loadRemoteData()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // force update
+        self.loadRemoteData()
+        
+        // hide search
+        self.searchConstant.constant = 0
+    }
+    
 
     func loadRemoteData() {
         
@@ -38,17 +57,34 @@ class ViewController: UIViewController {
             
             if error == nil {
                 
-                self.repos = objects!
-                self.tableView.reloadData()
-                
-                /*if let objects = objects {
-                    for object in objects {
-                        print(object)
-                        
+                for repo in objects! {
+                    
+                    // retrieve cats
+                    var catName = repo["category"] as! String
+                    
+                    if let subCat = repo["subCategory"] {
+                        catName = catName+" "+(subCat as! String)
                     }
-                }*/
+                    
+                    // check cat and add it if not listed yet
+                    if self.repoCats.contains(catName) == false {
+                        self.repoCats.append(catName)
+                    }
+                    
+                    if (self.repos[catName] == nil) {
+                        self.repos[catName] = [PFObject]()
+                    }
+                    
+                    self.repos[catName]?.append(repo)
+                    
+                }
                 
-                print(self.repos.count)
+                //print(self.repoCats)
+                
+                //print(self.repos)
+                
+                self.tableView.reloadData()
+
                 
             } else {
                 print("Error: \(error!) \(error!.userInfo)")
@@ -58,39 +94,66 @@ class ViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Actions
+    @IBAction func changeFilter() {
+        print(self.segmentedFilter.selectedSegmentIndex)
+    }
+    
+    @IBAction func toggleSearch() {
+        
+        UIView.animateWithDuration(0.55, animations: {
+            
+            if self.searchConstant.constant == 44 {
+                self.searchConstant.constant = 0
+            }else{
+                self.searchConstant.constant = 44
+            }
+            
+            self.view.setNeedsUpdateConstraints()
+            
+            self.view.layoutIfNeeded()
+        })
+        
+    }
     
     // MARK: - Table
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.repos.count
+        let key = self.repoCats[section]
+        
+        return self.repos[key]!.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell:RepoTableViewCell = tableView.dequeueReusableCellWithIdentifier("repoCell") as! RepoTableViewCell
         
-        let current = self.repos[indexPath.row]
+        let key = self.repoCats[indexPath.section]
+        
+        let reposOfCat = self.repos[key]! as [PFObject]
+
+        let current = reposOfCat[indexPath.row]
         
         cell.repoName.text = current["name"] as? String
         cell.repoDescription.text = current["description"] as? String
         
         cell.repoNew.hidden = true
         
-        if indexPath.row % 2 == 0 {
+        print(1.days.ago)
+        print(current.createdAt)
+        
+        // force new if it is listed within the last 24h
+        if current.createdAt >  1.days.ago {
             cell.repoNew.hidden = false
         }
         
-        // force new if it is listed within the last 24h
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        //self.performSegueWithIdentifier("goDetail", sender: indexPath)
         
         // open browser
         
@@ -99,17 +162,15 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Table view data source
-    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        return "TEST"
+        return self.repoCats[section] 
         
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         
-        return 2
+        return self.repoCats.count
         
     }
 
