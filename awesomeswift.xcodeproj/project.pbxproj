@@ -123,6 +123,7 @@
 				TargetAttributes = {
 					4808174D1C54D22800C6F587 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = F9FTQCB4H8;
 					};
 				};
 			};
@@ -325,6 +326,7 @@
 			baseConfigurationReference = 0D734D0FEAAD3F4B944040A9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = awesomeswift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.awesomeswift;
@@ -337,6 +339,7 @@
 			baseConfigurationReference = 77BA7A8E6999DE05913149FC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = awesomeswift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.awesomeswift;
