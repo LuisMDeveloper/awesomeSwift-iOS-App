@@ -18,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        // force status bar text color to white
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+
+        
         // init parse
         if _isDebugAssertConfiguration() {
             Parse.setApplicationId("9zouEYdpxwHl2iyaDEKd8ePPhuY0uftEaPiyzYqi",
