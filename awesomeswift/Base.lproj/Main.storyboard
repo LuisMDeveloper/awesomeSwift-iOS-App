@@ -17,20 +17,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WPW-JZ-K9x">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="101" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="WPW-JZ-K9x">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="separatorColor" red="0.3803921569" green="0.1215686275" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="separatorInset" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="separatorInset" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="repoCell" id="lze-KY-qfE">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="repoCell" rowHeight="101" id="lze-KY-qfE" customClass="RepoTableViewCell" customModule="awesomeswift" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="114" width="600" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lze-KY-qfE" id="Jh0-YC-IVT">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLV-3N-90d">
+                                                    <rect key="frame" x="8" y="8" width="505" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.3803921569" green="0.1215686275" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kEV-Ur-os9">
+                                                    <rect key="frame" x="8" y="37" width="505" height="55"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1zs-qZ-dcL">
+                                                    <rect key="frame" x="514" y="0.0" width="86" height="100"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="new" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUi-G5-d04">
+                                                            <rect key="frame" x="27" y="39" width="32" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.3803921569" green="0.1215686275" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="FUi-G5-d04" firstAttribute="centerY" secondItem="1zs-qZ-dcL" secondAttribute="centerY" id="KgX-75-qyM"/>
+                                                        <constraint firstAttribute="width" constant="86" id="ThT-OR-toc"/>
+                                                        <constraint firstItem="FUi-G5-d04" firstAttribute="centerX" secondItem="1zs-qZ-dcL" secondAttribute="centerX" id="pL0-dW-DCd"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1zs-qZ-dcL" firstAttribute="top" secondItem="Jh0-YC-IVT" secondAttribute="top" id="7zo-78-0ml"/>
+                                                <constraint firstItem="1zs-qZ-dcL" firstAttribute="leading" secondItem="kEV-Ur-os9" secondAttribute="trailing" constant="1" id="M4u-aP-HVM"/>
+                                                <constraint firstItem="BLV-3N-90d" firstAttribute="top" secondItem="Jh0-YC-IVT" secondAttribute="top" constant="8" id="Q5d-e6-h2S"/>
+                                                <constraint firstAttribute="trailing" secondItem="1zs-qZ-dcL" secondAttribute="trailing" id="TzR-Vk-chZ"/>
+                                                <constraint firstItem="BLV-3N-90d" firstAttribute="leading" secondItem="Jh0-YC-IVT" secondAttribute="leading" constant="8" id="WE6-sY-0Kk"/>
+                                                <constraint firstAttribute="bottom" secondItem="1zs-qZ-dcL" secondAttribute="bottom" id="YAe-qi-jhe"/>
+                                                <constraint firstItem="kEV-Ur-os9" firstAttribute="top" secondItem="BLV-3N-90d" secondAttribute="bottom" constant="8" id="frb-QY-9Eo"/>
+                                                <constraint firstItem="kEV-Ur-os9" firstAttribute="leading" secondItem="Jh0-YC-IVT" secondAttribute="leading" constant="8" id="h1U-5W-cMo"/>
+                                                <constraint firstAttribute="bottom" secondItem="kEV-Ur-os9" secondAttribute="bottom" constant="8" id="lEl-ne-Mbh"/>
+                                                <constraint firstItem="1zs-qZ-dcL" firstAttribute="leading" secondItem="BLV-3N-90d" secondAttribute="trailing" constant="1" id="t4L-2A-9hm"/>
+                                                <constraint firstItem="kEV-Ur-os9" firstAttribute="top" secondItem="BLV-3N-90d" secondAttribute="bottom" constant="8" id="tUp-BI-g5h"/>
+                                            </constraints>
                                         </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="separatorInset" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="repoDescription" destination="kEV-Ur-os9" id="0wo-Yl-eeV"/>
+                                            <outlet property="repoName" destination="BLV-3N-90d" id="sO0-gv-FN7"/>
+                                            <outlet property="repoNew" destination="1zs-qZ-dcL" id="qh1-1G-YVi"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

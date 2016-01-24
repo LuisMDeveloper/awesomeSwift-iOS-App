@@ -70,12 +70,20 @@ class ViewController: UIViewController {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("repoCell")!
+        let cell:RepoTableViewCell = tableView.dequeueReusableCellWithIdentifier("repoCell") as! RepoTableViewCell
         
         let current = self.repos[indexPath.row]
         
+        cell.repoName.text = current["name"] as? String
+        cell.repoDescription.text = current["description"] as? String
         
-        cell.textLabel?.text = current["name"] as? String
+        cell.repoNew.hidden = true
+        
+        if indexPath.row % 2 == 0 {
+            cell.repoNew.hidden = false
+        }
+        
+        // force new if it is listed within the last 24h
         
         return cell
     }
@@ -83,6 +91,25 @@ class ViewController: UIViewController {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         //self.performSegueWithIdentifier("goDetail", sender: indexPath)
+        
+        // open browser
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        
+    }
+    
+    // MARK: - Table view data source
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return "TEST"
+        
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        
+        return 2
         
     }
 
