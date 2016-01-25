@@ -11,7 +11,7 @@ import Parse
 import Bolts
 import SwiftDate
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet var tableView : UITableView!
     
@@ -22,6 +22,8 @@ class ViewController: UIViewController {
     var repos = [String:[PFObject]]()
     
     var repoCats = [String]()
+    
+    var remoteObjects = [PFObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,34 +59,9 @@ class ViewController: UIViewController {
             
             if error == nil {
                 
-                for repo in objects! {
-                    
-                    // retrieve cats
-                    var catName = repo["category"] as! String
-                    
-                    if let subCat = repo["subCategory"] {
-                        catName = catName+" "+(subCat as! String)
-                    }
-                    
-                    // check cat and add it if not listed yet
-                    if self.repoCats.contains(catName) == false {
-                        self.repoCats.append(catName)
-                    }
-                    
-                    if (self.repos[catName] == nil) {
-                        self.repos[catName] = [PFObject]()
-                    }
-                    
-                    self.repos[catName]?.append(repo)
-                    
-                }
+                self.remoteObjects = objects!
                 
-                //print(self.repoCats)
-                
-                //print(self.repos)
-                
-                self.tableView.reloadData()
-
+                self.filterItems(false, search: "")
                 
             } else {
                 print("Error: \(error!) \(error!.userInfo)")
@@ -96,29 +73,49 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: - Actions
-    @IBAction func changeFilter() {
-        print(self.segmentedFilter.selectedSegmentIndex)
-    }
-    
-    @IBAction func toggleSearch() {
+    func filterItems (onlyNew: Bool, search: String) {
         
-        UIView.animateWithDuration(0.55, animations: {
+        for repo in self.remoteObjects {
             
-            if self.searchConstant.constant == 44 {
-                self.searchConstant.constant = 0
-            }else{
-                self.searchConstant.constant = 44
+            // retrieve cats
+            var catName = repo["category"] as! String
+            
+            if let subCat = repo["subCategory"] {
+                catName = catName+" "+(subCat as! String)
             }
             
-            self.view.setNeedsUpdateConstraints()
+            // check cat and add it if not listed yet
+            if self.repoCats.contains(catName) == false {
+                self.repoCats.append(catName)
+            }
             
-            self.view.layoutIfNeeded()
-        })
+            if (self.repos[catName] == nil) {
+                self.repos[catName] = [PFObject]()
+            }
+            
+            if onlyNew == true {
+                
+                if repo.createdAt >  1.days.ago {
+                    self.repos[catName]?.append(repo)
+                }
+                
+            }else{
+                self.repos[catName]?.append(repo)
+            }
+            
+        }
+        
+        //print(self.repoCats)
+        
+        //print(self.repos)
+        
+        self.tableView.reloadData()
         
     }
     
-    // MARK: - Table
+    
+    // MARK: - Table delegate
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let key = self.repoCats[section]
@@ -141,8 +138,8 @@ class ViewController: UIViewController {
         
         cell.repoNew.hidden = true
         
-        print(1.days.ago)
-        print(current.createdAt)
+        //print(1.days.ago)
+        //print(current.createdAt)
         
         // force new if it is listed within the last 24h
         if current.createdAt >  1.days.ago {
@@ -161,7 +158,6 @@ class ViewController: UIViewController {
         
     }
     
-    // MARK: - Table view data source
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         return self.repoCats[section] 
@@ -174,5 +170,45 @@ class ViewController: UIViewController {
         
     }
 
+    // MARK: - Filter
+    
+    @IBAction func changeFilter() {
+        
+        //print(self.segmentedFilter.selectedSegmentIndex)
+        
+        let index = self.segmentedFilter.selectedSegmentIndex
+        
+        if index == 0 {
+            self.filterItems(false, search: "")
+        }else{
+            self.filterItems(true, search: "")
+        }
+        
+    }
+
+    // MARK: - Search
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+    }
+
+    @IBAction func toggleSearch() {
+        
+        UIView.animateWithDuration(0.55, animations: {
+            
+            if self.searchConstant.constant == 44 {
+                self.searchConstant.constant = 0
+            }else{
+                self.searchConstant.constant = 44
+            }
+            
+            self.view.setNeedsUpdateConstraints()
+            
+            self.view.layoutIfNeeded()
+        })
+        
+    }
+
+    
 }
 
