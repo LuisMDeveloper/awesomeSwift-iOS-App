@@ -75,6 +75,10 @@ class ViewController: UIViewController, UISearchBarDelegate {
     
     func filterItems (onlyNew: Bool, search: String) {
         
+        // reset data
+        self.repoCats = [String]()
+        self.repos = [String:[PFObject]]()
+        
         for repo in self.remoteObjects {
             
             // retrieve cats
@@ -83,24 +87,43 @@ class ViewController: UIViewController, UISearchBarDelegate {
             if let subCat = repo["subCategory"] {
                 catName = catName+" "+(subCat as! String)
             }
-            
-            // check cat and add it if not listed yet
-            if self.repoCats.contains(catName) == false {
-                self.repoCats.append(catName)
-            }
-            
-            if (self.repos[catName] == nil) {
-                self.repos[catName] = [PFObject]()
-            }
-            
-            if onlyNew == true {
+        
+            var contains = false
+            var searchActive = false
+
+            // check if search is active
+            if search.characters.count > 0 {
                 
-                if repo.createdAt >  1.days.ago {
-                    self.repos[catName]?.append(repo)
+                searchActive = true
+                
+                // force lowercase in order to avoid any issue
+                let s = search.lowercaseString
+                
+                // check for catName
+                if (catName.lowercaseString.rangeOfString(s) != nil) {
+                    contains = true
+                }
+                
+                // check for name
+                if (repo["name"].lowercaseString.rangeOfString(s) != nil) {
+                    contains = true
+                }
+                
+                // check for description
+                if (repo["description"].lowercaseString.rangeOfString(s) != nil) {
+                    contains = true
+                }
+                
+            }
+            
+            if onlyNew == true || searchActive == true {
+                
+                if (onlyNew == true && repo.createdAt >  1.days.ago) || (searchActive == true && contains == true){
+                    self.addToRepoList(catName, repo: repo)
                 }
                 
             }else{
-                self.repos[catName]?.append(repo)
+                self.addToRepoList(catName, repo: repo)
             }
             
         }
@@ -110,6 +133,21 @@ class ViewController: UIViewController, UISearchBarDelegate {
         //print(self.repos)
         
         self.tableView.reloadData()
+        
+    }
+    
+    func addToRepoList(catName: String, repo: PFObject){
+        
+        // check cat and add it if not listed yet
+        if self.repoCats.contains(catName) == false {
+            self.repoCats.append(catName)
+        }
+        
+        if (self.repos[catName] == nil) {
+            self.repos[catName] = [PFObject]()
+        }
+        
+        self.repos[catName]?.append(repo)
         
     }
     
@@ -152,7 +190,18 @@ class ViewController: UIViewController, UISearchBarDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        // retrive object
+        let key = self.repoCats[indexPath.section]
+        
+        let reposOfCat = self.repos[key]! as [PFObject]
+        
+        let current = reposOfCat[indexPath.row]
+
+        
         // open browser
+        if let requestUrl = NSURL(string: current["url"] as! String) {
+            UIApplication.sharedApplication().openURL(requestUrl)
+        }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
@@ -189,7 +238,16 @@ class ViewController: UIViewController, UISearchBarDelegate {
     // MARK: - Search
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        
+        //print(searchText)
+        
+        let index = self.segmentedFilter.selectedSegmentIndex
+        
+        if index == 0 {
+            self.filterItems(false, search: searchText)
+        }else{
+            self.filterItems(true, search: searchText)
+        }
     }
 
     @IBAction func toggleSearch() {
