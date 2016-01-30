@@ -5,3 +5,5 @@ use_frameworks!
 pod 'SwiftDate'
 pod 'Parse'
 pod 'ParseUI'
+pod 'Fabric'
+pod 'Crashlytics'

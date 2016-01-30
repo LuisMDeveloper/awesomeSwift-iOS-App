@@ -1,5 +1,8 @@
 PODS:
   - Bolts/Tasks (1.5.0)
+  - Crashlytics (3.6.0):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.4)
   - Parse (1.11.0):
     - Bolts/Tasks (~> 1.5)
   - ParseUI (1.1.7):
@@ -8,12 +11,16 @@ PODS:
   - SwiftDate (2.0.2)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
   - Parse
   - ParseUI
   - SwiftDate
 
 SPEC CHECKSUMS:
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
+  Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
+  Fabric: ed41fd62173c6bdea24ab02c9d7707161eabb750
   Parse: 886af46a0a677402f6374bb97ac212e795f70afe
   ParseUI: c2bcdfbb00330e464b5b773266ae221697a3bb7b
   SwiftDate: b4f4d0962afe48365ad2800c9850a6626deb9359

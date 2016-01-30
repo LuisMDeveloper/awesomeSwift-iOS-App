@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 import Bolts
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,10 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
         // init parse
-        if _isDebugAssertConfiguration() {
+        //if _isDebugAssertConfiguration() {
             Parse.setApplicationId("9zouEYdpxwHl2iyaDEKd8ePPhuY0uftEaPiyzYqi",
                 clientKey: "4IL0Fml06Dso3lfvCCd8NRUBerlwNwCqVwUEXyHj")
-        }
+        //}
         
         // activate parse analytics
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
@@ -36,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
+        
+        // setup crahslytics
+        Fabric.with([Crashlytics.self])
         
         // Override point for customization after application launch.
         return true
