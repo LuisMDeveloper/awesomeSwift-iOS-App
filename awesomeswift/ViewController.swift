@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CloudKit
 import Parse
 import Bolts
 import SwiftDate
+import SafariServices
 
 class ViewController: UIViewController, UISearchBarDelegate {
     
@@ -200,8 +202,12 @@ class ViewController: UIViewController, UISearchBarDelegate {
         
         // open browser
         if let requestUrl = NSURL(string: current["url"] as! String) {
-            UIApplication.sharedApplication().openURL(requestUrl)
+            //UIApplication.sharedApplication().openURL(requestUrl)
+            let sfvc = SFSafariViewController.init(URL: requestUrl)
+            
+            self.presentViewController(sfvc, animated: true, completion: nil)
         }
+        
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
