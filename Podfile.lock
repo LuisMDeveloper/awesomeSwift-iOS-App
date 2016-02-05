@@ -1,28 +1,28 @@
 PODS:
-  - Bolts/Tasks (1.5.0)
+  - Alamofire (3.1.5)
   - Crashlytics (3.6.0):
     - Fabric (~> 1.6.3)
-  - Fabric (1.6.4)
-  - Parse (1.11.0):
-    - Bolts/Tasks (~> 1.5)
-  - ParseUI (1.1.7):
-    - Bolts/Tasks (~> 1.3)
-    - Parse (~> 1.9)
-  - SwiftDate (2.0.2)
+  - DGElasticPullToRefresh (1.0.3)
+  - Fabric (1.6.5)
+  - Graph (1.0.2)
+  - SwiftDate (3.0.1)
 
 DEPENDENCIES:
+  - Alamofire
   - Crashlytics
+  - DGElasticPullToRefresh
   - Fabric
-  - Parse
-  - ParseUI
+  - Graph
   - SwiftDate
 
 SPEC CHECKSUMS:
-  Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
+  Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
   Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
-  Fabric: ed41fd62173c6bdea24ab02c9d7707161eabb750
-  Parse: 886af46a0a677402f6374bb97ac212e795f70afe
-  ParseUI: c2bcdfbb00330e464b5b773266ae221697a3bb7b
-  SwiftDate: b4f4d0962afe48365ad2800c9850a6626deb9359
+  DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
+  Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
+  Graph: bf7739ecf2e331ed6335c730502369f6b8b77c9a
+  SwiftDate: 0ffc7cdc4e4ddffe44cb9f4ee378e4d68eaba6e7
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 2b452a8bae51d649fafdc55512e369adf82ed284
+
+COCOAPODS: 1.0.0.beta.3

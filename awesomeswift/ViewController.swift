@@ -7,31 +7,37 @@
 //
 
 import UIKit
-import CloudKit
-import Parse
-import Bolts
+import Alamofire
 import SwiftDate
-import SafariServices
+import Graph
+import DGElasticPullToRefresh
 
-class ViewController: UIViewController, UISearchBarDelegate {
+class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView : UITableView!
     
-    @IBOutlet var segmentedFilter : UISegmentedControl!
-
-    @IBOutlet var searchConstant : NSLayoutConstraint!
+    let graph = Graph()
     
-    var repos = [String:[PFObject]]()
+    //let apiEndpoint = "http://matteocrippa.it/awesomeswift/scraper.php"
+    let apiEndpoint = "http://localhost/scraper.php"
     
-    var repoCats = [String]()
     
-    var remoteObjects = [PFObject]()
+    var listCats = [Entity]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        listCats = self.graph.searchForEntity(types: ["Category"])
 
-        // hide search
-        self.searchConstant.constant = 0
+        // setup pull to refresh
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.whiteColor()
+        self.tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            self?.loadRemoteData()
+            }, loadingView: loadingView)
+        self.tableView.dg_setPullToRefreshFillColor(UIColor(red: 97/255.0, green: 31/255.0, blue: 88/255.0, alpha: 1.0))
+        self.tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
         
     }
     
@@ -41,238 +47,151 @@ class ViewController: UIViewController, UISearchBarDelegate {
         // force update
         self.loadRemoteData()
         
-        // hide search
-        self.searchConstant.constant = 0
     }
     
 
     func loadRemoteData() {
         
-        let query = PFQuery(className:"Repo")
-        query.cachePolicy = .NetworkElseCache
-        query.orderByAscending("category")
-        query.addAscendingOrder("subCategory")
-        query.addAscendingOrder("subSubCategory")
-        query.addAscendingOrder("name")
-        
-        query.limit = 1000
-        
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
+        Alamofire.request(.GET, apiEndpoint)
+            .responseJSON { response in
                 
-                self.remoteObjects = objects!
+                if let JSON = response.result.value {
+                    
+                    // loop repos
+                    for item in JSON as! Array<AnyObject> {
+                        
+                        if let urlR = item["url"]{
+                            
+                            let isRepo: Array<Entity> = self.graph.searchForEntity(properties: [(key: "url", value: urlR)])
+                        
+                            //print(isRepo)
+                            
+                            if isRepo.count == 0 {
+                                
+                                let repo: Entity = Entity(type: "Repository")
+                                
+                                if let name = item["name"] {
+                                    repo["name"] = name
+                                }
+                                
+                                if let url = item["url"] {
+                                    repo["url"] = url
+                                }
+                                
+                                if let description = item["description"] {
+                                    repo["description"] = description
+                                }
+                                
+                                var category = ""
+                                
+                                if let cat = item["cat"] {
+                                    category = cat as! String
+                                    //print(category)
+                                }
+                                
+                                if let subcat = item["subcat"] {
+                                    if subcat != nil {
+                                        category = category+" "+(subcat as! String)
+                                    }
+                                }
+                                
+                                if let subsubcat = item["subsubcat"] {
+                                    if subsubcat != nil {
+                                        category = category+" "+(subsubcat as! String)
+                                    }
+                                }
+                                
+                                // check if category exist
+                                let isCat: Array<Entity> = self.graph.searchForEntity(properties: [("name", category)])
+                                
+                                // add relationship
+                                let rel: Action = Action(type: "Relation")
+                                rel.addSubject(repo)
+
+                                //print(repo)
+                                
+                                // create category
+                                if isCat.count == 0 {
+                                    let c: Entity = Entity(type: "Category")
+                                    c["name"] = category
+                                    rel.addObject(c)
+                                }else{
+                                    rel.addObject(isCat[0])
+                                }
+                                
+                                // save
+                                self.graph.save()
+                                
+                            }
+                        }
+
+                    }
+                    
+                    self.listCats = self.graph.searchForEntity(types: ["Category"])
+
+                    self.tableView.dg_stopLoading()
+
+                    self.tableView.reloadData()
+                }
                 
-                self.filterItems(false, search: "")
-                
-            } else {
-                print("Error: \(error!) \(error!.userInfo)")
-            }
         }
+        
+        
+        // self.filterItems(false, search: "")
+
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func filterItems (onlyNew: Bool, search: String) {
-        
-        // reset data
-        self.repoCats = [String]()
-        self.repos = [String:[PFObject]]()
-        
-        for repo in self.remoteObjects {
-            
-            // retrieve cats
-            var catName = repo["category"] as! String
-            
-            if let subCat = repo["subCategory"] {
-                catName = catName+" "+(subCat as! String)
-            }
-        
-            var contains = false
-            var searchActive = false
-
-            // check if search is active
-            if search.characters.count > 0 {
-                
-                searchActive = true
-                
-                // force lowercase in order to avoid any issue
-                let s = search.lowercaseString
-                
-                // check for catName
-                if (catName.lowercaseString.rangeOfString(s) != nil) {
-                    contains = true
-                }
-                
-                // check for name
-                if (repo["name"].lowercaseString.rangeOfString(s) != nil) {
-                    contains = true
-                }
-                
-                // check for description
-                if (repo["description"].lowercaseString.rangeOfString(s) != nil) {
-                    contains = true
-                }
-                
-            }
-            
-            if onlyNew == true || searchActive == true {
-                
-                if (onlyNew == true && repo.createdAt >  1.days.ago) || (searchActive == true && contains == true){
-                    self.addToRepoList(catName, repo: repo)
-                }
-                
-            }else{
-                self.addToRepoList(catName, repo: repo)
-            }
-            
-        }
-        
-        //print(self.repoCats)
-        
-        //print(self.repos)
-        
-        self.tableView.reloadData()
-        
-    }
-    
-    func addToRepoList(catName: String, repo: PFObject){
-        
-        // check cat and add it if not listed yet
-        if self.repoCats.contains(catName) == false {
-            self.repoCats.append(catName)
-        }
-        
-        if (self.repos[catName] == nil) {
-            self.repos[catName] = [PFObject]()
-        }
-        
-        self.repos[catName]?.append(repo)
-        
-    }
-    
-    
     // MARK: - Table delegate
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        let key = self.repoCats[section]
-        
-        return self.repos[key]!.count
+        return listCats.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell:RepoTableViewCell = tableView.dequeueReusableCellWithIdentifier("repoCell") as! RepoTableViewCell
+        let cell:RepoTableViewCell = tableView.dequeueReusableCellWithIdentifier("repoCell",
+            forIndexPath: indexPath) as! RepoTableViewCell
         
-        let key = self.repoCats[indexPath.section]
         
-        let reposOfCat = self.repos[key]! as [PFObject]
-
-        let current = reposOfCat[indexPath.row]
+        let cat = self.listCats[indexPath.row]
         
-        cell.repoName.text = current["name"] as? String
-        cell.repoDescription.text = current["description"] as? String
-        
-        cell.repoNew.hidden = true
-        
-        //print(1.days.ago)
-        //print(current.createdAt)
-        
-        // force new if it is listed within the last 24h
-        if current.createdAt >  1.days.ago {
-            cell.repoNew.hidden = false
+        if let name = cat["name"] {
+            cell.repoName.text = name as! String
+        } else {
+            cell.repoName.text = ""
         }
         
+        let repos = cat.actions.count
+            
+        if repos == 1 {
+            cell.repoDescription.text = "1 Repository"
+        }else{
+            cell.repoDescription.text = "\(repos) Repositories"
+        }
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        // retrive object
-        let key = self.repoCats[indexPath.section]
-        
-        let reposOfCat = self.repos[key]! as [PFObject]
-        
-        let current = reposOfCat[indexPath.row]
-
-        
-        // open browser
-        if let requestUrl = NSURL(string: current["url"] as! String) {
-            //UIApplication.sharedApplication().openURL(requestUrl)
-            let sfvc = SFSafariViewController.init(URL: requestUrl)
-            
-            self.presentViewController(sfvc, animated: true, completion: nil)
-        }
-        
+        self.performSegueWithIdentifier("showRepo", sender: self)
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
     }
+        
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        return self.repoCats[section] 
-        
-    }
+    // MARK: - Navigation
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        return self.repoCats.count
-        
-    }
-
-    // MARK: - Filter
-    
-    @IBAction func changeFilter() {
-        
-        //print(self.segmentedFilter.selectedSegmentIndex)
-        
-        let index = self.segmentedFilter.selectedSegmentIndex
-        
-        if index == 0 {
-            self.filterItems(false, search: "")
-        }else{
-            self.filterItems(true, search: "")
-        }
-        
-    }
-
-    // MARK: - Search
-    
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        //print(searchText)
-        
-        let index = self.segmentedFilter.selectedSegmentIndex
-        
-        if index == 0 {
-            self.filterItems(false, search: searchText)
-        }else{
-            self.filterItems(true, search: searchText)
-        }
-    }
-
-    @IBAction func toggleSearch() {
-        
-        UIView.animateWithDuration(0.55, animations: {
-            
-            if self.searchConstant.constant == 44 {
-                self.searchConstant.constant = 0
-            }else{
-                self.searchConstant.constant = 44
-            }
-            
-            self.view.setNeedsUpdateConstraints()
-            
-            self.view.layoutIfNeeded()
-        })
-        
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
 
     
 }
-

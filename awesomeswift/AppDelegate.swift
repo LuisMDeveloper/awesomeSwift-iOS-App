@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Parse
-import Bolts
 import Fabric
 import Crashlytics
 
@@ -22,16 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // force status bar text color to white
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
-
-        
-        // init parse
-        //if _isDebugAssertConfiguration() {
-            Parse.setApplicationId("9zouEYdpxwHl2iyaDEKd8ePPhuY0uftEaPiyzYqi",
-                clientKey: "4IL0Fml06Dso3lfvCCd8NRUBerlwNwCqVwUEXyHj")
-        //}
-        
-        // activate parse analytics
-        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
         // init push notification
         let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
@@ -71,9 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // PRAGMA - Push notification
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         // Store the deviceToken in the current Installation and save it to Parse
-        let installation = PFInstallation.currentInstallation()
-        installation.setDeviceTokenFromData(deviceToken)
-        installation.saveInBackground()
     }
 
 }
