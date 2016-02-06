@@ -4,7 +4,7 @@ use_frameworks!
 
 target 'awesomeswift' do
     pod 'SwiftDate'
-    pod 'Graph'
+    pod 'RealmSwift'
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'Alamofire'

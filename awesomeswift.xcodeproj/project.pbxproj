@@ -14,6 +14,7 @@
 		480817571C54D22800C6F587 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 480817551C54D22800C6F587 /* Main.storyboard */; };
 		480817591C54D22800C6F587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 480817581C54D22800C6F587 /* Assets.xcassets */; };
 		4808175C1C54D22800C6F587 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4808175A1C54D22800C6F587 /* LaunchScreen.storyboard */; };
+		485549CE1C6507840074C59D /* Datamodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485549CD1C6507840074C59D /* Datamodel.swift */; };
 		48B1F41B1C64D19E0080607A /* RepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B1F41A1C64D19E0080607A /* RepoViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		480817581C54D22800C6F587 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4808175B1C54D22800C6F587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4808175D1C54D22800C6F587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		485549CD1C6507840074C59D /* Datamodel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datamodel.swift; sourceTree = "<group>"; };
 		48B1F41A1C64D19E0080607A /* RepoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoViewController.swift; sourceTree = "<group>"; };
 		59BCDE4513F306AB9B3BC0F5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA30DC27AEC6D1C20F525141 /* Pods-awesomeswift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-awesomeswift.release.xcconfig"; path = "Pods/Target Support Files/Pods-awesomeswift/Pods-awesomeswift.release.xcconfig"; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				480817581C54D22800C6F587 /* Assets.xcassets */,
 				4808175A1C54D22800C6F587 /* LaunchScreen.storyboard */,
 				4808175D1C54D22800C6F587 /* Info.plist */,
+				485549CD1C6507840074C59D /* Datamodel.swift */,
 			);
 			path = awesomeswift;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				485549CE1C6507840074C59D /* Datamodel.swift in Sources */,
 				48B1F41B1C64D19E0080607A /* RepoViewController.swift in Sources */,
 				480817541C54D22800C6F587 /* ViewController.swift in Sources */,
 				480817521C54D22800C6F587 /* AppDelegate.swift in Sources */,
@@ -366,6 +370,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.awesomeswift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -382,6 +387,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.awesomeswift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

@@ -9,26 +9,27 @@
 import UIKit
 import Alamofire
 import SwiftDate
-import Graph
 import DGElasticPullToRefresh
+import RealmSwift
 
 class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView : UITableView!
     
-    let graph = Graph()
-    
     //let apiEndpoint = "http://matteocrippa.it/awesomeswift/scraper.php"
     let apiEndpoint = "http://localhost/scraper.php"
     
     
-    var listCats = [Entity]()
+    var listCats = Results<Category>?()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        listCats = self.graph.searchForEntity(types: ["Category"])
+        let realm = try! Realm()
+
+        self.listCats  = realm.objects(Category).sorted("name")
+
 
         // setup pull to refresh
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
@@ -57,29 +58,31 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
                 
                 if let JSON = response.result.value {
                     
+                    let realm = try! Realm()
+                    
                     // loop repos
                     for item in JSON as! Array<AnyObject> {
                         
                         if let urlR = item["url"]{
                             
-                            let isRepo: Array<Entity> = self.graph.searchForEntity(properties: [(key: "url", value: urlR)])
-                        
+                            let isRepo = realm.objects(Repository).filter("url contains '\(urlR)'")
+                            
                             //print(isRepo)
                             
                             if isRepo.count == 0 {
                                 
-                                let repo: Entity = Entity(type: "Repository")
+                                let repo = Repository()
                                 
                                 if let name = item["name"] {
-                                    repo["name"] = name
+                                    repo.name = name as! String
                                 }
                                 
                                 if let url = item["url"] {
-                                    repo["url"] = url
+                                    repo.url = url as! String
                                 }
                                 
                                 if let description = item["description"] {
-                                    repo["description"] = description
+                                    repo.descr = description as! String
                                 }
                                 
                                 var category = ""
@@ -102,32 +105,43 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
                                 }
                                 
                                 // check if category exist
-                                let isCat: Array<Entity> = self.graph.searchForEntity(properties: [("name", category)])
-                                
-                                // add relationship
-                                let rel: Action = Action(type: "Relation")
-                                rel.addSubject(repo)
+                                let isCat = realm.objects(Category).filter("name contains '\(category)'")
 
                                 //print(repo)
                                 
-                                // create category
-                                if isCat.count == 0 {
-                                    let c: Entity = Entity(type: "Category")
-                                    c["name"] = category
-                                    rel.addObject(c)
-                                }else{
-                                    rel.addObject(isCat[0])
+                                try! realm.write {
+                                    realm.add(repo)
                                 }
                                 
-                                // save
-                                self.graph.save()
+                                // create category
+                                if isCat.count == 0 {
+                                    
+                                    let c = Category()
+                                    c.name = category
+                                    
+                                    c.repos.append(repo)
+                                    
+                                    try! realm.write {
+                                        realm.add(c)
+                                    }
+                                    
+                                }else{
+                                    
+                                    let c = isCat[0]
+                                    
+                                    try! realm.write {
+                                        c.repos.append(repo)
+                                    }
+
+                                }
+
                                 
                             }
                         }
 
                     }
                     
-                    self.listCats = self.graph.searchForEntity(types: ["Category"])
+                    self.listCats  = realm.objects(Category).sorted("name")
 
                     self.tableView.dg_stopLoading()
 
@@ -137,8 +151,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
         }
         
         
-        // self.filterItems(false, search: "")
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -148,7 +160,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
     // MARK: - Table delegate
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listCats.count
+        return listCats!.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -157,15 +169,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
             forIndexPath: indexPath) as! RepoTableViewCell
         
         
-        let cat = self.listCats[indexPath.row]
+        let cat = self.listCats![indexPath.row] as Category
         
-        if let name = cat["name"] {
-            cell.repoName.text = name as! String
-        } else {
-            cell.repoName.text = ""
-        }
+        cell.repoName.text = cat.name
         
-        let repos = cat.actions.count
+        let repos = cat.repos.count
             
         if repos == 1 {
             cell.repoDescription.text = "1 Repository"
@@ -180,8 +188,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
         
         self.performSegueWithIdentifier("showRepo", sender: self)
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        
     }
         
     
@@ -189,9 +195,33 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if (segue.identifier == "showRepo") {
+            
+            let index = self.tableView.indexPathForSelectedRow!
+            
+            let cat = self.listCats![index.row]
+            
+            let svc = segue.destinationViewController as! RepoViewController
+            
+            //svc.listRepos = cat.actions
+            //svc.catName = cat["name"] as! String
+            
+            svc.title = svc.catName
+            
+            self.tableView.deselectRowAtIndexPath(self.tableView.indexPathForSelectedRow!, animated: false)
+            
+        }
+        
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
 
     
+}
+
+// MARK: - Scrollview fix
+extension UIScrollView {
+    func dg_stopScrollingAnimation() {}
 }

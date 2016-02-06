@@ -4,7 +4,11 @@ PODS:
     - Fabric (~> 1.6.3)
   - DGElasticPullToRefresh (1.0.3)
   - Fabric (1.6.5)
-  - Graph (1.0.2)
+  - Realm (0.98.0):
+    - Realm/Headers (= 0.98.0)
+  - Realm/Headers (0.98.0)
+  - RealmSwift (0.98.0):
+    - Realm (= 0.98.0)
   - SwiftDate (3.0.1)
 
 DEPENDENCIES:
@@ -12,7 +16,7 @@ DEPENDENCIES:
   - Crashlytics
   - DGElasticPullToRefresh
   - Fabric
-  - Graph
+  - RealmSwift
   - SwiftDate
 
 SPEC CHECKSUMS:
@@ -20,9 +24,8 @@ SPEC CHECKSUMS:
   Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
   DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
   Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
-  Graph: bf7739ecf2e331ed6335c730502369f6b8b77c9a
+  Realm: 28efc598b8b1b378d27a222d9fc037a29ae68642
+  RealmSwift: 7ef4b9ee449d711cd5a7d69a3af1cc5cd0efb619
   SwiftDate: 0ffc7cdc4e4ddffe44cb9f4ee378e4d68eaba6e7
 
-PODFILE CHECKSUM: 2b452a8bae51d649fafdc55512e369adf82ed284
-
-COCOAPODS: 1.0.0.beta.3
+COCOAPODS: 0.39.0

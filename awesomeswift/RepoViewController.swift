@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Graph
 import SwiftDate
 import SafariServices
 
@@ -15,15 +14,11 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
     
     @IBOutlet var tableView : UITableView!
     
-    @IBOutlet var segmentedFilter : UISegmentedControl!
-    
     @IBOutlet var searchConstant : NSLayoutConstraint!
     
-    var listRepos = [Entity]()
+    //var listRepos = [Action]()
     var catName = ""
     
-    let graph = Graph()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +51,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return listRepos.count
+        return 0
         
     }
     
@@ -66,7 +61,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
             forIndexPath: indexPath) as! RepoTableViewCell
         
         
-        let repo = self.listRepos[indexPath.row]
+        /*let repo = self.listRepos[indexPath.row].subjects[0]
         
         if let name = repo["name"] {
             cell.repoName.text = name as! String
@@ -85,7 +80,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         // force new if it is listed within the last 24h
         if repo.createdDate >  1.days.ago {
             cell.repoNew.hidden = false
-        }
+        }*/
         
         return cell
     }
@@ -96,14 +91,6 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-    }
-    
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Categories"
-    }
-    
-    func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
-        return 1
     }
 
     
@@ -143,35 +130,15 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         
     }
     
-    // MARK: - Filter
-    
-    @IBAction func changeFilter() {
-        
-        //print(self.segmentedFilter.selectedSegmentIndex)
-        
-        let index = self.segmentedFilter.selectedSegmentIndex
-        
-        if index == 0 {
-        //    self.filterItems(false, search: "")
-        }else{
-        //    self.filterItems(true, search: "")
-        }
-        
-    }
-    
     // MARK: - Search
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         //print(searchText)
         
-        let index = self.segmentedFilter.selectedSegmentIndex
         
-        if index == 0 {
         //    self.filterItems(false, search: searchText)
-        }else{
-        //    self.filterItems(true, search: searchText)
-        }
+       
     }
     
     @IBAction func toggleSearch() {
