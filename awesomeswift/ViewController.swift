@@ -52,20 +52,23 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
     
 
     func loadRemoteData() {
-        
+                
         Alamofire.request(.GET, apiEndpoint)
             .responseJSON { response in
                 
                 if let JSON = response.result.value {
                     
                     let realm = try! Realm()
+                
                     
                     // loop repos
                     for item in JSON as! Array<AnyObject> {
                         
                         if let urlR = item["url"]{
                             
-                            let isRepo = realm.objects(Repository).filter("url contains '\(urlR)'")
+                            let predicate = NSPredicate(format: "url = %@", argumentArray: [urlR!])
+
+                            let isRepo = realm.objects(Repository).filter(predicate)
                             
                             //print(isRepo)
                             
