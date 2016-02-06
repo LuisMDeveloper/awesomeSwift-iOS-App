@@ -9,11 +9,14 @@
 import UIKit
 import Fabric
 import Crashlytics
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+
+    let pushEndpoint = "http://matteocrippa.it/awesomeswift/push.php"
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -58,7 +61,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // PRAGMA - Push notification
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        // Store the deviceToken in the current Installation and save it to Parse
+
+        let token = deviceToken.description.componentsSeparatedByCharactersInSet(NSCharacterSet.alphanumericCharacterSet().invertedSet).joinWithSeparator("")
+        
+        Alamofire.request(.GET, pushEndpoint, parameters: ["token": token])
+            .responseJSON { response in
+                print(response)
+        }
+
     }
 
 }
