@@ -16,8 +16,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
     
     @IBOutlet var tableView : UITableView!
     
-    //let apiEndpoint = "http://matteocrippa.it/awesomeswift/scraper.php"
-    let apiEndpoint = "http://localhost/scraper.php"
+    let apiEndpoint = "http://matteocrippa.it/awesomeswift/scraper.php"
     
     
     var listCats = Results<Category>?()
@@ -52,7 +51,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
     
 
     func loadRemoteData() {
-                
+        
         Alamofire.request(.GET, apiEndpoint)
             .responseJSON { response in
                 
@@ -81,6 +80,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
                                 }
                                 
                                 if let url = item["url"] {
+                                    //print(url)
                                     repo.url = url as! String
                                 }
                                 
@@ -203,14 +203,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
             
             let index = self.tableView.indexPathForSelectedRow!
             
-            let cat = self.listCats![index.row]
+            let cat = self.listCats![index.row] as Category
             
             let svc = segue.destinationViewController as! RepoViewController
             
-            //svc.listRepos = cat.actions
-            //svc.catName = cat["name"] as! String
-            
+            svc.catName = cat.name
             svc.title = svc.catName
+            
+            let repos = cat.repos.sorted("name")
+            svc.listRepos = repos
+            
             
             self.tableView.deselectRowAtIndexPath(self.tableView.indexPathForSelectedRow!, animated: false)
             

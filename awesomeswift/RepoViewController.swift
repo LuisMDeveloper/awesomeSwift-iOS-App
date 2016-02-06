@@ -9,6 +9,7 @@
 import UIKit
 import SwiftDate
 import SafariServices
+import RealmSwift
 
 class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControllerPreviewingDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -16,7 +17,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
     
     @IBOutlet var searchConstant : NSLayoutConstraint!
     
-    //var listRepos = [Action]()
+    var listRepos = Results<Repository>?()
     var catName = ""
     
     override func viewDidLoad() {
@@ -51,7 +52,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 0
+        return self.listRepos!.count
         
     }
     
@@ -61,35 +62,36 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
             forIndexPath: indexPath) as! RepoTableViewCell
         
         
-        /*let repo = self.listRepos[indexPath.row].subjects[0]
+        let repo = self.listRepos![indexPath.row]
         
-        if let name = repo["name"] {
-            cell.repoName.text = name as! String
-        } else {
-            cell.repoName.text = ""
-        }
+        cell.repoName.text = repo.name
         
-        if let description = repo["description"] {
-            cell.repoDescription.text = description as! String
-        } else {
-            cell.repoDescription.text = ""
-        }
-                
+        cell.repoDescription.text = repo.descr
+        
         cell.repoNew.hidden = true
         
         // force new if it is listed within the last 24h
-        if repo.createdDate >  1.days.ago {
+        if repo.createdAt >  1.days.ago {
             cell.repoNew.hidden = false
-        }*/
+        }
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        self.performSegueWithIdentifier("showRepo", sender: self)
+        let repo = self.listRepos![indexPath.row]
+        
+        // open browser
+        if let requestUrl = NSURL(string: repo.url) {
+            let sfvc = SFSafariViewController.init(URL: requestUrl)
+            
+            self.showViewController(sfvc, sender: self)
+            
+        }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+
         
     }
 
@@ -104,22 +106,14 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         
         guard let indexPath = self.tableView.indexPathForRowAtPoint(location) else { return nil }
         
-        // retrive object
-        //let key = self.repoCats[indexPath.section]
-        
-        /*let reposOfCat = self.repos[key]! as [PFObject]
-        
-        let current = reposOfCat[indexPath.row]
-        
+        let repo = self.listRepos![indexPath.row]
         
         // open browser
-        if let requestUrl = NSURL(string: current["url"] as! String) {
-        let sfvc = SFSafariViewController.init(URL: requestUrl)
+        if let requestUrl = NSURL(string: repo.url) {
+            let sfvc = SFSafariViewController.init(URL: requestUrl)
         
-        return sfvc
-        }else{
-        return nil
-        }*/
+            return sfvc
+        }
         
         return nil
     }
@@ -131,7 +125,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
     }
     
     // MARK: - Search
-    
+    // TODO: - Add search
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         //print(searchText)
@@ -162,6 +156,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
 }
 
 // MARK: - Safari exentsion
+// TODO: - Test long press
 extension SFSafariViewController {
     
     override public func previewActionItems() -> [UIPreviewActionItem] {
