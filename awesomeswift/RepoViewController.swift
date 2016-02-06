@@ -18,10 +18,15 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
     @IBOutlet var searchConstant : NSLayoutConstraint!
     
     var listRepos = Results<Repository>?()
+    
+    var listReposFiltered = Results<Repository>?()
+    
     var catName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.listReposFiltered = self.listRepos
         
         // hide search
         self.searchConstant.constant = 0
@@ -52,7 +57,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.listRepos!.count
+        return self.listReposFiltered!.count
         
     }
     
@@ -62,7 +67,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
             forIndexPath: indexPath) as! RepoTableViewCell
         
         
-        let repo = self.listRepos![indexPath.row]
+        let repo = self.listReposFiltered![indexPath.row]
         
         cell.repoName.text = repo.name
         
@@ -80,7 +85,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let repo = self.listRepos![indexPath.row]
+        let repo = self.listReposFiltered![indexPath.row]
         
         // open browser
         if let requestUrl = NSURL(string: repo.url) {
@@ -106,7 +111,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         
         guard let indexPath = self.tableView.indexPathForRowAtPoint(location) else { return nil }
         
-        let repo = self.listRepos![indexPath.row]
+        let repo = self.listReposFiltered![indexPath.row]
         
         // open browser
         if let requestUrl = NSURL(string: repo.url) {
@@ -125,14 +130,21 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
     }
     
     // MARK: - Search
-    // TODO: - Add search
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         //print(searchText)
         
+        if searchText.characters.count > 0 {
+            let predicate = NSPredicate(format: "name contains %@ || descr contains %@", argumentArray: [searchText, searchText])
+            
+            self.listReposFiltered = self.listRepos?.filter(predicate)
+
+        }else{
+            self.listReposFiltered = self.listRepos
+        }
         
-        //    self.filterItems(false, search: searchText)
-       
+        self.tableView.reloadData()
+        
     }
     
     @IBAction func toggleSearch() {
