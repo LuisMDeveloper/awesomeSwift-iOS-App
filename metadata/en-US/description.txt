@@ -1,0 +1,9 @@
+Official iOS app of the collaborative list of awesome swift resources:
+a curated list of awesome Swift frameworks, libraries, and software for iOS / OSX / tvOS / watchOS and Linux. 
+
+Feel free to contribute on github: https://github.com/matteocrippa/awesome-swift
+
+App for mobile and tablet (universal) supports:
+
+- push notification for new repositories
+- 3d force touch to easily preview a repository
