@@ -168,7 +168,6 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
 }
 
 // MARK: - Safari exentsion
-// TODO: - Test long press
 extension SFSafariViewController {
     
     override public func previewActionItems() -> [UIPreviewActionItem] {
@@ -182,15 +181,8 @@ extension SFSafariViewController {
                 
         })
         
-        let doneAction = UIPreviewAction(title: "Open",
-            style: UIPreviewActionStyle.Default,
-            handler: {
-                (previewActin, viewController) in
-                
-                NSLog("Done")
-        })
         
-        return [doneAction, deleteAction]
+        return [deleteAction]
     }
     
 }
