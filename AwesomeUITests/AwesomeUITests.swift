@@ -35,7 +35,7 @@ class AwesomeUITests: XCTestCase {
         
         snapshot("01Category")
         
-        XCUIApplication().tables.staticTexts["Demo Apps Watch"].tap()
+        XCUIApplication().tables.staticTexts["Demo Apps iOS"].tap()
         
         snapshot("02Repository")
 
