@@ -102,13 +102,18 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="czS-dz-12C"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="oNv-qC-qYt">
+                                <rect key="frame" x="282" y="216" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="WPW-JZ-K9x" secondAttribute="trailing" id="19a-WH-tcx"/>
                             <constraint firstItem="WPW-JZ-K9x" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="63u-Yy-QeS"/>
+                            <constraint firstItem="oNv-qC-qYt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DK9-OZ-SQM"/>
                             <constraint firstItem="WPW-JZ-K9x" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NvH-94-X09"/>
+                            <constraint firstItem="oNv-qC-qYt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="OAB-mT-TM6"/>
                             <constraint firstItem="WPW-JZ-K9x" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="QRv-JG-zqy"/>
                             <constraint firstItem="WPW-JZ-K9x" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ts0-Dk-zGz"/>
                             <constraint firstAttribute="trailing" secondItem="WPW-JZ-K9x" secondAttribute="trailing" id="fgj-28-BC4"/>
@@ -127,6 +132,7 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Categories" id="MsR-Jo-3xy"/>
                     <connections>
+                        <outlet property="loader" destination="oNv-qC-qYt" id="CWV-Uu-UTI"/>
                         <outlet property="tableView" destination="WPW-JZ-K9x" id="41S-Eo-hQ7"/>
                         <segue destination="CFN-92-7WQ" kind="show" identifier="showRepo" id="zjb-0d-0Rg"/>
                     </connections>

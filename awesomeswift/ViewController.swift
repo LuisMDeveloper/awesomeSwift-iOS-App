@@ -15,6 +15,7 @@ import RealmSwift
 class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView : UITableView!
+    @IBOutlet var loader : UIActivityIndicatorView!
     
     let apiEndpoint = "http://matteocrippa.it/awesomeswift/scraper.php"
     
@@ -149,6 +150,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
                     self.tableView.dg_stopLoading()
 
                     self.tableView.reloadData()
+                    
                 }
                 
         }
@@ -163,6 +165,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
     // MARK: - Table delegate
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if listCats!.count > 0 {
+            self.loader.stopAnimating()
+        }
+        
+        
         return listCats!.count
     }
     
