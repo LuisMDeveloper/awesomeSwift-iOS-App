@@ -10,7 +10,7 @@ import UIKit
 import SafariServices
 import RealmSwift
 
-class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControllerPreviewingDelegate, UITableViewDataSource, UITableViewDelegate {
+class RepoViewController: UIViewController {
     
     @IBOutlet var tableView : UITableView!
     
@@ -51,8 +51,27 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // MARK: - Table delegate
+
+    @IBAction func toggleSearch() {
+        
+        UIView.animateWithDuration(0.55, animations: {
+            
+            if self.searchConstant.constant == 44 {
+                self.searchConstant.constant = 0
+            }else{
+                self.searchConstant.constant = 44
+            }
+            
+            self.view.setNeedsUpdateConstraints()
+            
+            self.view.layoutIfNeeded()
+        })
+        
+    }
+}
+
+// MARK: - Table delegate
+extension RepoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -87,17 +106,18 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-
+        
         
     }
+}
 
-    
+// MARK: UIViewControllerPreviewingDelegate methods
+extension RepoViewController: UIViewControllerPreviewingDelegate {
     // MARK: - Pop
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         
     }
     
-    // MARK: UIViewControllerPreviewingDelegate methods
     func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         
         guard let indexPath = self.tableView.indexPathForRowAtPoint(location) else { return nil }
@@ -107,7 +127,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         // open browser
         if let requestUrl = NSURL(string: cell.viewModel!.url.value) {
             let sfvc = SFSafariViewController.init(URL: requestUrl)
-        
+            
             return sfvc
         }
         
@@ -119,8 +139,12 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         showViewController(viewControllerToCommit, sender: self)
         
     }
+
+}
+
+// MARK: - UISearchBarDelegate
+extension RepoViewController: UISearchBarDelegate {
     
-    // MARK: - Search
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         //print(searchText)
@@ -129,7 +153,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
             let predicate = NSPredicate(format: "name contains %@ || descr contains %@", argumentArray: [searchText, searchText])
             
             self.listReposFiltered = self.listRepos?.filter(predicate)
-
+            
         }else{
             self.listReposFiltered = self.listRepos
         }
@@ -138,24 +162,6 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         
     }
     
-    @IBAction func toggleSearch() {
-        
-        UIView.animateWithDuration(0.55, animations: {
-            
-            if self.searchConstant.constant == 44 {
-                self.searchConstant.constant = 0
-            }else{
-                self.searchConstant.constant = 44
-            }
-            
-            self.view.setNeedsUpdateConstraints()
-            
-            self.view.layoutIfNeeded()
-        })
-        
-    }
-
-
 }
 
 // MARK: - Safari exentsion
@@ -168,7 +174,7 @@ extension SFSafariViewController {
             handler: {
                 (previewAction,viewController) in
                 
-                NSLog("Delete")
+                print("Delete")
                 
         })
         
