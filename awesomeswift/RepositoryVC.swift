@@ -79,7 +79,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! RepoTableViewCell
         
         // open browser
-        if let requestUrl = NSURL(string: cell.viewModel!.url) {
+        if let requestUrl = NSURL(string: cell.viewModel!.url.value) {
             let sfvc = SFSafariViewController.init(URL: requestUrl)
             
             self.showViewController(sfvc, sender: self)
@@ -105,7 +105,7 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! RepoTableViewCell
         
         // open browser
-        if let requestUrl = NSURL(string: cell.viewModel!.url) {
+        if let requestUrl = NSURL(string: cell.viewModel!.url.value) {
             let sfvc = SFSafariViewController.init(URL: requestUrl)
         
             return sfvc

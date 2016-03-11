@@ -9,21 +9,20 @@
 import UIKit
 
 protocol CategoryVVM {
-    var category: Category {get}
-    var name: String {get}
-    var description: String {get}
+    var name: Dynamic<String> {get}
+    var description: Dynamic<String> {get}
 }
 
 class CategoryVVMFromCategory: CategoryVVM {
     let category: Category
     
-    let name: String
-    let description: String
+    let name: Dynamic<String>
+    let description: Dynamic<String>
     
     init(_ category: Category){
         self.category = category
         
-        self.name = category.name
+        self.name = Dynamic(category.name)
         
         let repos = category.repos.count
         
@@ -32,7 +31,7 @@ class CategoryVVMFromCategory: CategoryVVM {
             description = "\(repos) Repositories"
         }
         
-        self.description = description
+        self.description = Dynamic(description)
         
     }
 }

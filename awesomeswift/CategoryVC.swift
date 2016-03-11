@@ -35,7 +35,6 @@ class CategoryViewController: UIViewController, UISearchBarDelegate, UITableView
 
         self.listCats  = realm.objects(Category).sorted("name")
 
-
         // setup pull to refresh
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor.whiteColor()
@@ -171,7 +170,6 @@ class CategoryViewController: UIViewController, UISearchBarDelegate, UITableView
         if listCats!.count > 0 {
             self.loader.stopAnimating()
         }
-        
         
         return listCats!.count
     }

@@ -10,25 +10,25 @@ import UIKit
 import SwiftDate
 
 protocol RepositoryVVM {
-    var name: String {get}
-    var description: String {get}
-    var isNew: Bool {get}
-    var url: String {get}
+    var name: Dynamic<String> {get}
+    var description: Dynamic<String> {get}
+    var isNew: Dynamic<Bool> {get}
+    var url: Dynamic<String> {get}
 }
 
 class RepositoryVVMFromRepository: RepositoryVVM {
     let repository: Repository
     
-    let name: String
-    let description: String
-    let isNew: Bool
-    let url: String
+    let name: Dynamic<String>
+    let description: Dynamic<String>
+    let isNew: Dynamic<Bool>
+    let url: Dynamic<String>
     
     init(_ repository: Repository){
         self.repository = repository
         
-        self.name = repository.name
-        self.description = repository.descr
+        self.name = Dynamic(repository.name)
+        self.description = Dynamic(repository.descr)
         
         // force new if it is listed within the last 24h
         var isNew = true
@@ -36,7 +36,7 @@ class RepositoryVVMFromRepository: RepositoryVVM {
             isNew = false
         }
         
-        self.isNew = isNew
-        self.url = repository.url
+        self.isNew = Dynamic(isNew)
+        self.url = Dynamic(repository.url)
     }
 }

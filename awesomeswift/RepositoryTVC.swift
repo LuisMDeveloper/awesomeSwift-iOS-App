@@ -17,10 +17,23 @@ class RepoTableViewCell: UITableViewCell {
     
     var viewModel: RepositoryVVM? {
         didSet {
-            lblName.text = viewModel?.name
-            lblDescription.text = viewModel?.description
             
-            badgeIsNew.hidden = !(viewModel?.isNew)!
+            viewModel?.name.bindAndFire{
+                [unowned self] in
+                self.lblName.text = $0
+            }
+            
+            viewModel?.description.bindAndFire{
+                [unowned self] in
+                self.lblDescription.text = $0
+                
+            }
+            
+            viewModel?.isNew.bindAndFire{
+                [unowned self] in
+                self.badgeIsNew.hidden = !$0
+                
+            }
             
         }
     }

@@ -15,8 +15,17 @@ class CategoryTableViewCell: UITableViewCell {
         
     var viewModel: CategoryVVM? {
         didSet {
-            lblName.text = viewModel?.name
-            lblDescription.text = viewModel?.description
+            
+            viewModel?.name.bindAndFire{
+                [unowned self] in
+                self.lblName.text = $0
+            }
+            
+            viewModel?.description.bindAndFire{
+                [unowned self] in
+                self.lblDescription.text = $0
+            }
+            
         }
     }
 
