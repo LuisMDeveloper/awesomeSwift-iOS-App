@@ -16,9 +16,19 @@ class RepoViewController: UIViewController {
     
     @IBOutlet var searchConstant : NSLayoutConstraint!
     
-    var listRepos = Results<Repository>?()
+    var listRepos = Results<Repository>?(){
+        didSet {
+            tableView.dg_stopLoading()
+            tableView.reloadData()
+        }
+    }
     
-    var listReposFiltered = Results<Repository>?()
+    var listReposFiltered = Results<Repository>?(){
+        didSet {
+            tableView.dg_stopLoading()
+            tableView.reloadData()
+        }
+    }
     
     var catName = ""
     
