@@ -10,16 +10,26 @@ import UIKit
 
 class RepoTableViewCell: UITableViewCell {
     
-    @IBOutlet var repoName : UILabel!
-    @IBOutlet var repoDescription : UILabel!
+    @IBOutlet var lblName : UILabel!
+    @IBOutlet var lblDescription : UILabel!
     
-    @IBOutlet var repoNew : UIView!
-
+    @IBOutlet var badgeIsNew : UIView!
+    
+    var viewModel: RepositoryVVM? {
+        didSet {
+            lblName.text = viewModel?.name
+            lblDescription.text = viewModel?.description
+            
+            badgeIsNew.hidden = !(viewModel?.isNew)!
+            
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

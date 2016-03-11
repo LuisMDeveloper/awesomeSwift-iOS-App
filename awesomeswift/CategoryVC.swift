@@ -12,7 +12,7 @@ import SwiftDate
 import DGElasticPullToRefresh
 import RealmSwift
 
-class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
+class CategoryViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView : UITableView!
     @IBOutlet var loader : UIActivityIndicatorView!
@@ -20,7 +20,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
     let apiEndpoint = "http://matteocrippa.it/awesomeswift/scraper.php"
     
     
-    var listCats = Results<Category>?()
+    var listCats = Results<Category>?() {
+        didSet {
+            self.tableView.dg_stopLoading()
+            self.tableView.reloadData()
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -147,9 +152,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
                     
                     self.listCats  = realm.objects(Category).sorted("name")
 
-                    self.tableView.dg_stopLoading()
-
-                    self.tableView.reloadData()
                     
                 }
                 
@@ -176,21 +178,13 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell:RepoTableViewCell = tableView.dequeueReusableCellWithIdentifier("repoCell",
-            forIndexPath: indexPath) as! RepoTableViewCell
-        
+        let cell:CategoryTableViewCell = tableView.dequeueReusableCellWithIdentifier("catCell",
+            forIndexPath: indexPath) as! CategoryTableViewCell
         
         let cat = self.listCats![indexPath.row] as Category
+        let viewModel = CategoryVVMFromCategory(cat)
         
-        cell.repoName.text = cat.name
-        
-        let repos = cat.repos.count
-            
-        if repos == 1 {
-            cell.repoDescription.text = "1 Repository"
-        }else{
-            cell.repoDescription.text = "\(repos) Repositories"
-        }
+        cell.viewModel = viewModel
         
         return cell
     }

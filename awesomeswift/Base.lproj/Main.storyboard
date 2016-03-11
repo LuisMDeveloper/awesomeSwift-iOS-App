@@ -9,7 +9,7 @@
         <!--Categories-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="awesomeswift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CategoryViewController" customModule="awesomeswift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" red="0.48627450980392156" green="0.27450980392156865" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="repoCell" rowHeight="127" id="lze-KY-qfE" customClass="RepoTableViewCell" customModule="awesomeswift" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="catCell" rowHeight="127" id="lze-KY-qfE" customClass="CategoryTableViewCell" customModule="awesomeswift" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="600" height="127"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lze-KY-qfE" id="Jh0-YC-IVT">
@@ -92,8 +92,8 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="repoDescription" destination="kEV-Ur-os9" id="0wo-Yl-eeV"/>
-                                            <outlet property="repoName" destination="BLV-3N-90d" id="sO0-gv-FN7"/>
+                                            <outlet property="lblDescription" destination="kEV-Ur-os9" id="JGC-9o-b5Q"/>
+                                            <outlet property="lblName" destination="BLV-3N-90d" id="1Ci-nj-hud"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -186,7 +186,7 @@
                                         <rect key="frame" x="0.0" y="1" width="600" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FHc-9x-a7i" id="9xm-uw-djQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="101"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMO-vA-qTy">
@@ -235,9 +235,9 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="repoDescription" destination="cKO-uV-mD8" id="vw7-XX-mk1"/>
-                                            <outlet property="repoName" destination="AMO-vA-qTy" id="AZj-dX-g4k"/>
-                                            <outlet property="repoNew" destination="ZpQ-3I-GQF" id="QTi-dZ-n1C"/>
+                                            <outlet property="badgeIsNew" destination="ZpQ-3I-GQF" id="J4r-6K-oGR"/>
+                                            <outlet property="lblDescription" destination="cKO-uV-mD8" id="c7Z-cR-Tv1"/>
+                                            <outlet property="lblName" destination="AMO-vA-qTy" id="InR-2r-PkS"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

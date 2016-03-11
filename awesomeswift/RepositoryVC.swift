@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftDate
 import SafariServices
 import RealmSwift
 
@@ -68,27 +67,19 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         
         
         let repo = self.listReposFiltered![indexPath.row]
+        let viewModel = RepositoryVVMFromRepository(repo)
         
-        cell.repoName.text = repo.name
-        
-        cell.repoDescription.text = repo.descr
-        
-        cell.repoNew.hidden = true
-        
-        // force new if it is listed within the last 24h
-        if repo.createdAt >  1.days.ago {
-            cell.repoNew.hidden = false
-        }
+        cell.viewModel = viewModel
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let repo = self.listReposFiltered![indexPath.row]
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! RepoTableViewCell
         
         // open browser
-        if let requestUrl = NSURL(string: repo.url) {
+        if let requestUrl = NSURL(string: cell.viewModel!.url) {
             let sfvc = SFSafariViewController.init(URL: requestUrl)
             
             self.showViewController(sfvc, sender: self)
@@ -111,10 +102,10 @@ class RepoViewController: UIViewController, UISearchBarDelegate, UIViewControlle
         
         guard let indexPath = self.tableView.indexPathForRowAtPoint(location) else { return nil }
         
-        let repo = self.listReposFiltered![indexPath.row]
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! RepoTableViewCell
         
         // open browser
-        if let requestUrl = NSURL(string: repo.url) {
+        if let requestUrl = NSURL(string: cell.viewModel!.url) {
             let sfvc = SFSafariViewController.init(URL: requestUrl)
         
             return sfvc
