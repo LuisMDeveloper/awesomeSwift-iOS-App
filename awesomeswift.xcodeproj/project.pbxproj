@@ -21,6 +21,7 @@
 		48B1F41B1C64D19E0080607A /* RepositoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B1F41A1C64D19E0080607A /* RepositoryVC.swift */; };
 		48BF11021C92CA0400972277 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BF11011C92CA0400972277 /* CategoryTVC.swift */; };
 		48BF11071C92D4AC00972277 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BF11061C92D4AC00972277 /* Dynamic.swift */; };
+		48BF11091C92DFB900972277 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BF11081C92DFB900972277 /* Networking.swift */; };
 		48D0BE7D1C6781A800B38A37 /* AwesomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0BE7C1C6781A800B38A37 /* AwesomeUITests.swift */; };
 		48D0BE851C6781F400B38A37 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0BE841C6781F400B38A37 /* SnapshotHelper.swift */; };
 /* End PBXBuildFile section */
@@ -53,6 +54,7 @@
 		48B1F41A1C64D19E0080607A /* RepositoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryVC.swift; sourceTree = "<group>"; };
 		48BF11011C92CA0400972277 /* CategoryTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
 		48BF11061C92D4AC00972277 /* Dynamic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
+		48BF11081C92DFB900972277 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		48D0BE7A1C6781A800B38A37 /* AwesomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D0BE7C1C6781A800B38A37 /* AwesomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeUITests.swift; sourceTree = "<group>"; };
 		48D0BE7E1C6781A800B38A37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 		482EF65C1C91E77400C9113D /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				48BF11081C92DFB900972277 /* Networking.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				482EF6621C91E87E00C9113D /* RepositoryVM.swift in Sources */,
+				48BF11091C92DFB900972277 /* Networking.swift in Sources */,
 				48BF11071C92D4AC00972277 /* Dynamic.swift in Sources */,
 				485549CE1C6507840074C59D /* Category.swift in Sources */,
 				48B1F41B1C64D19E0080607A /* RepositoryVC.swift in Sources */,
