@@ -12,9 +12,9 @@ import RealmSwift
 
 class RepoViewController: UIViewController {
     
-    @IBOutlet var tableView : UITableView!
+    @IBOutlet weak var tableView : UITableView!
     
-    @IBOutlet var searchConstant : NSLayoutConstraint!
+    @IBOutlet weak var searchConstant : NSLayoutConstraint!
     
     var listRepos = Results<Repository>?(){
         didSet {

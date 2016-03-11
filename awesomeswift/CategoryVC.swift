@@ -12,8 +12,8 @@ import RealmSwift
 
 class CategoryViewController: UIViewController {
     
-    @IBOutlet var tableView : UITableView!
-    @IBOutlet var loader : UIActivityIndicatorView!
+    @IBOutlet weak var tableView : UITableView!
+    @IBOutlet weak var loader : UIActivityIndicatorView!
     
     let realm = try! Realm()
 
