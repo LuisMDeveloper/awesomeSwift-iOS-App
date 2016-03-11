@@ -9,22 +9,23 @@
 import Alamofire
 import RealmSwift
 import UIKit
+import Bond
 
 let apiEndpoint = "http://matteocrippa.it/awesomeswift/scraper.php"
 
 protocol CategoryListVVM {
-    var categories: Dynamic<Results<Category>?> {get}
+    var categories: Observable<Results<Category>?> {get}
 }
 
 class CategoryListVVMFromJson: CategoryListVVM {
     
     let realm = try! Realm()
 
-    var categories: Dynamic<Results<Category>?>
+    var categories: Observable<Results<Category>?>
 
     init(){
         
-        self.categories = Dynamic(nil)
+        self.categories = Observable(nil)
         
         Alamofire.request(.GET, apiEndpoint)
             .responseJSON { [unowned self] response in

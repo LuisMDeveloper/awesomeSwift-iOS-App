@@ -26,9 +26,9 @@ class CategoryViewController: UIViewController {
     
     var viewModel: CategoryListVVM? {
         didSet {
-            viewModel?.categories.bindAndFire{
-                [unowned self] in
-                self.listCats = $0
+            viewModel?.categories.observe{
+                categories in
+                self.listCats = categories
             }
         }
     }
