@@ -18,15 +18,22 @@ class RepoViewController: UIViewController {
     
     var listRepos = Results<Repository>?(){
         didSet {
-            tableView.dg_stopLoading()
-            tableView.reloadData()
+            guard (self.tableView != nil) else {
+                return
+            }
+            
+            self.tableView.reloadData()
+
         }
     }
     
     var listReposFiltered = Results<Repository>?(){
         didSet {
-            tableView.dg_stopLoading()
-            tableView.reloadData()
+            guard (self.tableView != nil) else {
+                return
+            }
+            
+            self.tableView.reloadData()
         }
     }
     
@@ -157,18 +164,14 @@ extension RepoViewController: UISearchBarDelegate {
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
-        //print(searchText)
-        
         if searchText.characters.count > 0 {
-            let predicate = NSPredicate(format: "name contains %@ || descr contains %@", argumentArray: [searchText, searchText])
+            let predicate = NSPredicate(format: "name contains %@ || descr contains %@", argumentArray: [searchText.lowercaseString, searchText.lowercaseString])
             
             self.listReposFiltered = self.listRepos?.filter(predicate)
             
         }else{
             self.listReposFiltered = self.listRepos
         }
-        
-        self.tableView.reloadData()
         
     }
     
