@@ -25,7 +25,7 @@ class CategoryListVVMFromJson: CategoryListVVM {
 
     init(){
         
-        self.categories = Observable(nil)
+        self.categories = Observable(self.realm.objects(Category).sorted("name"))
         
         Alamofire.request(.GET, apiEndpoint)
             .responseJSON { [unowned self] response in
