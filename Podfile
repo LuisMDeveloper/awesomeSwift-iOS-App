@@ -3,10 +3,11 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'awesomeswift' do
-    pod 'SwiftDate'
-    pod 'RealmSwift'
-    pod 'Fabric'
-    pod 'Crashlytics'
-    pod 'Alamofire'
-    pod 'DGElasticPullToRefresh'
+	pod 'Bond', '~> 4.0'
+    	pod 'SwiftDate'
+    	pod 'RealmSwift'
+    	pod 'Fabric'
+    	pod 'Crashlytics'
+    	pod 'Alamofire'
+    	pod 'DGElasticPullToRefresh'
 end

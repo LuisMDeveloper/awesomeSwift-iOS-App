@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Bond
 
 class CategoryTableViewCell: UITableViewCell {
     
@@ -16,14 +17,14 @@ class CategoryTableViewCell: UITableViewCell {
     var viewModel: CategoryVVM? {
         didSet {
             
-            viewModel?.name.bindAndFire{
-                [unowned self] in
-                self.lblName.text = $0
+            viewModel?.name.observe{
+                name in
+                self.lblName.text = name
             }
             
-            viewModel?.description.bindAndFire{
-                [unowned self] in
-                self.lblDescription.text = $0
+            viewModel?.description.observe{
+                description in
+                self.lblDescription.text = description
             }
             
         }

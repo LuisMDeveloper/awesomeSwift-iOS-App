@@ -8,27 +8,28 @@
 
 import UIKit
 import SwiftDate
+import Bond
 
 protocol RepositoryVVM {
-    var name: Dynamic<String> {get}
-    var description: Dynamic<String> {get}
-    var isNew: Dynamic<Bool> {get}
-    var url: Dynamic<String> {get}
+    var name: Observable<String> {get}
+    var description: Observable<String> {get}
+    var isNew: Observable<Bool> {get}
+    var url: Observable<String> {get}
 }
 
 class RepositoryVVMFromRepository: RepositoryVVM {
     let repository: Repository
     
-    let name: Dynamic<String>
-    let description: Dynamic<String>
-    let isNew: Dynamic<Bool>
-    let url: Dynamic<String>
+    let name: Observable<String>
+    let description: Observable<String>
+    let isNew: Observable<Bool>
+    let url: Observable<String>
     
     init(_ repository: Repository){
         self.repository = repository
         
-        self.name = Dynamic(repository.name)
-        self.description = Dynamic(repository.descr)
+        self.name = Observable(repository.name)
+        self.description = Observable(repository.descr)
         
         // force new if it is listed within the last 24h
         var isNew = true
@@ -36,7 +37,7 @@ class RepositoryVVMFromRepository: RepositoryVVM {
             isNew = false
         }
         
-        self.isNew = Dynamic(isNew)
-        self.url = Dynamic(repository.url)
+        self.isNew = Observable(isNew)
+        self.url = Observable(repository.url)
     }
 }

@@ -20,7 +20,6 @@
 		485549CE1C6507840074C59D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485549CD1C6507840074C59D /* Category.swift */; };
 		48B1F41B1C64D19E0080607A /* RepositoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B1F41A1C64D19E0080607A /* RepositoryVC.swift */; };
 		48BF11021C92CA0400972277 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BF11011C92CA0400972277 /* CategoryTVC.swift */; };
-		48BF11071C92D4AC00972277 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BF11061C92D4AC00972277 /* Dynamic.swift */; };
 		48BF11091C92DFB900972277 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BF11081C92DFB900972277 /* Networking.swift */; };
 		48D0BE7D1C6781A800B38A37 /* AwesomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0BE7C1C6781A800B38A37 /* AwesomeUITests.swift */; };
 		48D0BE851C6781F400B38A37 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0BE841C6781F400B38A37 /* SnapshotHelper.swift */; };
@@ -53,7 +52,6 @@
 		485549CD1C6507840074C59D /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		48B1F41A1C64D19E0080607A /* RepositoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryVC.swift; sourceTree = "<group>"; };
 		48BF11011C92CA0400972277 /* CategoryTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
-		48BF11061C92D4AC00972277 /* Dynamic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		48BF11081C92DFB900972277 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		48D0BE7A1C6781A800B38A37 /* AwesomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D0BE7C1C6781A800B38A37 /* AwesomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeUITests.swift; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 		480817501C54D22800C6F587 /* awesomeswift */ = {
 			isa = PBXGroup;
 			children = (
-				48BF11051C92D46F00972277 /* Utils */,
 				482EF65E1C91E78300C9113D /* ViewModel */,
 				482EF65D1C91E77A00C9113D /* Controller */,
 				482EF65C1C91E77400C9113D /* Network */,
@@ -170,14 +167,6 @@
 				4808120F1C555E4E007FBC5F /* RepositoryTVC.swift */,
 			);
 			name = Repository;
-			sourceTree = "<group>";
-		};
-		48BF11051C92D46F00972277 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				48BF11061C92D4AC00972277 /* Dynamic.swift */,
-			);
-			name = Utils;
 			sourceTree = "<group>";
 		};
 		48D0BE7B1C6781A800B38A37 /* AwesomeUITests */ = {
@@ -385,7 +374,6 @@
 			files = (
 				482EF6621C91E87E00C9113D /* RepositoryVM.swift in Sources */,
 				48BF11091C92DFB900972277 /* Networking.swift in Sources */,
-				48BF11071C92D4AC00972277 /* Dynamic.swift in Sources */,
 				485549CE1C6507840074C59D /* Category.swift in Sources */,
 				48B1F41B1C64D19E0080607A /* RepositoryVC.swift in Sources */,
 				480817541C54D22800C6F587 /* CategoryVC.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Bond
 
 class RepoTableViewCell: UITableViewCell {
     
@@ -18,20 +19,20 @@ class RepoTableViewCell: UITableViewCell {
     var viewModel: RepositoryVVM? {
         didSet {
             
-            viewModel?.name.bindAndFire{
-                [unowned self] in
-                self.lblName.text = $0
+            viewModel?.name.observe{
+                name in
+                self.lblName.text = name
             }
             
-            viewModel?.description.bindAndFire{
-                [unowned self] in
-                self.lblDescription.text = $0
+            viewModel?.description.observe{
+                description in
+                self.lblDescription.text = description
                 
             }
             
-            viewModel?.isNew.bindAndFire{
-                [unowned self] in
-                self.badgeIsNew.hidden = !$0
+            viewModel?.isNew.observe{
+                isNew in
+                self.badgeIsNew.hidden = isNew
                 
             }
             

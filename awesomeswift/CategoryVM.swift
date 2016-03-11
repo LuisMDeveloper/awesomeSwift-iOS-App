@@ -7,22 +7,23 @@
 //
 
 import UIKit
+import Bond
 
 protocol CategoryVVM {
-    var name: Dynamic<String> {get}
-    var description: Dynamic<String> {get}
+    var name: Observable<String> {get}
+    var description: Observable<String> {get}
 }
 
 class CategoryVVMFromCategory: CategoryVVM {
     let category: Category
     
-    let name: Dynamic<String>
-    let description: Dynamic<String>
+    let name: Observable<String>
+    let description: Observable<String>
     
     init(_ category: Category){
         self.category = category
         
-        self.name = Dynamic(category.name)
+        self.name = Observable(category.name)
         
         let repos = category.repos.count
         
@@ -31,7 +32,7 @@ class CategoryVVMFromCategory: CategoryVVM {
             description = "\(repos) Repositories"
         }
         
-        self.description = Dynamic(description)
+        self.description = Observable(description)
         
     }
 }
