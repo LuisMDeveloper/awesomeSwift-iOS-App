@@ -33,11 +33,16 @@ class AwesomeUITests: XCTestCase {
     
     func testExample() {
         
-        snapshot("01Category")
+        snapshot("01Repository")
         
-        XCUIApplication().tables.staticTexts["Demo Apps iOS"].tap()
-        
-        snapshot("02Repository")
+        let app = XCUIApplication()
+        let searchButton = app.navigationBars["awesomeswift.RepoView"].buttons["Search"]
+        searchButton.tap()
+        let searchInLibsSearchField = app.searchFields["search in libs"]
+        searchInLibsSearchField.tap()
+        searchInLibsSearchField.typeText("swift")
+
+        snapshot("02Filtered")
 
     }
     
