@@ -184,9 +184,9 @@ extension RepoViewController: UIViewControllerPreviewingDelegate {
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         
-        guard let indexPath = self.tableView.indexPathForRowAtPoint(location) else { return nil }
+        let indexPath = self.tableView.indexPathForRowAtPoint(location)
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! RepoTableViewCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath!) as! RepoTableViewCell
         
         // open browser
         if let requestUrl = NSURL(string: cell.viewModel!.url.value) {
