@@ -24,7 +24,7 @@ platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
     cocoapods
-    
+
   end
 
   desc "Runs all the tests"
@@ -46,7 +46,8 @@ platform :ios do
   desc "Deploy a new version to the App Store"
   lane :appstore do
     # match(type: "appstore")
-    # snapshot
+    #snapshot
+    #deliver
     gym(scheme: "awesomeswift") # Build your app - more options available
     deliver(force: true)
     # frameit

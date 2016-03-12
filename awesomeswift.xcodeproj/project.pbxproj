@@ -499,7 +499,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.awesomeswift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "858114cb-1462-4041-8f12-cb8960bc883c";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -516,7 +516,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.awesomeswift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "858114cb-1462-4041-8f12-cb8960bc883c";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
