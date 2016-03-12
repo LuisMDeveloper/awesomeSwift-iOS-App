@@ -7,27 +7,21 @@
 //
 
 import UIKit
+import DGElasticPullToRefresh
 import SafariServices
 import RealmSwift
+import Bond
 
 class RepoViewController: UIViewController {
     
     @IBOutlet weak var tableView : UITableView!
-    
     @IBOutlet weak var searchConstant : NSLayoutConstraint!
-    
-    var listRepos = Results<Repository>?(){
-        didSet {
-            guard (self.tableView != nil) else {
-                return
-            }
-            
-            self.tableView.reloadData()
+    @IBOutlet weak var loader : UIActivityIndicatorView!
+    @IBOutlet weak var searchBar: UISearchBar!
 
-        }
-    }
+    private let realm = try! Realm()
     
-    var listReposFiltered = Results<Repository>?(){
+    private var listReposFiltered = Results<Repository>?(){
         didSet {
             guard (self.tableView != nil) else {
                 return
@@ -36,14 +30,33 @@ class RepoViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    private var listCats = Results<Category>?() {
+        didSet {
+            self.tableView.dg_stopLoading()
+            self.tableView.reloadData()
+        }
+    }
     
-    var catName = ""
+    private var viewModel: CategoryListVVM? {
+        didSet {
+            viewModel?.categories.observe{
+                categories in
+                self.listCats = categories
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.listReposFiltered = self.listRepos
-        
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.whiteColor()
+        self.tableView.dg_addPullToRefreshWithActionHandler({ [unowned self] () -> Void in
+            self.viewModel = CategoryListVVMFromJson()
+            }, loadingView: loadingView)
+        self.tableView.dg_setPullToRefreshFillColor(UIColor(red: 97/255.0, green: 31/255.0, blue: 88/255.0, alpha: 1.0))
+        self.tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+
         // hide search
         self.searchConstant.constant = 0
         
@@ -53,12 +66,13 @@ class RepoViewController: UIViewController {
             registerForPreviewingWithDelegate(self, sourceView: view)
             
         }
-
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-                
+        
+        self.viewModel = CategoryListVVMFromJson()
+
         // hide search
         self.searchConstant.constant = 0
 
@@ -87,13 +101,39 @@ class RepoViewController: UIViewController {
     }
 }
 
-// MARK: - Table delegate
 extension RepoViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        if self.listReposFiltered == nil {
+            if self.listCats == nil {
+                self.loader.stopAnimating()
+                return 0
+            }
+            
+            return self.listCats!.count
+        }else{
+            return 1
+        }
+        
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.listReposFiltered!.count
+        if self.listReposFiltered == nil {
+            return self.listCats![section].repos.count
+        }else{
+            return (self.listReposFiltered?.count)!
+        }
         
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if self.listReposFiltered == nil {
+            return self.listCats![section].name
+        }else{
+            return "Results"
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -101,13 +141,21 @@ extension RepoViewController: UITableViewDelegate, UITableViewDataSource {
         let cell:RepoTableViewCell = tableView.dequeueReusableCellWithIdentifier("repoCell",
             forIndexPath: indexPath) as! RepoTableViewCell
         
+        var repo = Repository()
         
-        let repo = self.listReposFiltered![indexPath.row]
+        if self.listReposFiltered == nil {
+            let cat = self.listCats![indexPath.section] as Category
+            repo = cat.repos[indexPath.row] as Repository
+        }else{
+            repo = self.listReposFiltered![indexPath.row] as Repository
+        }
+        
         let viewModel = RepositoryVVMFromRepository(repo)
         
         cell.viewModel = viewModel
         
         return cell
+
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -128,9 +176,8 @@ extension RepoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: UIViewControllerPreviewingDelegate methods
 extension RepoViewController: UIViewControllerPreviewingDelegate {
-    // MARK: - Pop
+
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         
     }
@@ -159,25 +206,22 @@ extension RepoViewController: UIViewControllerPreviewingDelegate {
 
 }
 
-// MARK: - UISearchBarDelegate
 extension RepoViewController: UISearchBarDelegate {
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText.characters.count > 0 {
-            let predicate = NSPredicate(format: "name contains %@ || descr contains %@", argumentArray: [searchText.lowercaseString, searchText.lowercaseString])
+            let predicate = NSPredicate(format: "name CONTAINS[c] %@ || descr CONTAINS[c] %@", argumentArray: [searchText.lowercaseString, searchText.lowercaseString])
             
-            self.listReposFiltered = self.listRepos?.filter(predicate)
+            self.listReposFiltered = self.realm.objects(Repository).sorted("name").filter(predicate)
             
         }else{
-            self.listReposFiltered = self.listRepos
+            self.listReposFiltered = Results<Repository>?()
         }
-        
     }
     
 }
 
-// MARK: - Safari exentsion
 extension SFSafariViewController {
     
     override public func previewActionItems() -> [UIPreviewActionItem] {
@@ -197,4 +241,6 @@ extension SFSafariViewController {
     
 }
 
-
+extension UIScrollView {
+    func dg_stopScrollingAnimation() {}
+}

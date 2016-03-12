@@ -14,7 +14,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - Bond (~> 4.0)
+  - Bond
   - Crashlytics
   - DGElasticPullToRefresh
   - Fabric
