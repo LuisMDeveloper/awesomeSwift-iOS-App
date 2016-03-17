@@ -85,7 +85,7 @@ class CategoryListVVMFromJson: CategoryListVVM {
                                 //print(repo)
                                 
                                 try! self.realm.write {
-                                    self.realm.add(repo)
+                                    self.realm.add(repo, update: false)
                                 }
                                 
                                 // create category
