@@ -18,8 +18,8 @@ class RepoViewController: UIViewController {
     @IBOutlet weak var searchConstant : NSLayoutConstraint!
     @IBOutlet weak var loader : UIActivityIndicatorView!
     @IBOutlet weak var searchBar: UISearchBar!
-
-    private let realm = try! Realm()
+    
+    //private let realm = try! Realm()
     
     private var listReposFiltered = Results<Repository>?(){
         didSet {
@@ -213,7 +213,7 @@ extension RepoViewController: UISearchBarDelegate {
         if searchText.characters.count > 0 {
             let predicate = NSPredicate(format: "name CONTAINS[c] %@ || descr CONTAINS[c] %@", argumentArray: [searchText.lowercaseString, searchText.lowercaseString])
             
-            self.listReposFiltered = self.realm.objects(Repository).sorted("name").filter(predicate)
+            self.listReposFiltered = realm.objects(Repository).sorted("name").filter(predicate)
             
         }else{
             self.listReposFiltered = Results<Repository>?()

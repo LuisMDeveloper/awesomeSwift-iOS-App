@@ -18,6 +18,7 @@
 		485549CE1C6507840074C59D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485549CD1C6507840074C59D /* Category.swift */; };
 		48B1F41B1C64D19E0080607A /* RepositoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B1F41A1C64D19E0080607A /* RepositoryVC.swift */; };
 		48BF11091C92DFB900972277 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BF11081C92DFB900972277 /* Networking.swift */; };
+		48C1F60B1C9EE25D0079253F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1F60A1C9EE25D0079253F /* Configuration.swift */; };
 		48D0BE7D1C6781A800B38A37 /* AwesomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0BE7C1C6781A800B38A37 /* AwesomeUITests.swift */; };
 		48D0BE851C6781F400B38A37 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0BE841C6781F400B38A37 /* SnapshotHelper.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 		485549CD1C6507840074C59D /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		48B1F41A1C64D19E0080607A /* RepositoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryVC.swift; sourceTree = "<group>"; };
 		48BF11081C92DFB900972277 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		48C1F60A1C9EE25D0079253F /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		48D0BE7A1C6781A800B38A37 /* AwesomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D0BE7C1C6781A800B38A37 /* AwesomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeUITests.swift; sourceTree = "<group>"; };
 		48D0BE7E1C6781A800B38A37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				485549CD1C6507840074C59D /* Category.swift */,
 				482EF65A1C91E71400C9113D /* Repository.swift */,
+				48C1F60A1C9EE25D0079253F /* Configuration.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				48B1F41B1C64D19E0080607A /* RepositoryVC.swift in Sources */,
 				480817521C54D22800C6F587 /* AppDelegate.swift in Sources */,
 				480812101C555E4E007FBC5F /* RepositoryTVC.swift in Sources */,
+				48C1F60B1C9EE25D0079253F /* Configuration.swift in Sources */,
 				482EF65B1C91E71400C9113D /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +448,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "d0c8c3d4-dcb7-4b19-bbdf-cfa05e9e5b07";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -483,6 +488,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "d0c8c3d4-dcb7-4b19-bbdf-cfa05e9e5b07";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -501,7 +507,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.awesomeswift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "d0c8c3d4-dcb7-4b19-bbdf-cfa05e9e5b07";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -518,7 +524,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.awesomeswift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "d0c8c3d4-dcb7-4b19-bbdf-cfa05e9e5b07";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

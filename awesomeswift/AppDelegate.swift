@@ -10,6 +10,7 @@ import UIKit
 import Fabric
 import Crashlytics
 import Alamofire
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // force realm setup w/ latest schema
+        //Realm.Configuration.defaultConfiguration = realmConfig
         
         // force status bar text color to white
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)

@@ -19,13 +19,13 @@ protocol CategoryListVVM {
 
 class CategoryListVVMFromJson: CategoryListVVM {
     
-    let realm = try! Realm()
+    //let realm = try! Realm()
 
     var categories: Observable<Results<Category>?>
 
     init(){
         
-        self.categories = Observable(self.realm.objects(Category).sorted("name"))
+        self.categories = Observable(realm.objects(Category).sorted("name"))
         
         Alamofire.request(.GET, apiEndpoint)
             .responseJSON { [unowned self] response in
@@ -39,7 +39,7 @@ class CategoryListVVMFromJson: CategoryListVVM {
                             
                             let predicate = NSPredicate(format: "url = %@", argumentArray: [urlR!])
                             
-                            let isRepo = self.realm.objects(Repository).filter(predicate)
+                            let isRepo = realm.objects(Repository).filter(predicate)
                             
                             //print(isRepo)
                             
@@ -80,12 +80,12 @@ class CategoryListVVMFromJson: CategoryListVVM {
                                 }
                                 
                                 // check if category exist
-                                let isCat = self.realm.objects(Category).filter("name contains '\(category)'")
+                                let isCat = realm.objects(Category).filter("name contains '\(category)'")
                                 
                                 //print(repo)
                                 
-                                try! self.realm.write {
-                                    self.realm.add(repo, update: false)
+                                try! realm.write {
+                                    realm.add(repo, update: false)
                                 }
                                 
                                 // create category
@@ -96,15 +96,15 @@ class CategoryListVVMFromJson: CategoryListVVM {
                                     
                                     c.repos.append(repo)
                                     
-                                    try! self.realm.write {
-                                        self.realm.add(c)
+                                    try! realm.write {
+                                        realm.add(c)
                                     }
                                     
                                 }else{
                                     
                                     let c = isCat[0]
                                     
-                                    try! self.realm.write {
+                                    try! realm.write {
                                         c.repos.append(repo)
                                     }
                                     
@@ -116,7 +116,7 @@ class CategoryListVVMFromJson: CategoryListVVM {
                         
                     }
                     
-                    self.categories.value = self.realm.objects(Category).sorted("name")
+                    self.categories.value = realm.objects(Category).sorted("name")
                     
                 }
                 
