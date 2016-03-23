@@ -8,28 +8,64 @@
 
 import UIKit
 import SwiftDate
-import Bond
+import RxSwift
+import RxRealm
+import RealmSwift
+import Log
 
-protocol RepositoryVVM {
-    var name: Observable<String> {get}
-    var description: Observable<String> {get}
-    var isNew: Observable<Bool> {get}
-    var url: Observable<String> {get}
+
+struct RepositoryViewModel {
+    let repos = BehaviorSubject<[Repository]>(value: [])
+    private let disposeBag = DisposeBag()
+    
+    func filter(filter: String) {
+        Realm
+            .rx_objects(Repository)
+            .map { results -> [Repository] in
+                return results.map { $0 }
+            }
+            .bindNext { xs in
+                self.repos.on(.Next(xs.filter { $0.name.hasPrefix(filter) }))
+            }
+            .addDisposableTo(disposeBag)
+    }
+    
+    func update() {
+        Realm
+            .rx_objects(Repository)
+            .map{ results -> [Repository] in
+                //Log.debug(results)
+                Log.debug(results.count)
+                return results.map { $0 }
+            }
+            .bindNext { xs in
+                self.repos.on(.Next(xs))
+            }
+            .addDisposableTo(disposeBag)
+    }
+}
+
+
+/*protocol RepositoryVVM {
+    var name: Variable<String> {get}
+    var description: Variable<String> {get}
+    var isNew: Variable<Bool> {get}
+    var url: Variable<String> {get}
 }
 
 class RepositoryVVMFromRepository: RepositoryVVM {
     let repository: Repository
     
-    let name: Observable<String>
-    let description: Observable<String>
-    let isNew: Observable<Bool>
-    let url: Observable<String>
+    let name: Variable<String>
+    let description: Variable<String>
+    let isNew: Variable<Bool>
+    let url: Variable<String>
     
     init(_ repository: Repository){
         self.repository = repository
         
-        self.name = Observable(repository.name)
-        self.description = Observable(repository.descr)
+        self.name = Variable(repository.name)
+        self.description = Variable(repository.descr)
         
         // force new if it is listed within the last 24h
         var isNew = true
@@ -37,7 +73,7 @@ class RepositoryVVMFromRepository: RepositoryVVM {
             isNew = false
         }
         
-        self.isNew = Observable(isNew)
-        self.url = Observable(repository.url)
+        self.isNew = Variable(isNew)
+        self.url = Variable(repository.url)
     }
-}
+}*/

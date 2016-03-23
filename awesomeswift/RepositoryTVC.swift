@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Bond
 
 class RepoTableViewCell: UITableViewCell {
     
@@ -16,27 +15,14 @@ class RepoTableViewCell: UITableViewCell {
     
     @IBOutlet var badgeIsNew : UIView!
     
-    var viewModel: RepositoryVVM? {
-        didSet {
-            
-            viewModel?.name.observe{
-                name in
-                self.lblName.text = name
-            }
-            
-            viewModel?.description.observe{
-                description in
-                self.lblDescription.text = description
-                
-            }
-            
-            viewModel?.isNew.observe{
-                isNew in
-                self.badgeIsNew.hidden = isNew
-                
-            }
-            
+    func setupCell(repo: Repository) {
+        lblName.text = repo.name
+        lblDescription.text = repo.descr
+        var isNew = true
+        if repo.createdAt >  1.days.ago {
+            isNew = false
         }
+        badgeIsNew.hidden = !isNew
     }
     
     override func awakeFromNib() {
@@ -46,8 +32,6 @@ class RepoTableViewCell: UITableViewCell {
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

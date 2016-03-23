@@ -11,6 +11,7 @@ import Fabric
 import Crashlytics
 import Alamofire
 import RealmSwift
+import Log
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,8 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        // force realm setup w/ latest schema
-        //Realm.Configuration.defaultConfiguration = realmConfig
+        // force purge realm
+        if (NSUserDefaults.standardUserDefaults().objectForKey("realmReset") == nil) {
+            Realm.rx_deleteAll(Realm.RealmThread.MainThread)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "realmReset")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            Log.debug("Realm reset")
+        }
         
         // force status bar text color to white
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)

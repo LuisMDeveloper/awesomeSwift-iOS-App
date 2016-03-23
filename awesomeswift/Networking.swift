@@ -9,23 +9,118 @@
 import Alamofire
 import RealmSwift
 import UIKit
-import Bond
+import RealmSwift
+import RxRealm
+import Moya
+import RxSwift
+import SwiftyJSON
+import Log
 
-let apiEndpoint = "http://matteocrippa.it/awesomeswift/scraper.php"
 
-protocol CategoryListVVM {
-    var categories: Observable<Results<Category>?> {get}
+private extension String {
+    var URLEscapedString: String {
+        return self.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
+    }
 }
 
-class CategoryListVVMFromJson: CategoryListVVM {
+enum GitHub {
+    case Repos()
+}
+
+extension GitHub: TargetType {
+    var baseURL: NSURL { return NSURL(string: "http://matteocrippa.it/awesomeswift")! }
+    var path: String {
+        switch self {
+        case .Repos():
+            return "/scraper.php"
+        }
+    }
+    var method: Moya.Method {
+        return .GET
+    }
+    var parameters: [String: AnyObject]? {
+        return nil
+    }
+    var sampleData: NSData {
+        switch self {
+        case .Repos():
+            return "{}".dataUsingEncoding(NSUTF8StringEncoding)!
+        }
+    }
+}
+
+struct RepoNetwork {
     
-    //let realm = try! Realm()
-
-    var categories: Observable<Results<Category>?>
-
-    init(){
+    let provider: MoyaProvider<GitHub>
+    let viewModel: RepositoryViewModel
+    
+    func getRepository() {
+        self.provider
+            .request(GitHub.Repos()) {
+                result in
+                switch result {
+                case let .Success(moyaResponse):
+                    
+                    let data = moyaResponse.data
+                    let json = JSON(data: data)
+                    
+                    var repos = [Repository]()
+                    
+                    for repo in json.arrayValue {
+                        repos.append(self.repoJsonToRealm(repo))
+                    }
+                    
+                    Realm
+                        .rx_add(repos, update: true, thread: Realm.RealmThread.MainThread)
+                        .subscribeCompleted {
+                            self.viewModel.update()
+                            Log.debug("Realm save completed")
+                    }
+                    
+                case let .Failure(error):
+                    print(error)
+                }
+        }
+    }
+    
+    func repoJsonToRealm(json: JSON) -> Repository {
         
-        self.categories = Observable(realm.objects(Category).sorted("name"))
+        //Log.debug(json)
+
+        let repo = Repository()
+        
+        guard let name = json["name"].string else {
+            return repo
+        }
+        repo.name = name
+        
+        guard let descr = json["name"].string else {
+            return repo
+        }
+        repo.descr = descr
+        
+        guard let url = json["url"].string else {
+            return repo
+        }
+        repo.url = url
+        
+        //guard let cat = json["category"].string else {
+        //    return repo
+        //}
+        
+        
+        repo.createdAt = NSDate()
+        
+        return repo
+    }
+}
+
+
+
+/*
+class CategoryListVVMFromJson {
+    
+    init(){
         
         Alamofire.request(.GET, apiEndpoint)
             .responseJSON { [unowned self] response in
@@ -116,12 +211,12 @@ class CategoryListVVMFromJson: CategoryListVVM {
                         
                     }
                     
-                    self.categories.value = realm.objects(Category).sorted("name")
                     
+                                        
                 }
                 
         }
         
     }
 
-}
+}*/

@@ -8,6 +8,7 @@
 
 import RealmSwift
 
+
 class Repository: Object {
     dynamic var name = ""
     dynamic var descr = ""
@@ -21,4 +22,9 @@ class Repository: Object {
     override static func indexedProperties() -> [String] {
         return ["name"]
     }
+    
+    override static func primaryKey() -> String {
+        return "url"
+    }
+
 }
