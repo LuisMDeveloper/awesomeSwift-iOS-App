@@ -104,6 +104,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="CFN-92-7WQ" id="Zyc-sy-Xq5"/>
+                                    <outlet property="delegate" destination="CFN-92-7WQ" id="G1c-lj-u6W"/>
+                                </connections>
                             </tableView>
                             <searchBar contentMode="redraw" text="" placeholder="search in libs" translatesAutoresizingMaskIntoConstraints="NO" id="k6n-on-Nq0">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -116,10 +120,6 @@
                                     <outlet property="delegate" destination="CFN-92-7WQ" id="ZGy-gV-6Sm"/>
                                 </connections>
                             </searchBar>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Mcs-iS-qfj">
-                                <rect key="frame" x="0.0" y="250" width="600" height="37"/>
-                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -157,7 +157,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="loader" destination="Mcs-iS-qfj" id="7b3-Cf-RnR"/>
                         <outlet property="searchBar" destination="k6n-on-Nq0" id="sFs-zD-QR2"/>
                         <outlet property="searchConstant" destination="ugZ-Lh-Gah" id="sC7-NX-2wY"/>
                         <outlet property="tableView" destination="2fO-ke-3u5" id="CNs-kO-fBf"/>

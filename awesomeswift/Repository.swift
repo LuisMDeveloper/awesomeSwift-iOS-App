@@ -8,16 +8,12 @@
 
 import RealmSwift
 
-
 class Repository: Object {
     dynamic var name = ""
     dynamic var descr = ""
     dynamic var url = ""
     dynamic var createdAt = NSDate()
-    
-    var category: [Category] {
-        return linkingObjects(Category.self, forProperty: "repos")
-    }
+    dynamic var category = ""
     
     override static func indexedProperties() -> [String] {
         return ["name"]

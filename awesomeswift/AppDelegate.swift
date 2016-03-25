@@ -13,6 +13,8 @@ import Alamofire
 import RealmSwift
 import Log
 
+let realm = try! Realm()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,13 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let pushEndpoint = "http://matteocrippa.it/awesomeswift/push.php"
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // force purge realm
-        if (NSUserDefaults.standardUserDefaults().objectForKey("realmReset") == nil) {
-            Realm.rx_deleteAll(Realm.RealmThread.MainThread)
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "realmReset")
+        if (NSUserDefaults.standardUserDefaults().objectForKey("realmResetv5") == nil) {
+            try! realm.write() {
+                realm.deleteAll()                
+            }
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "realmResetv5")
             NSUserDefaults.standardUserDefaults().synchronize()
             Log.debug("Realm reset")
         }

@@ -10,33 +10,50 @@ import UIKit
 import DGElasticPullToRefresh
 import SafariServices
 import RealmSwift
-import RxSwift
-import RxCocoa
 import Moya
 import Log
+import ReactiveKit
+import ReactiveUIKit
 
 class RepoViewController: UIViewController {
     
     @IBOutlet weak var tableView : UITableView!
     @IBOutlet weak var searchConstant : NSLayoutConstraint!
-    @IBOutlet weak var loader : UIActivityIndicatorView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    private let disposeBag = DisposeBag()
-    private let viewModel = RepositoryViewModel()
     
     private let provider = MoyaProvider<GitHub>()
     private var repoTracker: RepoNetwork!
-
+    
+    private var reposAll = Results<Repository>?() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    private var reposFiltered = Results<Repository>?() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        repoTracker = RepoNetwork(provider: provider, viewModel: viewModel)
+        repoTracker = RepoNetwork(provider: provider)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor.whiteColor()
         tableView.dg_addPullToRefreshWithActionHandler({ [unowned self] () -> Void in
-            self.repoTracker.getRepository()
+            
+            self.repoTracker.getRepository { [unowned self] success in
+                if success {
+                    self.reposAll = realm.objects(Repository).sorted("name")
+                }
+                
+                self.tableView.dg_stopLoading()
+            }
+
+            
             }, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(UIColor(red: 97/255.0, green: 31/255.0, blue: 88/255.0, alpha: 1.0))
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
@@ -49,64 +66,17 @@ class RepoViewController: UIViewController {
             registerForPreviewingWithDelegate(self, sourceView: view)
         }
         
-        setupRx()
-        
     }
     
-    func setupRx() {
-        
-        tableView
-            .rx_modelSelected(Repository)
-            .subscribeNext { repo in
-                Log.debug("Tapped `\(repo)`")
-                if let requestUrl = NSURL(string: repo.url) {
-                    let sfvc = SFSafariViewController.init(URL: requestUrl)
-                    
-                    self.showViewController(sfvc, sender: self)
-                    
-                }
-                
-                self.tableView.deselectRowAtIndexPath(self.tableView.indexPathForSelectedRow!, animated: false)
-
-            }
-            .addDisposableTo(disposeBag)
-                
-        viewModel.repos
-            .subscribeNext {
-                [unowned self] repos in
-                Log.debug("Stop loading")
-                self.tableView.dg_stopLoading()
-        }
-                
-        viewModel.repos
-            .bindTo(tableView.rx_itemsWithCellIdentifier("repoCell", cellType: RepoTableViewCell.self)) {
-                row, repo, cell in
-                cell.setupCell(repo)
-            }
-            .addDisposableTo(disposeBag)
-        
-        searchBar
-            .rx_text
-            .throttle(0.3, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .subscribeNext {
-                [unowned self] (query) in
-                Log.debug(query)
-                if query.characters.count > 0 {
-                    self.viewModel.filter(query)
-                } else {
-                    self.viewModel.update()
-                }
-            }
-            .addDisposableTo(disposeBag)
-        
-    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
                 
-        viewModel.update()
-        self.repoTracker.getRepository()
+        self.repoTracker.getRepository { [unowned self] success in
+            if success {
+                self.reposAll = realm.objects(Repository).sorted("name")
+            }
+        }
 
         // hide search
         self.searchConstant.constant = 0
@@ -124,6 +94,7 @@ class RepoViewController: UIViewController {
             
             if self.searchConstant.constant == 44 {
                 self.searchConstant.constant = 0
+                self.searchBar.resignFirstResponder()
             }else{
                 self.searchConstant.constant = 44
             }
@@ -136,59 +107,47 @@ class RepoViewController: UIViewController {
     }
 }
 
-/*extension RepoViewController: UITableViewDelegate, UITableViewDataSource {
+extension RepoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        if self.listReposFiltered == nil {
-            if self.listCats == nil {
-                self.loader.stopAnimating()
-                return 0
-            }
-            
-            return self.listCats!.count
-        }else{
-            return 1
-        }
-        
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if self.listReposFiltered == nil {
-            return self.listCats![section].repos.count
-        }else{
-            return (self.listReposFiltered?.count)!
+        if self.reposAll == nil {
+            return 0
         }
         
+        if searchBar.text?.characters.count == 0 {
+            return self.reposAll!.count
+        } else {
+            return self.reposFiltered!.count
+        }
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if self.listReposFiltered == nil {
-            return self.listCats![section].name
-        }else{
+        if searchBar.text?.characters.count == 0 {
+            return ""
+        } else {
             return "Results"
         }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell:RepoTableViewCell = tableView.dequeueReusableCellWithIdentifier("repoCell",
-            forIndexPath: indexPath) as! RepoTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("repoCell", forIndexPath: indexPath) as! RepoTableViewCell
         
-        var repo = Repository()
+        var repo: Repository!
         
-        if self.listReposFiltered == nil {
-            let cat = self.listCats![indexPath.section] as Category
-            repo = cat.repos[indexPath.row] as Repository
-        }else{
-            repo = self.listReposFiltered![indexPath.row] as Repository
+        if searchBar.text?.characters.count == 0 {
+            repo = reposAll![indexPath.row]
+        } else {
+            repo = reposFiltered![indexPath.row]
         }
         
-        let viewModel = RepositoryVVMFromRepository(repo)
-        
-        cell.viewModel = viewModel
-        
+        cell.configureWithModel(repo)
+
         return cell
 
     }
@@ -198,7 +157,7 @@ class RepoViewController: UIViewController {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! RepoTableViewCell
         
         // open browser
-        if let requestUrl = NSURL(string: cell.viewModel!.url.value) {
+        if let requestUrl = NSURL(string: cell.repo.url) {
             let sfvc = SFSafariViewController.init(URL: requestUrl)
             
             self.showViewController(sfvc, sender: self)
@@ -209,7 +168,7 @@ class RepoViewController: UIViewController {
         
         
     }
-}*/
+}
 
 extension RepoViewController: UIViewControllerPreviewingDelegate {
 
@@ -224,11 +183,11 @@ extension RepoViewController: UIViewControllerPreviewingDelegate {
         let cell = tableView.cellForRowAtIndexPath(indexPath!) as! RepoTableViewCell
         
         // open browser
-        /*if let requestUrl = NSURL(string: cell.viewModel!.url.value) {
+        if let requestUrl = NSURL(string: cell.repo.url) {
             let sfvc = SFSafariViewController.init(URL: requestUrl)
             
             return sfvc
-        }*/
+        }
         
         return nil
     }
@@ -244,18 +203,20 @@ extension RepoViewController: UIViewControllerPreviewingDelegate {
 extension RepoViewController: UISearchBarDelegate {
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        if searchText.characters.count > 0 {
-            let predicate = NSPredicate(format: "name CONTAINS[c] %@ || descr CONTAINS[c] %@", argumentArray: [searchText.lowercaseString, searchText.lowercaseString])
+        if searchText.characters.count == 0 {
+            self.reposFiltered = realm.objects(Repository).sorted("name")
             
-            //self.listReposFiltered = realm.objects(Repository).sorted("name").filter(predicate)
-            
-        }else{
-            //self.listReposFiltered = Results<Repository>?()
+        } else {
+            let filter = NSPredicate(format: "name CONTAINS[NC] %@ || descr CONTAINS[NC] %@", searchText, searchText)
+            self.reposFiltered = realm.objects(Repository).filter(filter).sorted("name")
         }
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
     

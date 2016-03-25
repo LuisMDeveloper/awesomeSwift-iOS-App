@@ -7,12 +7,9 @@
 //
 
 import Alamofire
-import RealmSwift
 import UIKit
 import RealmSwift
-import RxRealm
 import Moya
-import RxSwift
 import SwiftyJSON
 import Log
 
@@ -52,9 +49,8 @@ extension GitHub: TargetType {
 struct RepoNetwork {
     
     let provider: MoyaProvider<GitHub>
-    let viewModel: RepositoryViewModel
     
-    func getRepository() {
+    func getRepository(callback: (Bool) -> Void) {
         self.provider
             .request(GitHub.Repos()) {
                 result in
@@ -70,15 +66,14 @@ struct RepoNetwork {
                         repos.append(self.repoJsonToRealm(repo))
                     }
                     
-                    Realm
-                        .rx_add(repos, update: true, thread: Realm.RealmThread.MainThread)
-                        .subscribeCompleted {
-                            self.viewModel.update()
-                            Log.debug("Realm save completed")
+                    try! realm.write() {
+                        realm.add(repos, update: true)
+                        callback(true)                        
                     }
                     
                 case let .Failure(error):
                     print(error)
+                    callback(false)
                 }
         }
     }
@@ -94,7 +89,7 @@ struct RepoNetwork {
         }
         repo.name = name
         
-        guard let descr = json["name"].string else {
+        guard let descr = json["description"].string else {
             return repo
         }
         repo.descr = descr

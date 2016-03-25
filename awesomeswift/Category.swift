@@ -10,10 +10,14 @@ import RealmSwift
 
 class Category: Object {
     dynamic var name = ""
-    let repos = List<Repository>()
     dynamic var createdAt = NSDate()
     
     override static func indexedProperties() -> [String] {
         return ["name"]
     }
+    
+    override static func primaryKey() -> String {
+        return "name"
+    }
+
 }
