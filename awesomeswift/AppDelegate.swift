@@ -6,13 +6,14 @@
 //  Copyright © 2016 boostco.de. All rights reserved.
 //
 
-import UIKit
-import Fabric
-import Crashlytics
 import Alamofire
-import RealmSwift
+import Crashlytics
+import Fabric
 import Log
+import RealmSwift
+import UIKit
 
+// swiftlint:disable force_try
 let realm = try! Realm()
 
 @UIApplicationMain
@@ -22,65 +23,70 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let pushEndpoint = "http://matteocrippa.it/awesomeswift/push.php"
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+    func application(
+        application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+        #if DEBUG
+            Log.enabled = true
+            Log.minLevel = .Trace
+        #else
+            Log.enabled = false
+        #endif
+
         // force purge realm
-        if (NSUserDefaults.standardUserDefaults().objectForKey("realmResetv5") == nil) {
+        if NSUserDefaults.standardUserDefaults().objectForKey("realmResetv5") == nil {
+            // swiftlint:disable force_try
             try! realm.write() {
-                realm.deleteAll()                
+                realm.deleteAll()
             }
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "realmResetv5")
             NSUserDefaults.standardUserDefaults().synchronize()
             Log.debug("Realm reset")
         }
-        
+
         // force status bar text color to white
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
-        
+        UIApplication.sharedApplication().setStatusBarStyle(
+            UIStatusBarStyle.LightContent,
+            animated: true
+        )
+
         // init push notification
         let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
-        
+
         // setup crahslytics
         Fabric.with([Crashlytics.self])
-        
-        // Override point for customization after application launch.
+
         return true
     }
 
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
+    func applicationWillResignActive(application: UIApplication) {}
 
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
+    func applicationDidEnterBackground(application: UIApplication) {}
 
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
+    func applicationWillEnterForeground(application: UIApplication) {}
 
     func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        
-        // force reset badge counter
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-        
     }
 
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
+    func applicationWillTerminate(application: UIApplication) {}
 
     // PRAGMA - Push notification
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    func application(
+        application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
 
-        let token = deviceToken.description.componentsSeparatedByCharactersInSet(NSCharacterSet.alphanumericCharacterSet().invertedSet).joinWithSeparator("")
-        
+        let token = deviceToken.description.componentsSeparatedByCharactersInSet(
+            NSCharacterSet
+                .alphanumericCharacterSet()
+                .invertedSet)
+            .joinWithSeparator("")
+
+
         Alamofire.request(.GET, pushEndpoint, parameters: ["token": token])
             .responseJSON { response in
                 print(response)
@@ -89,4 +95,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-

@@ -14,11 +14,7 @@ class Repository: Object {
     dynamic var url = ""
     dynamic var createdAt = NSDate()
     dynamic var category = ""
-    
-    override static func indexedProperties() -> [String] {
-        return ["name"]
-    }
-    
+
     override static func primaryKey() -> String {
         return "url"
     }

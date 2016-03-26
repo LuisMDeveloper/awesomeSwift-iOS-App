@@ -10,13 +10,13 @@ import UIKit
 import SwiftDate
 
 class RepoTableViewCell: UITableViewCell {
-    
+
     @IBOutlet var lblName: UILabel!
     @IBOutlet var lblDescription: UILabel!
     @IBOutlet var badgeIsNew: UIView!
-    
+
     var repo: Repository! = nil
-    
+
     func configureWithModel(repo: Repository) {
         self.repo = repo
         lblName.text = repo.name
@@ -28,11 +28,11 @@ class RepoTableViewCell: UITableViewCell {
         badgeIsNew.hidden = !isNew
 
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

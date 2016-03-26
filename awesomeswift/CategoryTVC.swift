@@ -10,22 +10,22 @@ import UIKit
 import Bond
 
 class CategoryTableViewCell: UITableViewCell {
-    
-    @IBOutlet var lblName : UILabel!
-    
-    /*func setupCell(repo: CategoryVM) {
-        
-        repo.name
-            .bindTo(lblName.bnd_text)
-    }*/
-    
+
+    @IBOutlet weak var lblName: UILabel!
+
+    var cat: Category! = nil
+
+    func configureWithModel(cat: Category) {
+        self.cat = cat
+        lblName.text = cat.name
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-    
+
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
 }
