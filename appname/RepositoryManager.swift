@@ -40,7 +40,7 @@ class RepositoryManager {
         self.repos.removeAll()
     }
 
-    func itemAtIndex(index: Int) -> RepositoryModel {
+    func repoAtIndex(index: Int) -> RepositoryModel {
         return self.repos[index]
     }
 

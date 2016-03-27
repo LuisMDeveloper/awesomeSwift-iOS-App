@@ -24,6 +24,7 @@
 		489102201CA84C020035403A /* CategoryModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891021F1CA84C020035403A /* CategoryModelTests.swift */; };
 		489102221CA84C800035403A /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102211CA84C800035403A /* CategoryModel.swift */; };
 		489102241CA84E880035403A /* CategoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102231CA84E880035403A /* CategoryManagerTests.swift */; };
+		489102261CA877EB0035403A /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102251CA877EB0035403A /* CategoryManager.swift */; };
 		B1079F00771365BA44E249B4 /* Pods_AwesomeSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8A7C29F81C0214AD4D37DA3 /* Pods_AwesomeSwiftTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		4891021F1CA84C020035403A /* CategoryModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModelTests.swift; sourceTree = "<group>"; };
 		489102211CA84C800035403A /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		489102231CA84E880035403A /* CategoryManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryManagerTests.swift; sourceTree = "<group>"; };
+		489102251CA877EB0035403A /* CategoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		A6D828818AFD8CBFCB2FA1CD /* Pods-AwesomeSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeSwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeSwiftTests/Pods-AwesomeSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		A8A7C29F81C0214AD4D37DA3 /* Pods_AwesomeSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomeSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5C9E8566D58BB125461F00 /* Pods_appname.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_appname.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +181,7 @@
 				489102051CA823EB0035403A /* RepositoryModel.swift */,
 				489102181CA834650035403A /* RepositoryManager.swift */,
 				489102211CA84C800035403A /* CategoryModel.swift */,
+				489102251CA877EB0035403A /* CategoryManager.swift */,
 			);
 			name = "📦Model";
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				TargetAttributes = {
 					488F66D01C94636A00933CA6 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = F9FTQCB4H8;
 					};
 					489101F81CA822FB0035403A = {
 						CreatedOnToolsVersion = 7.3;
@@ -468,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				488F66D71C94636A00933CA6 /* ViewController.swift in Sources */,
+				489102261CA877EB0035403A /* CategoryManager.swift in Sources */,
 				489102191CA834650035403A /* RepositoryManager.swift in Sources */,
 				488F66D51C94636A00933CA6 /* AppDelegate.swift in Sources */,
 				489102061CA823EB0035403A /* RepositoryModel.swift in Sources */,
@@ -620,10 +625,11 @@
 			baseConfigurationReference = 29880395986886166EA17DBF /* Pods-AwesomeSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = appname/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.appname;
+				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.awesomeswift;
 				PRODUCT_NAME = AwesomeSwift;
 			};
 			name = Debug;
@@ -633,9 +639,10 @@
 			baseConfigurationReference = 28E155611907763303570916 /* Pods-AwesomeSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = appname/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.appname;
+				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.awesomeswift;
 				PRODUCT_NAME = AwesomeSwift;
 			};
 			name = Release;

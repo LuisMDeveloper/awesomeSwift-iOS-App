@@ -42,9 +42,9 @@ class RepositoryManagerTests: XCTestCase {
         repo.name = "test"
         sut.addRepo(repo)
 
-        let returnedItem = sut.itemAtIndex(0)
+        let returnedItem = sut.repoAtIndex(0)
 
-        XCTAssertEqual(repo.name, returnedItem.name, "should be the same repo")
+        XCTAssertEqual(repo.name, returnedItem.name, "Should be the same repo")
     }
 
     func testRespositoryCount_AfterRemovingOneItem_IsZero() {
@@ -53,10 +53,10 @@ class RepositoryManagerTests: XCTestCase {
         sut.addRepo(repo)
         sut.removeRepoAtIndex(0)
 
-        XCTAssertEqual(sut.repoCount, 0, "should be 0 repo")
+        XCTAssertEqual(sut.repoCount, 0, "Should be 0 repo")
     }
 
-    func testUniqueness_AddingRepoTwice_CounterShouldBeOne() {
+    func testRepositoryUniquenessCount_AddingRepoTwice_ShouldBeOne() {
         let firstRepo = RepositoryModel()
         firstRepo.name = "test1"
         sut.addRepo(firstRepo)
@@ -64,6 +64,6 @@ class RepositoryManagerTests: XCTestCase {
         secondRepo.name = "test1"
         sut.addRepo(secondRepo)
 
-        XCTAssertEqual(sut.repoCount, 1, "should be 1 repo")
+        XCTAssertEqual(sut.repoCount, 1, "Should be 1 repo")
     }
 }
