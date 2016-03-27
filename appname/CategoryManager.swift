@@ -16,6 +16,15 @@ class CategoryManager {
         return self.cats.count
     }
 
+    init() {
+        self.updateFromRealm()
+    }
+
+    private func updateFromRealm() {
+        // swiftlint:disable force_try
+        self.cats = Array(try! Realm().objects(CategoryModel))
+    }
+    
     func addCat(cat: CategoryModel) {
         if !self.cats.contains(cat) {
             self.cats.append(cat)
