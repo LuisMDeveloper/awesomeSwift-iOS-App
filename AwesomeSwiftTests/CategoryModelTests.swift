@@ -23,12 +23,21 @@ class CategoryModelTests: XCTestCase {
         let cat = CategoryModel()
         XCTAssertNotNil(cat, "cat should be not nil")
     }
-    
+
     func testInit_ShouldTakeName() {
         let testName = "test"
         let cat = CategoryModel()
         cat.name = testName
         XCTAssertEqual(cat.name, testName, "cat name is test")
+    }
+
+    func testCatWithSameName_ShouldBeSame() {
+        let testName = "cat"
+        let firstCat = CategoryModel()
+        firstCat.name = testName
+        let secondCat = CategoryModel()
+        secondCat.name = testName
+        XCTAssertEqual(firstCat, secondCat, "should be the same cat")
     }
 
 }

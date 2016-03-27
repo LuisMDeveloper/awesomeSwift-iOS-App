@@ -9,6 +9,13 @@
 import UIKit
 import RealmSwift
 
-class CategoryModel: Object {
+class CategoryModel: Object, Equatable {
     dynamic var name = ""
+}
+
+func ==(lhs: CategoryModel, rhs: CategoryModel) -> Bool {
+    if lhs.name != rhs.name {
+        return false
+    }
+    return true
 }
