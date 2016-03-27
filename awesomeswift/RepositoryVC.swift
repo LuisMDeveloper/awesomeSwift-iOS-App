@@ -12,8 +12,6 @@ import SafariServices
 import RealmSwift
 import Moya
 import Log
-import ReactiveKit
-import ReactiveUIKit
 
 class RepoViewController: UIViewController {
 

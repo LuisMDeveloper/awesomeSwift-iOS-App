@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Bond
 
 class CategoryTableViewCell: UITableViewCell {
 

@@ -17,6 +17,7 @@
 		4841A3121CA3094A00609C95 /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4841A3111CA3094A00609C95 /* CategoryVC.swift */; };
 		4841A3141CA3095500609C95 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4841A3131CA3095500609C95 /* CategoryTVC.swift */; };
 		485549CE1C6507840074C59D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485549CD1C6507840074C59D /* Category.swift */; };
+		489101D21CA8199A0035403A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482EF65A1C91E71400C9113D /* Repository.swift */; };
 		48B1F41B1C64D19E0080607A /* RepositoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B1F41A1C64D19E0080607A /* RepositoryVC.swift */; };
 		48BF11091C92DFB900972277 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BF11081C92DFB900972277 /* Networking.swift */; };
 		48D0BE7D1C6781A800B38A37 /* AwesomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0BE7C1C6781A800B38A37 /* AwesomeUITests.swift */; };
@@ -47,6 +48,13 @@
 		4841A3111CA3094A00609C95 /* CategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryVC.swift; sourceTree = "<group>"; };
 		4841A3131CA3095500609C95 /* CategoryTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
 		485549CD1C6507840074C59D /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		489101CA1CA7E1E30035403A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		489101D01CA7E1FA0035403A /* RepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryTests.swift; sourceTree = "<group>"; };
+		489101D31CA81B610035403A /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTests.swift; sourceTree = "<group>"; };
+		489101DB1CA81C330035403A /* AwesomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeTests.swift; sourceTree = "<group>"; };
+		489101DD1CA81C330035403A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		489101E31CA81C660035403A /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTests.swift; sourceTree = "<group>"; };
+		489101E41CA81C660035403A /* RepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryTests.swift; sourceTree = "<group>"; };
 		48B1F41A1C64D19E0080607A /* RepositoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryVC.swift; sourceTree = "<group>"; };
 		48BF11081C92DFB900972277 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		48D0BE7A1C6781A800B38A37 /* AwesomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +89,8 @@
 			children = (
 				480817501C54D22800C6F587 /* awesomeswift */,
 				48D0BE7B1C6781A800B38A37 /* AwesomeUITests */,
+				489101C71CA7E1E30035403A /* AwesomeTests */,
+				489101DA1CA81C330035403A /* AwesomeTests */,
 				4808174F1C54D22800C6F587 /* Products */,
 				FC220EA9B53910F7CCB4E466 /* Frameworks */,
 				67E34D84CA7DA024240AC85D /* Pods */,
@@ -144,6 +154,27 @@
 				4841A3131CA3095500609C95 /* CategoryTVC.swift */,
 			);
 			name = Category;
+			sourceTree = "<group>";
+		};
+		489101C71CA7E1E30035403A /* AwesomeTests */ = {
+			isa = PBXGroup;
+			children = (
+				489101CA1CA7E1E30035403A /* Info.plist */,
+				489101D01CA7E1FA0035403A /* RepositoryTests.swift */,
+				489101D31CA81B610035403A /* CategoryTests.swift */,
+			);
+			path = AwesomeTests;
+			sourceTree = "<group>";
+		};
+		489101DA1CA81C330035403A /* AwesomeTests */ = {
+			isa = PBXGroup;
+			children = (
+				489101DB1CA81C330035403A /* AwesomeTests.swift */,
+				489101E31CA81C660035403A /* CategoryTests.swift */,
+				489101E41CA81C660035403A /* RepositoryTests.swift */,
+				489101DD1CA81C330035403A /* Info.plist */,
+			);
+			path = AwesomeTests;
 			sourceTree = "<group>";
 		};
 		48BF11041C92D1B500972277 /* Repository */ = {
@@ -232,7 +263,7 @@
 		480817461C54D22800C6F587 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = boostco.de;
 				TargetAttributes = {
@@ -387,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				489101D21CA8199A0035403A /* Repository.swift in Sources */,
 				48D0BE7D1C6781A800B38A37 /* AwesomeUITests.swift in Sources */,
 				48D0BE851C6781F400B38A37 /* SnapshotHelper.swift in Sources */,
 			);
@@ -516,6 +548,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = awesomeswift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -533,6 +566,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Matteo Crippa (F9FTQCB4H8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matteo Crippa (F9FTQCB4H8)";
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = awesomeswift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
