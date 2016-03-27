@@ -23,4 +23,3 @@ class AwesomeSwiftUITests: XCTestCase {
     //    snapshot("0Lanch")
     }
 }
-
