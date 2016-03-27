@@ -1,0 +1,45 @@
+PODS:
+  - Alamofire (3.3.0)
+  - Crashlytics (3.7.0):
+    - Fabric (~> 1.6.3)
+  - Dollar (5.0.0)
+  - Fabric (1.6.7)
+  - Log (0.2.1)
+  - Moya (6.3.1):
+    - Moya/Core (= 6.3.1)
+  - Moya/Core (6.3.1):
+    - Alamofire (~> 3.0)
+    - Result (~> 1.0)
+  - Realm (0.98.6):
+    - Realm/Headers (= 0.98.6)
+  - Realm/Headers (0.98.6)
+  - RealmSwift (0.98.6):
+    - Realm (= 0.98.6)
+  - Result (1.0.2)
+  - SwiftDate (3.0.8)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - Crashlytics
+  - Dollar
+  - Fabric
+  - Log
+  - Moya
+  - RealmSwift
+  - SwiftDate
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
+  Dollar: 310893dd6b3799b9b155e3deb61a0492987e4d03
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  Log: b97ca4e92642f49600ea4dddfd3e238ca14a3b7a
+  Moya: 852e26948a3771355ddf0f0109ac779b6fc30f28
+  Realm: 44803f35418c5d89b27825a564247fcd190de37e
+  RealmSwift: c7239c52c83f8c43525a5269ba7be1694da33afc
+  Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
+  SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+COCOAPODS: 0.39.0
