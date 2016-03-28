@@ -63,9 +63,7 @@ class RepositoryManagerTests: XCTestCase {
         let firstRepo = RepositoryModel()
         firstRepo.name = "test1"
         sut.addRepo(firstRepo)
-        let secondRepo = RepositoryModel()
-        secondRepo.name = "test1"
-        sut.addRepo(secondRepo)
+        sut.addRepo(firstRepo)
 
         XCTAssertEqual(sut.repoCount, 1, "Should be 1 repo")
     }
