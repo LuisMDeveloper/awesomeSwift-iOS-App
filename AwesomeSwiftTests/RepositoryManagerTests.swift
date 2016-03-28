@@ -32,25 +32,25 @@ class RepositoryManagerTests: XCTestCase {
     }
 
     func testRepositoryCount_AfterAddingOneItem_IsOne() {
-        let repo = RepositoryModel()
-        sut.addRepo(repo)
+        let firstRepo = RepositoryModel()
+        sut.addRepo(firstRepo)
         XCTAssertEqual(sut.repoCount, 1, "Adding one repo, repoCount should be 1")
     }
 
     func testRepositoryAtIndex_ShouldReturnPreviouslyAddedItem() {
-        let repo = RepositoryModel()
-        repo.name = "test"
-        sut.addRepo(repo)
+        let firstRepo = RepositoryModel()
+        firstRepo.name = "test"
+        sut.addRepo(firstRepo)
 
         let returnedItem = sut.repoAtIndex(0)
 
-        XCTAssertEqual(repo.name, returnedItem.name, "Should be the same repo")
+        XCTAssertEqual(firstRepo.name, returnedItem!.name, "Should be the same repo")
     }
 
     func testRespositoryCount_AfterRemovingOneItem_IsZero() {
-        let repo = RepositoryModel()
-        repo.name = "test"
-        sut.addRepo(repo)
+        let firstRepo = RepositoryModel()
+        firstRepo.name = "test"
+        sut.addRepo(firstRepo)
         sut.removeRepoAtIndex(0)
 
         XCTAssertEqual(sut.repoCount, 0, "Should be 0 repo")
@@ -63,6 +63,26 @@ class RepositoryManagerTests: XCTestCase {
         let secondRepo = RepositoryModel()
         secondRepo.name = "test1"
         sut.addRepo(secondRepo)
+
+        XCTAssertEqual(sut.repoCount, 1, "Should be 1 repo")
+    }
+
+    func testRepositoryExtractOutOfRange_ShouldExtractNil() {
+        let firstRepo = RepositoryModel()
+        firstRepo.name = "test"
+        sut.addRepo(firstRepo)
+
+        let returnedItem = sut.repoAtIndex(1)
+
+        XCTAssertNil(returnedItem)
+    }
+
+    func testRepositoryRemoveOutOfRange_ShouldNotExtract() {
+        let firstRepo = RepositoryModel()
+        firstRepo.name = "test"
+        sut.addRepo(firstRepo)
+
+        sut.removeRepoAtIndex(1)
 
         XCTAssertEqual(sut.repoCount, 1, "Should be 1 repo")
     }

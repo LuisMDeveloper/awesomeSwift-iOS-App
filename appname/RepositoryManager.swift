@@ -33,15 +33,23 @@ class RepositoryManager {
     }
 
     func removeRepoAtIndex(index: Int) {
-        self.repos.removeAtIndex(index)
+        let upperBound = self.repos.count
+        if ( index >= 0 && index < upperBound ) {
+            self.repos.removeAtIndex(index)
+        }
     }
 
     func removeAllRepos() {
         self.repos.removeAll()
     }
 
-    func repoAtIndex(index: Int) -> RepositoryModel {
-        return self.repos[index]
+    func repoAtIndex(index: Int) -> RepositoryModel? {
+        let upperBound = self.repos.count
+        if ( index >= 0 && index < upperBound) {
+            return self.repos[index]
+        } else {
+            return nil
+        }
     }
 
 }
