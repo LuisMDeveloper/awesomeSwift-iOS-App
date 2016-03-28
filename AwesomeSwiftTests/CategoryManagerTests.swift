@@ -39,7 +39,7 @@ class CategoryManagerTests: XCTestCase {
 
         let returnedCat = sut.catAtIndex(0)
 
-        XCTAssertEqual(cat.name, returnedCat.name, "Should be named the same")
+        XCTAssertEqual(cat.name, returnedCat!.name, "Should be named the same")
     }
 
     func testCategoryCount_AfterRemovingOneItem_IsZero() {
@@ -50,7 +50,6 @@ class CategoryManagerTests: XCTestCase {
         sut.removeCatAtIndex(0)
 
         XCTAssertEqual(sut.catCount, 0, "Should be 0 cats")
-
     }
 
     func testCategoryCount_AfterRemovingAllItems_IsZero() {
@@ -75,6 +74,26 @@ class CategoryManagerTests: XCTestCase {
         sut.addCat(secondCat)
 
         XCTAssertEqual(sut.catCount, 1, "Should be 1")
+    }
+
+    func testCategoryExtractOutOfRange_ShouldExtractNil() {
+        let firstCat = CategoryModel()
+        firstCat.name = "test"
+        sut.addCat(firstCat)
+
+        let returnedItem = sut.catAtIndex(1)
+
+        XCTAssertNil(returnedItem)
+    }
+
+    func testCategoryRemoveOutOfRange_ShouldNotExtract() {
+        let firstCat = CategoryModel()
+        firstCat.name = "test"
+        sut.addCat(firstCat)
+
+        sut.removeCatAtIndex(1)
+
+        XCTAssertEqual(sut.catCount, 1, "Should be 1 repo")
     }
 
 }

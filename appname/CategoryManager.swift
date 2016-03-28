@@ -24,19 +24,27 @@ class CategoryManager {
         // swiftlint:disable force_try
         self.cats = Array(try! Realm().objects(CategoryModel))
     }
-    
+
     func addCat(cat: CategoryModel) {
         if !self.cats.contains(cat) {
             self.cats.append(cat)
         }
     }
 
-    func catAtIndex(index: Int) -> CategoryModel {
-        return self.cats[index]
+    func catAtIndex(index: Int) -> CategoryModel? {
+        let upperBound = self.cats.count
+        if 0..<upperBound ~= index {
+            return self.cats[index]
+        } else {
+            return nil
+        }
     }
 
     func removeCatAtIndex(index: Int) {
-        self.cats.removeAtIndex(index)
+        let upperBound = self.cats.count
+        if 0..<upperBound ~= index {
+            self.cats.removeAtIndex(index)
+        }
     }
 
     func removeAllCats() {
