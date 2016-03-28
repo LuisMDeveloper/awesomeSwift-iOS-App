@@ -27,9 +27,14 @@ class CategoryManagerTests: XCTestCase {
     }
 
     func testCategoryCount_AfterAddingOneItem_IsOne() {
-        let cat = CategoryModel()
-        sut.addCat(cat)
+        let firstCat = CategoryModel()
+        firstCat.name = "first"
+        sut.addCat(firstCat)
         XCTAssertEqual(sut.catCount, 1, "Adding one cat, catCount should be 1")
+        let secondCat = CategoryModel()
+        secondCat.name = "second"
+        sut.addCat(secondCat)
+        XCTAssertEqual(sut.catCount, 2, "Adding another one cat, catCount should be 2")
     }
 
     func testCategoryAtIndex_ShouldReturnPreviouslyAddedItem() {

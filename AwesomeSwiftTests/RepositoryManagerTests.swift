@@ -35,6 +35,9 @@ class RepositoryManagerTests: XCTestCase {
         let firstRepo = RepositoryModel()
         sut.addRepo(firstRepo)
         XCTAssertEqual(sut.repoCount, 1, "Adding one repo, repoCount should be 1")
+        let secondRepo = RepositoryModel()
+        sut.addRepo(secondRepo)
+        XCTAssertEqual(sut.repoCount, 2, "Adding another one repo, repoCount should be 2")
     }
 
     func testRepositoryAtIndex_ShouldReturnPreviouslyAddedItem() {
