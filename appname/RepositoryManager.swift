@@ -34,7 +34,7 @@ class RepositoryManager {
 
     func removeRepoAtIndex(index: Int) {
         let upperBound = self.repos.count
-        if ( index >= 0 && index < upperBound ) {
+        if 0..<upperBound ~= index {
             self.repos.removeAtIndex(index)
         }
     }
@@ -45,7 +45,7 @@ class RepositoryManager {
 
     func repoAtIndex(index: Int) -> RepositoryModel? {
         let upperBound = self.repos.count
-        if ( index >= 0 && index < upperBound) {
+        if 0..<upperBound ~= index {
             return self.repos[index]
         } else {
             return nil
