@@ -27,6 +27,16 @@ target 'AwesomeSwift' do
     #pod 'SwiftyStoreKit' # InApp purchase
 end
 
+def testing_pods
+    pod 'Nimble' # BDD
+    pod 'Quick' # BDD
+    pod 'RealmSwift' # Local database
+end
+
 target 'AwesomeSwiftTests' do
-    pod 'RealmSwift'
+    testing_pods
+end
+
+target 'AwesomeSwiftUITests' do
+    testing_pods
 end

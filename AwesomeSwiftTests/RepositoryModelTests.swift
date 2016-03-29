@@ -6,100 +6,54 @@
 //  Copyright © 2016 boostco.de. All rights reserved.
 //
 
+import Quick
+import Nimble
 import XCTest
 @testable import AwesomeSwift
 
-class RepositoryModelTests: XCTestCase {
+class RepositoryModelTests: QuickSpec {
+    override func spec() {
+        describe("a repository") {
+            var repoFirst: RepositoryModel!
+            var repoSecond: RepositoryModel!
 
-    override func setUp() {
-        super.setUp()
+            beforeEach() {
+                repoFirst = RepositoryModel()
+                repoFirst.name = "test"
+                repoFirst.descr = "description"
+                repoFirst.category = "category"
+                repoFirst.url = "http://"
+
+                repoSecond = RepositoryModel()
+                repoSecond.name = "test2"
+                repoSecond.descr = "description2"
+                repoSecond.category = "category2"
+                repoSecond.url = "http://2"
+            }
+            it("not be nil") {
+                expect(repoFirst).toNot(beNil())
+            }
+            it("has a name") {
+                expect(repoFirst.name).to(equal("test"))
+            }
+            it("has a description") {
+                expect(repoFirst.descr).to(equal("description"))
+            }
+            it("has a category") {
+                expect(repoFirst.category).to(equal("category"))
+            }
+            it("has a url") {
+                expect(repoFirst.url).to(equal("http://"))
+            }
+            it("has createdAt") {
+                expect(repoFirst.createdAt).toNot(beNil())
+            }
+
+            describe("and another repository with different name") {
+                it("are different") {
+                    expect(repoFirst).toNot(equal(repoSecond))
+                }
+            }
+        }
     }
-
-    override func tearDown() {
-        super.tearDown()
-    }
-
-    func testInit_ShouldTakeNoParams() {
-        let item = RepositoryModel()
-        XCTAssertNotNil(item, "repo should not be nil")
-    }
-
-    func testInit_ShoudlTakeName() {
-        let item = RepositoryModel()
-        let testName = "test"
-
-        item.name = testName
-        
-        XCTAssertEqual(item.name, testName, "repo shoud be named test")
-    }
-
-    func testInit_ShouldTakeNameAndDescription() {
-        let item = RepositoryModel()
-        let testName = "test"
-        let testDescription = "test description"
-
-        item.name = testName
-        item.descr = testDescription
-
-        XCTAssertEqual(item.descr, testDescription, "repo shoud be described as test description")
-    }
-
-    func testInit_ShouldTakeNameAndDescriptionAndCategory() {
-        let item = RepositoryModel()
-
-        let testName = "test"
-        let testDescription = "test description"
-        let testCategory = "test cat"
-
-        item.name = testName
-        item.descr = testDescription
-        item.category = testCategory
-
-        XCTAssertEqual(item.category, testCategory, "repo should be categorized as test cat")
-    }
-
-    func testInit_ShouldTakeNameAndDescriptionAndCategoryAndUrl() {
-        let item = RepositoryModel()
-
-        let testName = "test"
-        let testDescription = "test description"
-        let testCategory = "test cat"
-        let testUrl = "test.url"
-
-        item.name = testName
-        item.descr = testDescription
-        item.category = testCategory
-        item.url = testUrl
-
-        XCTAssertEqual(item.url, testUrl, "repo should have url set to test.url")
-    }
-
-    func testInit_ShouldTakeNameAndDescriptionAndCategoryAndUrlAndCreatedAt() {
-        let item = RepositoryModel()
-
-        let testName = "test"
-        let testDescription = "test description"
-        let testCategory = "test cat"
-        let testUrl = "test.url"
-        let createdAt = NSDate()
-
-        item.name = testName
-        item.descr = testDescription
-        item.category = testCategory
-        item.url = testUrl
-        item.createdAt = createdAt
-
-        XCTAssertEqual(item.createdAt, createdAt, "repo should have createdAt set to today")
-    }
-
-    func testWhenReposHaveDifferentNames_ShouldBeNotEqual() {
-        let firstItem = RepositoryModel()
-        firstItem.name = "first"
-
-        let secondItem = RepositoryModel()
-        secondItem.name = "second"
-
-        XCTAssertNotEqual(firstItem, secondItem)
-    }
-
 }
