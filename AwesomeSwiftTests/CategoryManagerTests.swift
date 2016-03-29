@@ -6,99 +6,66 @@
 //  Copyright © 2016 boostco.de. All rights reserved.
 //
 
-import XCTest
+import Nimble
+import Quick
 @testable import AwesomeSwift
 
-class CategoryManagerTests: XCTestCase {
+class CategoryManagerTests: QuickSpec {
+    override func spec() {
 
-    var sut: CategoryManager!
+        var sut: CategoryManager!
 
-    override func setUp() {
-        super.setUp()
-        sut = CategoryManager()
+        var firstCat: CategoryModel!
+        var secondCat: CategoryModel!
+
+        beforeEach() {
+            sut = CategoryManager()
+
+            firstCat = CategoryModel()
+            firstCat.name = "first"
+
+            secondCat = CategoryModel()
+            secondCat.name = "second"
+        }
+
+        describe("a category manager") {
+            it("have 0 cat once initialized") {
+                expect(sut.catCount).to(equal(0))
+            }
+            it("have 1 cat once first added") {
+                sut.addCat(firstCat)
+                expect(sut.catCount).to(equal(1))
+            }
+            it("return right item once request") {
+                sut.addCat(firstCat)
+                expect(sut.catAtIndex(0)!.name).to(equal("first"))
+            }
+            it("have 0 cat removing a category") {
+                sut.addCat(firstCat)
+                sut.removeCatAtIndex(0)
+                expect(sut.catCount).to(equal(0))
+            }
+            it("have 0 cats after removing all cats") {
+                sut.addCat(firstCat)
+                sut.addCat(secondCat)
+                sut.removeAllCats()
+                expect(sut.catCount).to(equal(0))
+            }
+            it("checks for uniqueness adding new cat") {
+                sut.addCat(firstCat)
+                sut.addCat(firstCat)
+                expect(sut.catCount).to(equal(1))
+            }
+            it("doesn't get category out of range") {
+                sut.addCat(firstCat)
+                let cat = sut.catAtIndex(5)
+                expect(cat).to(beNil())
+            }
+            it("doesn't delete category out of range") {
+                sut.addCat(firstCat)
+                sut.removeCatAtIndex(5)
+                expect(sut.catCount).to(equal(1))
+            }
+        }
     }
-
-    override func tearDown() {
-        super.tearDown()
-    }
-
-    func testCategoryCount_Initially_ShouldBeZero() {
-        XCTAssertEqual(sut.catCount, 0, "Initially count count should be 0")
-    }
-
-    func testCategoryCount_AfterAddingOneItem_IsOne() {
-        let firstCat = CategoryModel()
-        firstCat.name = "first"
-        sut.addCat(firstCat)
-        XCTAssertEqual(sut.catCount, 1, "Adding one cat, catCount should be 1")
-        let secondCat = CategoryModel()
-        secondCat.name = "second"
-        sut.addCat(secondCat)
-        XCTAssertEqual(sut.catCount, 2, "Adding another one cat, catCount should be 2")
-    }
-
-    func testCategoryAtIndex_ShouldReturnPreviouslyAddedItem() {
-        let cat = CategoryModel()
-        cat.name = "test"
-        sut.addCat(cat)
-
-        let returnedCat = sut.catAtIndex(0)
-
-        XCTAssertEqual(cat.name, returnedCat!.name, "Should be named the same")
-    }
-
-    func testCategoryCount_AfterRemovingOneItem_IsZero() {
-        let firstCat = CategoryModel()
-        firstCat.name = "test"
-        sut.addCat(firstCat)
-
-        sut.removeCatAtIndex(0)
-
-        XCTAssertEqual(sut.catCount, 0, "Should be 0 cats")
-    }
-
-    func testCategoryCount_AfterRemovingAllItems_IsZero() {
-        let firstCat = CategoryModel()
-        firstCat.name = "test"
-        sut.addCat(firstCat)
-        let secondCat = CategoryModel()
-        secondCat.name = "test"
-        sut.addCat(secondCat)
-
-        sut.removeAllCats()
-
-        XCTAssertEqual(sut.catCount, 0, "Should be 0 cats")
-    }
-
-    func testCategoryUniquenessCount_AddingRepoTwice_ShouldBeOne() {
-        let firstCat = CategoryModel()
-        firstCat.name = "test"
-        sut.addCat(firstCat)
-        let secondCat = CategoryModel()
-        secondCat.name = "test"
-        sut.addCat(secondCat)
-
-        XCTAssertEqual(sut.catCount, 1, "Should be 1")
-    }
-
-    func testCategoryExtractOutOfRange_ShouldExtractNil() {
-        let firstCat = CategoryModel()
-        firstCat.name = "test"
-        sut.addCat(firstCat)
-
-        let returnedItem = sut.catAtIndex(1)
-
-        XCTAssertNil(returnedItem)
-    }
-
-    func testCategoryRemoveOutOfRange_ShouldNotExtract() {
-        let firstCat = CategoryModel()
-        firstCat.name = "test"
-        sut.addCat(firstCat)
-
-        sut.removeCatAtIndex(1)
-
-        XCTAssertEqual(sut.catCount, 1, "Should be 1 repo")
-    }
-
 }

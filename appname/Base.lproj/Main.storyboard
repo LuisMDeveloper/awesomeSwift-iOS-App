@@ -25,11 +25,15 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CyO-YW-pYj" id="Gle-He-e9l">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="5eJ-SQ-ImI" id="Uqg-fd-3RV"/>
+                                    <outlet property="delegate" destination="5eJ-SQ-ImI" id="r1h-Vy-m54"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,12 +45,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dataProvider" destination="OJc-N9-JuB" id="rta-l3-64a"/>
                         <outlet property="tableView" destination="x1D-Xw-W5c" id="SN6-vi-6oq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3dA-Vu-1t1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="OJc-N9-JuB" customClass="CategoryListDataProvider" customModule="AwesomeSwift" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="412" y="281"/>
         </scene>

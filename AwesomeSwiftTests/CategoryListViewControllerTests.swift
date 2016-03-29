@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import AwesomeSwift
-
+/*
 class CategoryListViewControllerTests: XCTestCase {
 
     var sut: CategoryListViewController!
@@ -43,3 +43,4 @@ class CategoryListViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.tableView.dataSource as? CategoryListDataProvider, sut.tableView.delegate as? CategoryListDataProvider)
     }
 }
+*/

@@ -7,7 +7,10 @@
 //
 
 import XCTest
+import Nimble
+import Quick
 @testable import AwesomeSwift
+
 
 class RepositoryManagerTests: XCTestCase {
 

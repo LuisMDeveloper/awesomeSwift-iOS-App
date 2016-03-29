@@ -11,12 +11,16 @@ import UIKit
 class CategoryListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var dataProvider: CategoryListDataProvider!
+    
+    var categoryManager = CategoryManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = dataProvider
-        tableView.delegate = dataProvider
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,4 +38,23 @@ class CategoryListViewController: UIViewController {
     }
     */
 
+}
+
+extension CategoryListViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        // swiftlint:disable force_cast
+        let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! CategoryCell
+        cell.configCellWithCategory(categoryManager.catAtIndex(indexPath.row)!)
+        return cell
+    }
+}
+
+extension CategoryListViewController: UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return categoryManager.catCount
+    }
 }
