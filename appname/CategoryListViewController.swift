@@ -44,7 +44,7 @@ extension CategoryListViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! CategoryCell
-        cell.configCellWithCategory(categoryManager.catAtIndex(indexPath.row)!)
+        cell.configCellWithCategory(categoryManager.itemAt(indexPath.row) as! CategoryModel)
         return cell
     }
 }
@@ -55,6 +55,6 @@ extension CategoryListViewController: UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryManager.catCount
+        return categoryManager.itemsCount
     }
 }

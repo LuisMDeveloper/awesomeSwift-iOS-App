@@ -8,33 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		2D216BEF2E2CAAADA66CB8A1 /* Pods_AwesomeSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A39EA09217AE0359238FF1 /* Pods_AwesomeSwift.framework */; };
+		4819D7831CAD793000271DD3 /* AwesomeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4819D7821CAD793000271DD3 /* AwesomeSwiftTests.swift */; };
+		4819D78A1CAD795500271DD3 /* ManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4856FC501CAD74F500463E44 /* ManagerTests.swift */; };
+		4819D78B1CAD795500271DD3 /* RepositoryModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102031CA823650035403A /* RepositoryModelTests.swift */; };
+		4819D78C1CAD795500271DD3 /* RepositoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102161CA8342B0035403A /* RepositoryManagerTests.swift */; };
+		4819D78D1CAD795500271DD3 /* CategoryModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891021F1CA84C020035403A /* CategoryModelTests.swift */; };
+		4819D78E1CAD795500271DD3 /* CategoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102231CA84E880035403A /* CategoryManagerTests.swift */; };
+		4819D78F1CAD795500271DD3 /* CategoryListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891022B1CA9B68C0035403A /* CategoryListViewControllerTests.swift */; };
+		4819D7901CAD795500271DD3 /* CategoryListDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102341CA9BF170035403A /* CategoryListDataProviderTests.swift */; };
+		4819D7911CAD795500271DD3 /* CategoryCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891023E1CA9DC640035403A /* CategoryCellTests.swift */; };
+		4856FC4F1CAD74A800463E44 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4856FC4E1CAD74A800463E44 /* Manager.swift */; };
 		488F66D51C94636A00933CA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F66D41C94636A00933CA6 /* AppDelegate.swift */; };
 		488F66DA1C94636A00933CA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 488F66D81C94636A00933CA6 /* Main.storyboard */; };
 		488F66DC1C94636A00933CA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 488F66DB1C94636A00933CA6 /* Assets.xcassets */; };
 		488F66DF1C94636A00933CA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 488F66DD1C94636A00933CA6 /* LaunchScreen.storyboard */; };
-		489101FC1CA822FB0035403A /* AwesomeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489101FB1CA822FB0035403A /* AwesomeSwiftTests.swift */; };
-		489102041CA823650035403A /* RepositoryModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102031CA823650035403A /* RepositoryModelTests.swift */; };
 		489102061CA823EB0035403A /* RepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102051CA823EB0035403A /* RepositoryModel.swift */; };
 		4891020F1CA833B30035403A /* AwesomeSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891020E1CA833B30035403A /* AwesomeSwiftUITests.swift */; };
-		489102171CA8342B0035403A /* RepositoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102161CA8342B0035403A /* RepositoryManagerTests.swift */; };
 		489102191CA834650035403A /* RepositoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102181CA834650035403A /* RepositoryManager.swift */; };
 		4891021A1CA846850035403A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F67021C94719D00933CA6 /* SnapshotHelper.swift */; };
 		4891021C1CA849C30035403A /* RealmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891021B1CA849C30035403A /* RealmProvider.swift */; };
-		489102201CA84C020035403A /* CategoryModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891021F1CA84C020035403A /* CategoryModelTests.swift */; };
 		489102221CA84C800035403A /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102211CA84C800035403A /* CategoryModel.swift */; };
-		489102241CA84E880035403A /* CategoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102231CA84E880035403A /* CategoryManagerTests.swift */; };
 		489102261CA877EB0035403A /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102251CA877EB0035403A /* CategoryManager.swift */; };
-		4891022C1CA9B68C0035403A /* CategoryListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891022B1CA9B68C0035403A /* CategoryListViewControllerTests.swift */; };
 		4891022E1CA9B6EC0035403A /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891022D1CA9B6EC0035403A /* CategoryListViewController.swift */; };
-		489102351CA9BF170035403A /* CategoryListDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102341CA9BF170035403A /* CategoryListDataProviderTests.swift */; };
 		489102391CA9C6810035403A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102381CA9C6810035403A /* CategoryCell.swift */; };
-		4891023F1CA9DC640035403A /* CategoryCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891023E1CA9DC640035403A /* CategoryCellTests.swift */; };
 		541267553D45963E1A8C4802 /* Pods_AwesomeSwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8D3429FA8BB762CAD6FBA6 /* Pods_AwesomeSwiftUITests.framework */; };
-		B1079F00771365BA44E249B4 /* Pods_AwesomeSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8A7C29F81C0214AD4D37DA3 /* Pods_AwesomeSwiftTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		489101FE1CA822FB0035403A /* PBXContainerItemProxy */ = {
+		4819D7851CAD793000271DD3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 488F66C91C94636A00933CA6 /* Project object */;
 			proxyType = 1;
@@ -58,6 +59,11 @@
 		2603C6280B700A3A5A2A8030 /* Pods-AwesomeSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeSwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeSwiftTests/Pods-AwesomeSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		28E155611907763303570916 /* Pods-AwesomeSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeSwift/Pods-AwesomeSwift.release.xcconfig"; sourceTree = "<group>"; };
 		29880395986886166EA17DBF /* Pods-AwesomeSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeSwift/Pods-AwesomeSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		4819D7801CAD793000271DD3 /* AwesomeSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4819D7821CAD793000271DD3 /* AwesomeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeSwiftTests.swift; sourceTree = "<group>"; };
+		4819D7841CAD793000271DD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4856FC4E1CAD74A800463E44 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		4856FC501CAD74F500463E44 /* ManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerTests.swift; sourceTree = "<group>"; };
 		488F66D11C94636A00933CA6 /* AwesomeSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		488F66D41C94636A00933CA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		488F66D91C94636A00933CA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,9 +71,6 @@
 		488F66DE1C94636A00933CA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		488F66E01C94636A00933CA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		488F67021C94719D00933CA6 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = ../appnameUITests/SnapshotHelper.swift; sourceTree = "<group>"; };
-		489101F91CA822FB0035403A /* AwesomeSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		489101FB1CA822FB0035403A /* AwesomeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeSwiftTests.swift; sourceTree = "<group>"; };
-		489101FD1CA822FB0035403A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		489102031CA823650035403A /* RepositoryModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryModelTests.swift; sourceTree = "<group>"; };
 		489102051CA823EB0035403A /* RepositoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryModel.swift; sourceTree = "<group>"; };
 		4891020C1CA833B30035403A /* AwesomeSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,19 +96,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4819D77D1CAD793000271DD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		488F66CE1C94636A00933CA6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				2D216BEF2E2CAAADA66CB8A1 /* Pods_AwesomeSwift.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		489101F61CA822FB0035403A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B1079F00771365BA44E249B4 /* Pods_AwesomeSwiftTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,12 +137,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4819D7811CAD793000271DD3 /* AwesomeSwiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				489102291CA9B63B0035403A /* 📦Model */,
+				4891022A1CA9B6610035403A /* 📱VController */,
+				4819D7821CAD793000271DD3 /* AwesomeSwiftTests.swift */,
+				4819D7841CAD793000271DD3 /* Info.plist */,
+			);
+			path = AwesomeSwiftTests;
+			sourceTree = "<group>";
+		};
 		488F66C81C94636A00933CA6 = {
 			isa = PBXGroup;
 			children = (
 				488F66D31C94636A00933CA6 /* AwesomeSwift */,
-				489101FA1CA822FB0035403A /* AwesomeSwiftTests */,
 				4891020D1CA833B30035403A /* AwesomeSwiftUITests */,
+				4819D7811CAD793000271DD3 /* AwesomeSwiftTests */,
 				488F66D21C94636A00933CA6 /* Products */,
 				272FC107A4EB368F0E72AD0A /* Pods */,
 				F8AE5E3C1579567A9FD3BE2E /* Frameworks */,
@@ -151,8 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				488F66D11C94636A00933CA6 /* AwesomeSwift.app */,
-				489101F91CA822FB0035403A /* AwesomeSwiftTests.xctest */,
 				4891020C1CA833B30035403A /* AwesomeSwiftUITests.xctest */,
+				4819D7801CAD793000271DD3 /* AwesomeSwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				4891021B1CA849C30035403A /* RealmProvider.swift */,
+				4856FC4E1CAD74A800463E44 /* Manager.swift */,
 				489102311CA9BDF80035403A /* Repository */,
 				489102321CA9BE000035403A /* Category */,
 			);
@@ -196,17 +210,6 @@
 			children = (
 			);
 			name = "📡Net";
-			sourceTree = "<group>";
-		};
-		489101FA1CA822FB0035403A /* AwesomeSwiftTests */ = {
-			isa = PBXGroup;
-			children = (
-				489101FB1CA822FB0035403A /* AwesomeSwiftTests.swift */,
-				489101FD1CA822FB0035403A /* Info.plist */,
-				489102291CA9B63B0035403A /* 📦Model */,
-				4891022A1CA9B6610035403A /* 📱VController */,
-			);
-			path = AwesomeSwiftTests;
 			sourceTree = "<group>";
 		};
 		4891020D1CA833B30035403A /* AwesomeSwiftUITests */ = {
@@ -222,6 +225,7 @@
 		489102291CA9B63B0035403A /* 📦Model */ = {
 			isa = PBXGroup;
 			children = (
+				4856FC501CAD74F500463E44 /* ManagerTests.swift */,
 				489102361CA9C0930035403A /* Repository */,
 				489102371CA9C09A0035403A /* Category */,
 			);
@@ -297,6 +301,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4819D77F1CAD793000271DD3 /* AwesomeSwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4819D7871CAD793000271DD3 /* Build configuration list for PBXNativeTarget "AwesomeSwiftTests" */;
+			buildPhases = (
+				4819D77C1CAD793000271DD3 /* Sources */,
+				4819D77D1CAD793000271DD3 /* Frameworks */,
+				4819D77E1CAD793000271DD3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4819D7861CAD793000271DD3 /* PBXTargetDependency */,
+			);
+			name = AwesomeSwiftTests;
+			productName = AwesomeSwiftTests;
+			productReference = 4819D7801CAD793000271DD3 /* AwesomeSwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		488F66D01C94636A00933CA6 /* AwesomeSwift */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 488F66F91C94636A00933CA6 /* Build configuration list for PBXNativeTarget "AwesomeSwift" */;
@@ -317,28 +339,6 @@
 			productName = appname;
 			productReference = 488F66D11C94636A00933CA6 /* AwesomeSwift.app */;
 			productType = "com.apple.product-type.application";
-		};
-		489101F81CA822FB0035403A /* AwesomeSwiftTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 489102001CA822FB0035403A /* Build configuration list for PBXNativeTarget "AwesomeSwiftTests" */;
-			buildPhases = (
-				16426AFEB03A46CEF1C54C1D /* Check Pods Manifest.lock */,
-				489101F51CA822FB0035403A /* Sources */,
-				489101F61CA822FB0035403A /* Frameworks */,
-				489101F71CA822FB0035403A /* Resources */,
-				DE72EE213E9AF81A588F0D23 /* Embed Pods Frameworks */,
-				201E86434D95E6F48892F2DE /* Copy Pods Resources */,
-				4856FC4D1CAD723500463E44 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				489101FF1CA822FB0035403A /* PBXTargetDependency */,
-			);
-			name = AwesomeSwiftTests;
-			productName = AwesomeSwiftTests;
-			productReference = 489101F91CA822FB0035403A /* AwesomeSwiftTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		4891020B1CA833B30035403A /* AwesomeSwiftUITests */ = {
 			isa = PBXNativeTarget;
@@ -370,13 +370,13 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = boostco.de;
 				TargetAttributes = {
+					4819D77F1CAD793000271DD3 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 488F66D01C94636A00933CA6;
+					};
 					488F66D01C94636A00933CA6 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = F9FTQCB4H8;
-					};
-					489101F81CA822FB0035403A = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = 488F66D01C94636A00933CA6;
 					};
 					4891020B1CA833B30035403A = {
 						CreatedOnToolsVersion = 7.3;
@@ -398,13 +398,20 @@
 			projectRoot = "";
 			targets = (
 				488F66D01C94636A00933CA6 /* AwesomeSwift */,
-				489101F81CA822FB0035403A /* AwesomeSwiftTests */,
 				4891020B1CA833B30035403A /* AwesomeSwiftUITests */,
+				4819D77F1CAD793000271DD3 /* AwesomeSwiftTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4819D77E1CAD793000271DD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		488F66CF1C94636A00933CA6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -412,13 +419,6 @@
 				488F66DF1C94636A00933CA6 /* LaunchScreen.storyboard in Resources */,
 				488F66DC1C94636A00933CA6 /* Assets.xcassets in Resources */,
 				488F66DA1C94636A00933CA6 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		489101F71CA822FB0035403A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,36 +447,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		16426AFEB03A46CEF1C54C1D /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		201E86434D95E6F48892F2DE /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeSwiftTests/Pods-AwesomeSwiftTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		31271EFE8D61E734EAE69C01 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,19 +462,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeSwift/Pods-AwesomeSwift-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4856FC4D1CAD723500463E44 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" d4baa9421f9cf098df37a18820470e82c4115011 16575f7c5d1fc6fc6679fa1def358884589560b92e68986ab73127c3eb6084cc";
-		};
 		4881541A1C94A942000D99EB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -517,21 +474,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
-		};
-		DE72EE213E9AF81A588F0D23 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeSwiftTests/Pods-AwesomeSwiftTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		E14E96EAB3F398E2E0A2ABA5 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -581,6 +523,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4819D77C1CAD793000271DD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4819D78A1CAD795500271DD3 /* ManagerTests.swift in Sources */,
+				4819D78B1CAD795500271DD3 /* RepositoryModelTests.swift in Sources */,
+				4819D78C1CAD795500271DD3 /* RepositoryManagerTests.swift in Sources */,
+				4819D78D1CAD795500271DD3 /* CategoryModelTests.swift in Sources */,
+				4819D78E1CAD795500271DD3 /* CategoryManagerTests.swift in Sources */,
+				4819D78F1CAD795500271DD3 /* CategoryListViewControllerTests.swift in Sources */,
+				4819D7901CAD795500271DD3 /* CategoryListDataProviderTests.swift in Sources */,
+				4819D7911CAD795500271DD3 /* CategoryCellTests.swift in Sources */,
+				4819D7831CAD793000271DD3 /* AwesomeSwiftTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		488F66CD1C94636A00933CA6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -592,22 +550,8 @@
 				488F66D51C94636A00933CA6 /* AppDelegate.swift in Sources */,
 				489102061CA823EB0035403A /* RepositoryModel.swift in Sources */,
 				4891021C1CA849C30035403A /* RealmProvider.swift in Sources */,
+				4856FC4F1CAD74A800463E44 /* Manager.swift in Sources */,
 				489102221CA84C800035403A /* CategoryModel.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		489101F51CA822FB0035403A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				489102171CA8342B0035403A /* RepositoryManagerTests.swift in Sources */,
-				489102241CA84E880035403A /* CategoryManagerTests.swift in Sources */,
-				4891022C1CA9B68C0035403A /* CategoryListViewControllerTests.swift in Sources */,
-				4891023F1CA9DC640035403A /* CategoryCellTests.swift in Sources */,
-				489101FC1CA822FB0035403A /* AwesomeSwiftTests.swift in Sources */,
-				489102351CA9BF170035403A /* CategoryListDataProviderTests.swift in Sources */,
-				489102041CA823650035403A /* RepositoryModelTests.swift in Sources */,
-				489102201CA84C020035403A /* CategoryModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,10 +567,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		489101FF1CA822FB0035403A /* PBXTargetDependency */ = {
+		4819D7861CAD793000271DD3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 488F66D01C94636A00933CA6 /* AwesomeSwift */;
-			targetProxy = 489101FE1CA822FB0035403A /* PBXContainerItemProxy */;
+			targetProxy = 4819D7851CAD793000271DD3 /* PBXContainerItemProxy */;
 		};
 		489102121CA833B30035403A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -655,6 +599,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4819D7881CAD793000271DD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = AwesomeSwiftTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.AwesomeSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AwesomeSwift.app/AwesomeSwift";
+			};
+			name = Debug;
+		};
+		4819D7891CAD793000271DD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = AwesomeSwiftTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.AwesomeSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AwesomeSwift.app/AwesomeSwift";
+			};
+			name = Release;
+		};
 		488F66F71C94636A00933CA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -765,36 +737,6 @@
 			};
 			name = Release;
 		};
-		489102011CA822FB0035403A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2603C6280B700A3A5A2A8030 /* Pods-AwesomeSwiftTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = AwesomeSwiftTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.AwesomeSwiftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AwesomeSwift.app/AwesomeSwift";
-			};
-			name = Debug;
-		};
-		489102021CA822FB0035403A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6D828818AFD8CBFCB2FA1CD /* Pods-AwesomeSwiftTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = AwesomeSwiftTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = boostco.de.AwesomeSwiftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AwesomeSwift.app/AwesomeSwift";
-			};
-			name = Release;
-		};
 		489102141CA833B30035403A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FEA7B1074AE559D7F95EE9AF /* Pods-AwesomeSwiftUITests.debug.xcconfig */;
@@ -826,6 +768,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4819D7871CAD793000271DD3 /* Build configuration list for PBXNativeTarget "AwesomeSwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4819D7881CAD793000271DD3 /* Debug */,
+				4819D7891CAD793000271DD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		488F66CC1C94636A00933CA6 /* Build configuration list for PBXProject "AwesomeSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -840,15 +790,6 @@
 			buildConfigurations = (
 				488F66FA1C94636A00933CA6 /* Debug */,
 				488F66FB1C94636A00933CA6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		489102001CA822FB0035403A /* Build configuration list for PBXNativeTarget "AwesomeSwiftTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				489102011CA822FB0035403A /* Debug */,
-				489102021CA822FB0035403A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
