@@ -28,12 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
 
         // push notifications enabled
-        /*
         let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
-        */
+ 
 
         // crashlytics enabled
         //Fabric.with([Crashlytics.self])
