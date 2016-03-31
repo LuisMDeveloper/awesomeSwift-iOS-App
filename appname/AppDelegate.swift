@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
 
         // crashlytics enabled
-        //Fabric.with([Crashlytics.self])
+        Fabric.with([Crashlytics.self])
 
         return true
     }
