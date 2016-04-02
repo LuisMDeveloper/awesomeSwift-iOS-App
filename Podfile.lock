@@ -1,15 +1,17 @@
 PODS:
   - Alamofire (3.3.0)
+  - CacheManager (0.0.1):
+    - RealmSwift
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - Dollar (5.0.0)
   - Fabric (1.6.7)
   - Log (0.2.1)
-  - Moya (6.3.1):
-    - Moya/Core (= 6.3.1)
-  - Moya/Core (6.3.1):
+  - Moya (6.4.0):
+    - Moya/Core (= 6.4.0)
+  - Moya/Core (6.4.0):
     - Alamofire (~> 3.0)
-    - Result (~> 1.0)
+    - Result (~> 2.0)
   - Nimble (3.2.0)
   - Quick (0.9.1)
   - Realm (0.98.6):
@@ -17,11 +19,12 @@ PODS:
   - Realm/Headers (0.98.6)
   - RealmSwift (0.98.6):
     - Realm (= 0.98.6)
-  - Result (1.0.2)
+  - Result (2.0.0)
   - SwiftDate (3.0.8)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
+  - CacheManager (from `git@gitlab.com:matteocrippa/cachemanager-lib-ios.git`)
   - Crashlytics
   - Dollar
   - Fabric
@@ -33,19 +36,31 @@ DEPENDENCIES:
   - SwiftDate
   - SwiftyJSON
 
+EXTERNAL SOURCES:
+  CacheManager:
+    :git: git@gitlab.com:matteocrippa/cachemanager-lib-ios.git
+
+CHECKOUT OPTIONS:
+  CacheManager:
+    :commit: bb99b7df7c8210f30082c7f5352b9882639981bc
+    :git: git@gitlab.com:matteocrippa/cachemanager-lib-ios.git
+
 SPEC CHECKSUMS:
   Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
+  CacheManager: 7655a79185a86ead9cf68602d5a87590b51be356
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   Dollar: 310893dd6b3799b9b155e3deb61a0492987e4d03
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   Log: b97ca4e92642f49600ea4dddfd3e238ca14a3b7a
-  Moya: 852e26948a3771355ddf0f0109ac779b6fc30f28
+  Moya: 4d526954c8afd79820991393d40d7d8af756ceee
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
   Quick: a5221fc21788b6aeda934805e68b061839bc3165
   Realm: 44803f35418c5d89b27825a564247fcd190de37e
   RealmSwift: c7239c52c83f8c43525a5269ba7be1694da33afc
-  Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
+  Result: 9e75e1111c774c6ac594e14907b15057053a7959
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: b86fb5f6e224865ab9e43fd686553a304d302229
+
+COCOAPODS: 1.0.0.beta.6

@@ -11,13 +11,17 @@ import UIKit
 class CategoryListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
+
     var categoryManager = CategoryManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        categoryManager.itemsUpdated = { [unowned self] in
+            self.tableView.reloadData()
+        }
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         tableView.reloadData()

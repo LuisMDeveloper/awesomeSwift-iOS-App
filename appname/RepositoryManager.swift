@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import CacheManager
 import RealmSwift
 
-class RepositoryManager: Manager {
-    override init() {
+class RepositoryManager: CacheManager {
+    required init() {
         super.init()
-        items = [RepositoryModel]()
+        super.items = [RepositoryModel]()
     }
-    
+
     override func itemsFromCache() {
         // swiftlint:disable force_try
-        items = Array(try! realm.objects(RepositoryModel))
+        super.items = Array(try! super.realm.objects(RepositoryModel))
     }
 }

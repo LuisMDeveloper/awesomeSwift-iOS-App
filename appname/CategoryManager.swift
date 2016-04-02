@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import CacheManager
 import RealmSwift
 
-class CategoryManager: Manager {
-    override init() {
+class CategoryManager: CacheManager {
+    required init() {
         super.init()
-        items = [CategoryModel]()
+        super.items = [CategoryModel]()
     }
 
     override func itemsFromCache() {
         // swiftlint:disable force_try
-        items = Array(try! realm.objects(CategoryModel))
+        super.items = Array(try! super.realm.objects(CategoryModel))
     }
 }
