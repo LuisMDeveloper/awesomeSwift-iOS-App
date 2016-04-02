@@ -8,6 +8,7 @@
 
 import Quick
 import Nimble
+import SwiftyJSON
 @testable import AwesomeSwift
 
 class RepositoryModelTests: QuickSpec {
@@ -15,6 +16,12 @@ class RepositoryModelTests: QuickSpec {
         describe("a repository") {
             var repoFirst: RepositoryModel!
             var repoSecond: RepositoryModel!
+            let jsonDummy: JSON = [
+                "name": "repo",
+                "descr": "description",
+                "category": "cat1",
+                "url": "http://"
+            ]
 
             beforeEach() {
                 repoFirst = RepositoryModel()
@@ -28,6 +35,9 @@ class RepositoryModelTests: QuickSpec {
                 repoSecond.descr = "description2"
                 repoSecond.category = "category2"
                 repoSecond.url = "http://2"
+            }
+            it("has name as primary key") {
+                expect(RepositoryModel.primaryKey()).to(equal("name"))
             }
             it("not be nil") {
                 expect(repoFirst).toNot(beNil())
@@ -47,8 +57,17 @@ class RepositoryModelTests: QuickSpec {
             it("has createdAt") {
                 expect(repoFirst.createdAt).toNot(beNil())
             }
-
-            describe("and another repository with different name") {
+            context("map") {
+                it("from json") {
+                    let repoJson = RepositoryModel()
+                    repoJson.mapping(jsonDummy)
+                    expect(repoJson.name).to(equal("repo"))
+                    expect(repoJson.descr).to(equal("description"))
+                    expect(repoJson.category).to(equal("cat1"))
+                    expect(repoJson.url).to(equal("http://"))
+                }
+            }
+            context("and another repository with different name") {
                 it("are different") {
                     expect(repoFirst).toNot(equal(repoSecond))
                 }
