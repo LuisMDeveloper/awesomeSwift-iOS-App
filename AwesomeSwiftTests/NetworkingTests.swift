@@ -8,23 +8,30 @@
 
 import Nimble
 import Quick
+@testable import AwesomeSwift
 
 class NetworkingTests: QuickSpec {
     override func spec() {
 
-        beforeEach() {
+        let sut = Networking()
 
-        }
-        
         describe("networking") {
             context("categories") {
-                it("get from remote") {
-
+                it("remote provides data") {
+                    sut.getCats {
+                        cats, error in
+                        expect(error).to(beNil())
+                        expect(cats!.count).to(beGreaterThanOrEqualTo(0))
+                    }
                 }
             }
             context("repositories") {
-                it("get from remote") {
-
+                it("remote provides data") {
+                    sut.getRepositories {
+                        repos, error in
+                        expect(error).to(beNil())
+                        expect(repos!.count).to(beGreaterThanOrEqualTo(0))
+                    }
                 }
             }
         }

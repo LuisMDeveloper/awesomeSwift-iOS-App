@@ -16,7 +16,7 @@ class CategoryModelTests: QuickSpec {
 
         let cat = CategoryModel()
         let jsonDummy: JSON = [
-            "name": "cat1"
+            "category": "cat1"
         ]
 
         describe("a category") {

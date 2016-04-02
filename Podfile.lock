@@ -42,7 +42,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CacheManager:
-    :commit: d3ae2d1101616fc6883d170aef9b626d01a601fb
+    :commit: 027633e3bb69e6e7024da25e1f58c003bd989b61
     :git: git@gitlab.com:matteocrippa/cachemanager-lib-ios.git
 
 SPEC CHECKSUMS:

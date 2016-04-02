@@ -13,9 +13,9 @@ import SwiftyJSON
 
 class RepositoryModelTests: QuickSpec {
     override func spec() {
-        
-        var repo = RepositoryModel()
-        var repoSecond = RepositoryModel()
+
+        let repo = RepositoryModel()
+        let repoSecond = RepositoryModel()
         let jsonDummy: JSON = [
             "name": "repo",
             "descr": "description",
