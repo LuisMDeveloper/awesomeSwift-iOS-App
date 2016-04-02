@@ -15,6 +15,8 @@
 		4819D78F1CAD795500271DD3 /* CategoryListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891022B1CA9B68C0035403A /* CategoryListViewControllerTests.swift */; };
 		4819D7901CAD795500271DD3 /* CategoryListDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102341CA9BF170035403A /* CategoryListDataProviderTests.swift */; };
 		4819D7911CAD795500271DD3 /* CategoryCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891023E1CA9DC640035403A /* CategoryCellTests.swift */; };
+		4862EBCB1CAFDDDB002D3A54 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4862EBCA1CAFDDDB002D3A54 /* Networking.swift */; };
+		4862EBCE1CAFFA96002D3A54 /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4862EBCD1CAFFA96002D3A54 /* NetworkingTests.swift */; };
 		488F66D51C94636A00933CA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F66D41C94636A00933CA6 /* AppDelegate.swift */; };
 		488F66DA1C94636A00933CA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 488F66D81C94636A00933CA6 /* Main.storyboard */; };
 		488F66DC1C94636A00933CA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 488F66DB1C94636A00933CA6 /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		4819D7801CAD793000271DD3 /* AwesomeSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4819D7821CAD793000271DD3 /* AwesomeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeSwiftTests.swift; sourceTree = "<group>"; };
 		4819D7841CAD793000271DD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4862EBCA1CAFDDDB002D3A54 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		4862EBCD1CAFFA96002D3A54 /* NetworkingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
 		488F66D11C94636A00933CA6 /* AwesomeSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		488F66D41C94636A00933CA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		488F66D91C94636A00933CA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -118,12 +122,21 @@
 		4819D7811CAD793000271DD3 /* AwesomeSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
+				4862EBCC1CAFFA80002D3A54 /* 📡Net */,
 				489102291CA9B63B0035403A /* 📦Model */,
 				4891022A1CA9B6610035403A /* 📱VController */,
 				4819D7821CAD793000271DD3 /* AwesomeSwiftTests.swift */,
 				4819D7841CAD793000271DD3 /* Info.plist */,
 			);
 			path = AwesomeSwiftTests;
+			sourceTree = "<group>";
+		};
+		4862EBCC1CAFFA80002D3A54 /* 📡Net */ = {
+			isa = PBXGroup;
+			children = (
+				4862EBCD1CAFFA96002D3A54 /* NetworkingTests.swift */,
+			);
+			name = "📡Net";
 			sourceTree = "<group>";
 		};
 		488F66C81C94636A00933CA6 = {
@@ -184,6 +197,7 @@
 		488F67071C94774400933CA6 /* 📡Net */ = {
 			isa = PBXGroup;
 			children = (
+				4862EBCA1CAFDDDB002D3A54 /* Networking.swift */,
 			);
 			name = "📡Net";
 			sourceTree = "<group>";
@@ -580,6 +594,7 @@
 				4819D78C1CAD795500271DD3 /* RepositoryManagerTests.swift in Sources */,
 				4819D78D1CAD795500271DD3 /* CategoryModelTests.swift in Sources */,
 				4819D78E1CAD795500271DD3 /* CategoryManagerTests.swift in Sources */,
+				4862EBCE1CAFFA96002D3A54 /* NetworkingTests.swift in Sources */,
 				4819D78F1CAD795500271DD3 /* CategoryListViewControllerTests.swift in Sources */,
 				4819D7901CAD795500271DD3 /* CategoryListDataProviderTests.swift in Sources */,
 				4819D7911CAD795500271DD3 /* CategoryCellTests.swift in Sources */,
@@ -594,6 +609,7 @@
 				489102391CA9C6810035403A /* CategoryCell.swift in Sources */,
 				4891022E1CA9B6EC0035403A /* CategoryListViewController.swift in Sources */,
 				489102261CA877EB0035403A /* CategoryManager.swift in Sources */,
+				4862EBCB1CAFDDDB002D3A54 /* Networking.swift in Sources */,
 				489102191CA834650035403A /* RepositoryManager.swift in Sources */,
 				488F66D51C94636A00933CA6 /* AppDelegate.swift in Sources */,
 				489102061CA823EB0035403A /* RepositoryModel.swift in Sources */,
