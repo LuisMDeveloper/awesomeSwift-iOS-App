@@ -14,12 +14,19 @@ class CategoryModel: Object, Equatable {
     dynamic var name = ""
     dynamic var createdAt = NSDate()
 
-    override static func primaryKey() -> String? {
+    override class func primaryKey() -> String? {
         return "name"
     }
 
     func mapping(item: JSON) {
-        self.name = item["name"].stringValue
+        self.name = item["category"].stringValue
+    }
+
+    override func isEqual(object: AnyObject?) -> Bool {
+        guard let rhs = object as? CategoryModel else {
+            return false
+        }
+        return self == rhs
     }
 }
 

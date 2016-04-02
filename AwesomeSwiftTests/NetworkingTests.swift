@@ -13,13 +13,18 @@ class NetworkingTests: QuickSpec {
     override func spec() {
 
         beforeEach() {
-            
+
         }
         
         describe("networking") {
-            context("") {
-                it("") {
-                    
+            context("categories") {
+                it("get from remote") {
+
+                }
+            }
+            context("repositories") {
+                it("get from remote") {
+
                 }
             }
         }

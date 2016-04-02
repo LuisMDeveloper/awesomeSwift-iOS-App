@@ -13,9 +13,8 @@ import Quick
 class CategoryManagerTests: QuickSpec {
     override func spec() {
         var sut: CategoryManager!
-
         var cat: CategoryModel!
-        
+
         beforeEach() {
             sut = CategoryManager()
 

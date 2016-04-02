@@ -6,18 +6,30 @@
 //  Copyright © 2016 boostco.de. All rights reserved.
 //
 
-import UIKit
 import CacheManager
+import Foundation
+import Log
 import RealmSwift
 
 class CategoryManager: CacheManager {
-    required init() {
-        super.init()
-        super.items = [CategoryModel]()
-    }
+
+    let net = Networking()
 
     override func itemsFromCache() {
         // swiftlint:disable force_try
-        super.items = Array(try! super.realm.objects(CategoryModel))
+        super.items = Array(super.realm.objects(CategoryModel))
+        Log.debug(super.items)
+    }
+
+    override func itemsFromRemote() {
+        net.getCats {
+            cats, error in
+            if error == nil {
+                if cats!.count > 0 {
+                    Log.debug("Cats add items from network")
+                    super.itemAddFromArray(cats!)
+                }
+            }
+        }
     }
 }

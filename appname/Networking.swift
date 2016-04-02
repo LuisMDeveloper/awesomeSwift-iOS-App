@@ -46,7 +46,7 @@ extension AwesomeSwift: TargetType {
 }
 
 struct Networking {
-    let provider: MoyaProvider<AwesomeSwift>
+    let provider = MoyaProvider<AwesomeSwift>()
 
     func getCats(callback: ([CategoryModel]?, NSError?) -> Void) {
         self.provider
@@ -54,8 +54,8 @@ struct Networking {
                 result in
                 switch result {
                 case let .Success(res):
-                    Log.debug(res.data)
                     let cats = JSON(data: res.data)
+                    Log.debug(cats)
                     var items = [CategoryModel]()
                     for cat in cats.arrayValue {
                         let item = CategoryModel()
@@ -76,8 +76,8 @@ struct Networking {
                 result in
                 switch result {
                 case let .Success(res):
-                    Log.debug(res.data)
                     let repos = JSON(data: res.data)
+                    Log.debug(repos)
                     var items = [RepositoryModel]()
                     for repo in repos.arrayValue {
                         let item = RepositoryModel()
