@@ -23,8 +23,8 @@ target 'AwesomeSwift' do
     #pod 'Sorry' # Permission manager
     pod 'SwiftDate' # Data handler
     #pod 'Swifternalization' # Localization
-    pod 'SwiftyJSON' # JSON handler
     #pod 'SwiftString' # String handler
+    pod 'SwiftyJSON'
     #pod 'SwiftyStoreKit' # InApp purchase
 end
 
@@ -32,6 +32,7 @@ def testing_pods
     pod 'Nimble' # BDD
     pod 'Quick' # BDD
     pod 'RealmSwift' # Local database
+    pod 'SwiftyJSON'
 end
 
 target 'AwesomeSwiftTests' do
