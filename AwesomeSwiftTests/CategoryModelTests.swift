@@ -6,28 +6,41 @@
 //  Copyright © 2016 boostco.de. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
+import SwiftyJSON
 @testable import AwesomeSwift
 
 class CategoryModelTests: QuickSpec {
     override func spec() {
+
+        let cat = CategoryModel()
+        let jsonDummy: JSON = [
+            "name": "cat1"
+        ]
+
         describe("a category") {
             it("has a name") {
                 let testName = "test"
-                let cat = CategoryModel()
                 cat.name = testName
                 expect(cat.name).to(equal(testName))
             }
-
-            describe("and another category with the same name") {
+            it("has name as primary key") {
+                expect(CategoryModel.primaryKey()).to(equal("name"))
+            }
+            context("mapping") {
+                it("from json") {
+                    cat.mapping(jsonDummy)
+                    expect(cat.name).to(equal("cat1"))
+                }
+            }
+            context("and another category with the same name") {
                 it("are the same category") {
                     let testName = "cat"
-                    let firstCat = CategoryModel()
-                    firstCat.name = testName
-                    let secondCat = CategoryModel()
-                    secondCat.name = testName
-                    expect(firstCat.name).to(equal(secondCat.name))
+                    cat.name = testName
+                    let testCat = CategoryModel()
+                    testCat.name = testName
+                    expect(cat.name).to(equal(testCat.name))
                 }
             }
         }
