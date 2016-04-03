@@ -26,7 +26,7 @@ class CategoryManagerTests: QuickSpec {
             it("manages CategoryModel") {
                 sut.itemAdd(cat)
                 // swiftlint:disable force_cast
-                let test = sut.itemAt(sut.itemsCount-1) as! CategoryModel
+                let test = sut.itemLast() as! CategoryModel
                 expect(test.name).to(equal(cat.name))
                 expect(test).to(beAKindOf(CategoryModel))
             }
