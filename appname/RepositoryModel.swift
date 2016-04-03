@@ -53,10 +53,6 @@ func ==(lhs: RepositoryModel, rhs: RepositoryModel) -> Bool {
     if lhs.url != rhs.url {
         return false
     }
-    
-    if lhs.createdAt != rhs.createdAt {
-        return false
-    }
 
     return true
 }
