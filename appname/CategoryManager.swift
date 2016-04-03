@@ -13,7 +13,7 @@ import RealmSwift
 
 class CategoryManager: CacheManager {
 
-    let net = Networking()
+    private let net = Networking()
 
     override func itemsFromCache() {
         // swiftlint:disable force_try
