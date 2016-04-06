@@ -17,9 +17,14 @@ class CategoryModel: Object, Equatable {
     override class func primaryKey() -> String? {
         return "name"
     }
+    
+    convenience init(json: JSON) {
+        self.init()
+        mapping(json)
+    }
 
-    func mapping(item: JSON) {
-        self.name = item["category"].stringValue
+    func mapping(json: JSON) {
+        self.name = json["category"].stringValue
     }
 
     override func isEqual(object: AnyObject?) -> Bool {

@@ -58,8 +58,7 @@ struct Networking {
                     Log.debug(cats)
                     var items = [CategoryModel]()
                     for cat in cats.arrayValue {
-                        let item = CategoryModel()
-                        item.mapping(cat)
+                        let item = CategoryModel(json: cat)
                         items.append(item)
                     }
                     callback(items, nil)
@@ -80,8 +79,7 @@ struct Networking {
                     Log.debug(repos)
                     var items = [RepositoryModel]()
                     for repo in repos.arrayValue {
-                        let item = RepositoryModel()
-                        item.mapping(repo)
+                        let item = RepositoryModel(json: repo)
                         items.append(item)
                     }
                     callback(items, nil)
