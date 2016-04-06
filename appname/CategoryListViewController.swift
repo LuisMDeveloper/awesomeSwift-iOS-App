@@ -17,8 +17,12 @@ class CategoryListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        categoryManager.itemsUpdated = { [unowned self] in
+        categoryManager.itemsFilteredUpdated = { [unowned self] in
             self.tableView.reloadData()
+        }
+        
+        categoryManager.itemsFilter = {
+            
         }
     }
 
