@@ -20,9 +20,9 @@ class CategoryListViewController: UIViewController {
         categoryManager.itemsFilteredUpdated = { [unowned self] in
             self.tableView.reloadData()
         }
-        
+
         categoryManager.itemsFilter = {
-            
+
         }
     }
 

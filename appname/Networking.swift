@@ -69,6 +69,7 @@ struct Networking {
         }
     }
 
+
     func getRepositories(callback: ([RepositoryModel]?, NSError?) -> Void) {
         self.provider
             .request(AwesomeSwift.Repos()) {

@@ -20,19 +20,19 @@ class RepositoryModel: Object, Equatable {
     override static func primaryKey() -> String? {
         return "name"
     }
-    
+
     convenience init(json: JSON) {
         self.init()
         mapping(json)
     }
-    
+
     func mapping(json: JSON) {
         self.name = json["name"].stringValue
         self.descr = json["descr"].stringValue
         self.category = json["category"].stringValue
         self.url = json["url"].stringValue
     }
-    
+
     override func isEqual(object: AnyObject?) -> Bool {
         guard let rhs = object as? CategoryModel else {
             return false

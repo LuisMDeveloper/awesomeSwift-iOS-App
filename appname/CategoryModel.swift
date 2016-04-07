@@ -17,7 +17,7 @@ class CategoryModel: Object, Equatable {
     override class func primaryKey() -> String? {
         return "name"
     }
-    
+
     convenience init(json: JSON) {
         self.init()
         mapping(json)

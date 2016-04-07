@@ -77,7 +77,7 @@ class CategoryListDataProviderTests: XCTestCase {
 
         XCTAssertTrue(mockTableView.cellGotDequeued)
     }
-    
+
     func testConfigCell_GetsCalledInCellForRow() {
 
         let mockTableView = MockTableView()
@@ -108,10 +108,10 @@ extension CategoryListDataProviderTests {
             return super.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
         }
     }
-    
+
     class MockCategoryCell: CategoryCell {
         var category: CategoryModel?
-        
+
         override func configCellWithCategory(cat: CategoryModel) {
             category = cat
         }
