@@ -22,7 +22,7 @@ class CategoryListViewController: UIViewController {
         }
 
         categoryManager.itemsFilter = {
-
+            self.categoryManager.itemsFiltered = self.categoryManager.items
         }
     }
 
