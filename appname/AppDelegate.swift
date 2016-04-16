@@ -11,6 +11,8 @@ import Fabric
 import Crashlytics
 import Log
 
+let log = Logger()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,10 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         #if DEBUG
-        Log.enabled = true
-        Log.minLevel = .Trace
+        log.enabled = true
+        log.minLevel = .Trace
         #else
-        Log.enabled = false
+        log.enabled = false
         #endif
 
         // white status bar

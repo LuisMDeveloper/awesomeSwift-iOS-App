@@ -8,13 +8,12 @@
 
 import CacheManager
 import Foundation
-import Log
 import RealmSwift
 
-class RepositoryManager: CacheManager {
+class RepositoryManager: CacheManager<RepositoryModel> {
     private let net = Networking()
 
-    override func itemsFromCache() {
+    /*override func itemsFromCache() {
         // swiftlint:disable force_try
         super.items = Array(super.realm.objects(RepositoryModel))
         Log.debug(super.items)
@@ -29,5 +28,5 @@ class RepositoryManager: CacheManager {
                 }
             }
         }
-    }
+    }*/
 }

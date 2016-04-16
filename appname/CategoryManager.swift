@@ -8,28 +8,42 @@
 
 import CacheManager
 import Foundation
-import Log
 import RealmSwift
 
-class CategoryManager: CacheManager {
+class CategoryManager: CacheManager<CategoryModel> {
 
     private let net = Networking()
 
-    override func itemsFromCache() {
-        // swiftlint:disable force_try
-        super.items = Array(super.realm.objects(CategoryModel))
-        Log.debug(super.items)
+    override init() {
+        super.init()
     }
 
-    override func itemsFromRemote() {
+    override func getRemoteItems(completion: (error: NSError?)->()) {
         net.getCats {
             cats, error in
             if error == nil {
                 if cats!.count > 0 {
-                    Log.debug("Cats add items from network")
+                    log.debug("Cats add items from network")
+                    super.itemAddFromArray(cats!)
+                    completion(error: nil)
+                }
+            } else {
+                completion(error: error)
+            }
+        }
+    }
+
+
+   /* override func getRemoteItems() {
+        net.getCats {
+            cats, error in
+            if error == nil {
+                if cats!.count > 0 {
+                    log.debug("Cats add items from network")
                     super.itemAddFromArray(cats!)
                 }
             }
         }
-    }
+    }*/
+
 }

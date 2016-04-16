@@ -10,7 +10,7 @@ target 'AwesomeSwift' do
     #pod 'Compass' # App routing
     pod 'Crashlytics' # Crash handler
     #pod 'CryptoSwift' # Cryptography
-    #pod 'DGElasticPullToRefresh' # Elastic Pull refresh
+    pod 'DGElasticPullToRefresh' # Elastic Pull refresh
     pod 'Dollar' # Underscorejs like
     pod 'Fabric' # Crash handler
     #pod 'FileKit' # File handler

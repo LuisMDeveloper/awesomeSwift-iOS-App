@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Log
 import Moya
 import RealmSwift
 import SwiftyJSON
@@ -55,7 +54,7 @@ struct Networking {
                 switch result {
                 case let .Success(res):
                     let cats = JSON(data: res.data)
-                    Log.debug(cats)
+                    log.debug(cats)
                     var items = [CategoryModel]()
                     for cat in cats.arrayValue {
                         let item = CategoryModel(json: cat)
@@ -63,7 +62,7 @@ struct Networking {
                     }
                     callback(items, nil)
                 case let .Failure(err):
-                    Log.error(err)
+                    log.error(err)
                     callback(nil, err.nsError)
                 }
         }
@@ -77,7 +76,7 @@ struct Networking {
                 switch result {
                 case let .Success(res):
                     let repos = JSON(data: res.data)
-                    Log.debug(repos)
+                    log.debug(repos)
                     var items = [RepositoryModel]()
                     for repo in repos.arrayValue {
                         let item = RepositoryModel(json: repo)
@@ -85,7 +84,7 @@ struct Networking {
                     }
                     callback(items, nil)
                 case let .Failure(err):
-                    Log.error(err)
+                    log.error(err)
                     callback(nil, err.nsError)
                 }
         }

@@ -6,6 +6,8 @@
 //  Copyright © 2016 boostco.de. All rights reserved.
 //
 
+import CacheManager
+import DGElasticPullToRefresh
 import UIKit
 
 class CategoryListViewController: UIViewController {
@@ -17,13 +19,19 @@ class CategoryListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        categoryManager.itemsFilteredUpdated = { [unowned self] in
-            self.tableView.reloadData()
-        }
+        categoryManager.delegate = self
 
-        categoryManager.itemsFilter = {
-            self.categoryManager.itemsFiltered = self.categoryManager.items
-        }
+        // Initialize tableView
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = .whiteColor()
+        tableView.dg_addPullToRefreshWithActionHandler({ [unowned self] () -> Void in
+            self.categoryManager.getRemoteItems({ error in
+                self.tableView.dg_stopLoading()
+            })
+            }, loadingView: loadingView)
+        tableView.dg_setPullToRefreshFillColor(UIColor(red: 247/255.0, green: 67/255.0, blue: 151/255.0, alpha: 1.0))
+        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -48,11 +56,17 @@ class CategoryListViewController: UIViewController {
 
 }
 
+extension CategoryListViewController: CacheManagerDelegate {
+    func cacheHasUpdate() {
+        tableView.reloadData()
+    }
+}
+
 extension CategoryListViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! CategoryCell
-        cell.configCellWithCategory(categoryManager.itemAt(indexPath.row) as! CategoryModel)
+        cell.configCellWithCategory(categoryManager.itemAt(indexPath.row)!)
         return cell
     }
 }
@@ -63,6 +77,10 @@ extension CategoryListViewController: UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryManager.itemsCount
+        return categoryManager.count
     }
+}
+
+extension UIScrollView {
+    func dg_stopScrollingAnimation() {}
 }
