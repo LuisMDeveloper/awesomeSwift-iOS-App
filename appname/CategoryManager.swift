@@ -32,18 +32,4 @@ class CategoryManager: CacheManager<CategoryModel> {
             }
         }
     }
-
-
-   /* override func getRemoteItems() {
-        net.getCats {
-            cats, error in
-            if error == nil {
-                if cats!.count > 0 {
-                    log.debug("Cats add items from network")
-                    super.itemAddFromArray(cats!)
-                }
-            }
-        }
-    }*/
-
 }

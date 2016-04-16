@@ -13,20 +13,23 @@ import RealmSwift
 class RepositoryManager: CacheManager<RepositoryModel> {
     private let net = Networking()
 
-    /*override func itemsFromCache() {
-        // swiftlint:disable force_try
-        super.items = Array(super.realm.objects(RepositoryModel))
-        Log.debug(super.items)
+    override init() {
+        super.init()
     }
-    override func itemsFromRemote() {
+
+    override func getRemoteItems(completion: (error: NSError?)->()) {
         net.getRepositories {
             repos, error in
             if error == nil {
                 if repos!.count > 0 {
-                    Log.debug("Repos add items from network")
+                    log.debug("Repos add items from network")
                     super.itemAddFromArray(repos!)
+                    completion(error: nil)
                 }
+            } else {
+                completion(error: error)
             }
         }
-    }*/
+    }
+
 }

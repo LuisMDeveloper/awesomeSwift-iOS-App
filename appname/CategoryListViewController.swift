@@ -43,16 +43,16 @@ class CategoryListViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
+        // swiftlint:disable force_cast
+        let vc = segue.destinationViewController as! RepositoryListViewController
+
+        let catSelected = self.categoryManager.itemAt(tableView.indexPathForSelectedRow!.row)
+        vc.title = catSelected!.name
+        tableView.deselectSelectedRow()
     }
-    */
 
 }
 
@@ -69,6 +69,10 @@ extension CategoryListViewController: UITableViewDelegate {
         cell.configCellWithCategory(categoryManager.itemAt(indexPath.row)!)
         return cell
     }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("showRepositories", sender: self)
+    }
 }
 
 extension CategoryListViewController: UITableViewDataSource {
@@ -78,6 +82,14 @@ extension CategoryListViewController: UITableViewDataSource {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoryManager.count
+    }
+}
+
+extension UITableView {
+    func deselectSelectedRow() {
+        if let selected = self.indexPathForSelectedRow {
+            self.deselectRowAtIndexPath(selected, animated: false)
+        }
     }
 }
 
