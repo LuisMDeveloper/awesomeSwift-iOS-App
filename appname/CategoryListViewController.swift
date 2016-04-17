@@ -7,7 +7,7 @@
 //
 
 import CacheManager
-import DGElasticPullToRefresh
+import DGElasticPullToRefresh_CanStartLoading
 import UIKit
 
 class CategoryListViewController: UIViewController {
@@ -32,11 +32,11 @@ class CategoryListViewController: UIViewController {
         tableView.dg_setPullToRefreshFillColor(UIColor(red: 247/255.0, green: 67/255.0, blue: 151/255.0, alpha: 1.0))
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
 
+        self.performSelector(#selector(CategoryListViewController.updateWithLittleDelay), withObject: nil, afterDelay: 0.1)
     }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        tableView.reloadData()
+    func updateWithLittleDelay() {
+        tableView.dg_startLoading()
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,6 +84,8 @@ extension CategoryListViewController: UITableViewDataSource {
         return categoryManager.count
     }
 }
+
+
 
 extension UITableView {
     func deselectSelectedRow() {

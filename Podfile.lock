@@ -4,7 +4,7 @@ PODS:
     - RealmSwift
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
-  - DGElasticPullToRefresh (1.0.3)
+  - DGElasticPullToRefresh_CanStartLoading (1.0.3.2)
   - Dollar (5.0.0)
   - Fabric (1.6.7)
   - Log (0.4)
@@ -27,7 +27,7 @@ PODS:
 DEPENDENCIES:
   - CacheManager (from `git@gitlab.com:matteocrippa/cachemanager-lib-ios.git`)
   - Crashlytics
-  - DGElasticPullToRefresh
+  - DGElasticPullToRefresh_CanStartLoading
   - Dollar
   - Fabric
   - Log
@@ -44,14 +44,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CacheManager:
-    :commit: 0c9c693eaa95b04d71cecca9a3f1bd3fae44b735
+    :commit: bb25bda4e74023ac0388acbc8f54a9febec049c2
     :git: git@gitlab.com:matteocrippa/cachemanager-lib-ios.git
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   CacheManager: 7655a79185a86ead9cf68602d5a87590b51be356
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
-  DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
+  DGElasticPullToRefresh_CanStartLoading: 09aba716bb6dff732ac5eb58b11cc215bbb743bb
   Dollar: 310893dd6b3799b9b155e3deb61a0492987e4d03
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   Log: 202ae5ea306f3a74440500434b9560db1c4b1f9e
@@ -64,6 +64,6 @@ SPEC CHECKSUMS:
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 1785aeefaf5ba9fa30d7321eb638d5b3da17b15e
+PODFILE CHECKSUM: cd6afdde46e08a6619202764a8ec344fcc082fbd
 
 COCOAPODS: 1.0.0.beta.8

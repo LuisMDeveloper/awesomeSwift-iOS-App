@@ -7,7 +7,7 @@
 //
 
 import CacheManager
-import DGElasticPullToRefresh
+import DGElasticPullToRefresh_CanStartLoading
 import UIKit
 
 class RepositoryListViewController: UIViewController {
@@ -21,6 +21,9 @@ class RepositoryListViewController: UIViewController {
 
         repositoryManager.delegate = self
 
+        let predicate = NSPredicate(format: "category = %@", self.title!)
+        repositoryManager.filter = predicate
+
         // Initialize tableView
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = .whiteColor()
@@ -32,22 +35,17 @@ class RepositoryListViewController: UIViewController {
         tableView.dg_setPullToRefreshFillColor(UIColor(red: 247/255.0, green: 67/255.0, blue: 151/255.0, alpha: 1.0))
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
 
+
+        self.performSelector(#selector(CategoryListViewController.updateWithLittleDelay), withObject: nil, afterDelay: 0.1)
+    }
+
+    func updateWithLittleDelay() {
+        tableView.dg_startLoading()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -75,4 +73,37 @@ extension RepositoryListViewController: UITableViewDataSource {
         // TODO: need to filter by category
         return repositoryManager.count
     }
+}
+
+extension RepositoryListViewController: UISearchBarDelegate {
+
+    func searchBar(
+        searchBar: UISearchBar,
+        textDidChange searchText: String
+        ) {
+
+        if searchText.characters.count == 0 {
+
+            repositoryManager.filter = nil
+
+        } else {
+            let filter = NSPredicate(
+                format: "name CONTAINS[NC] %@ || descr CONTAINS[NC] %@",
+                searchText,
+                searchText
+            )
+            repositoryManager.filter = filter
+        }
+
+        // TODO: add filter
+    }
+
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
 }
