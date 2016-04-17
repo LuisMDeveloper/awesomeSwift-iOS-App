@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
 
         // white status bar
-        // UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
 
         // push notifications enabled
         let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]

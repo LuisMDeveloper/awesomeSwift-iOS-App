@@ -85,8 +85,6 @@ extension CategoryListViewController: UITableViewDataSource {
     }
 }
 
-
-
 extension UITableView {
     func deselectSelectedRow() {
         if let selected = self.indexPathForSelectedRow {
