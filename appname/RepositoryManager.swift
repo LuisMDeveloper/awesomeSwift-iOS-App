@@ -8,7 +8,6 @@
 
 import CacheManager
 import Foundation
-import RealmSwift
 
 class RepositoryManager: CacheManager<RepositoryModel> {
     private let net = Networking()

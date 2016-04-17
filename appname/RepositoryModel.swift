@@ -16,6 +16,7 @@ class RepositoryModel: Object, Equatable {
     dynamic var category = ""
     dynamic var url = ""
     dynamic var createdAt = NSDate()
+    dynamic var favorite = false
 
     override static func primaryKey() -> String? {
         return "name"

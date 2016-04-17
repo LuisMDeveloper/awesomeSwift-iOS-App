@@ -10,6 +10,10 @@ import UIKit
 
 class RepositoryCell: UITableViewCell {
 
+    @IBOutlet weak var btnFavorite: UIButton!
+    @IBOutlet weak var lblName: UILabel!
+
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,7 +26,8 @@ class RepositoryCell: UITableViewCell {
     }
 
     func configCellWithRepository(repo: RepositoryModel) {
-        textLabel!.text = repo.name
+        lblName.text = repo.name
+        btnFavorite.selected = rand() % 2 == 0 ? true : false
     }
 
 }
