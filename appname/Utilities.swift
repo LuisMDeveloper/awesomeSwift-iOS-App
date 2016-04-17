@@ -7,6 +7,26 @@
 //
 
 import UIKit
+import SafariServices
+
+extension SFSafariViewController {
+
+    override public func previewActionItems() -> [UIPreviewActionItem] {
+
+        let deleteAction =  UIPreviewAction(title: "Cancel",
+                                            style: UIPreviewActionStyle.Destructive,
+                                            handler: {
+                                                (previewAction, viewController) in
+
+                                                log.debug("Delete")
+
+        })
+
+
+        return [deleteAction]
+    }
+
+}
 
 extension UITableView {
     func deselectSelectedRow() {

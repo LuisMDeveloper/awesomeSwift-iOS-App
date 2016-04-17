@@ -9,10 +9,12 @@
 import XCTest
 
 class AwesomeSwiftUITests: XCTestCase {
+
+    let app = XCUIApplication()
+
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
-        let app = XCUIApplication()
         setupSnapshot(app)
         app.launch()
     }
@@ -20,6 +22,25 @@ class AwesomeSwiftUITests: XCTestCase {
         super.tearDown()
     }
     func testExample() {
-    //    snapshot("0Lanch")
+    snapshot("0Lanch")
+
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Misc"].tap()
+        snapshot("1Repos")
+
+        tablesQuery.cells.containingType(.StaticText, identifier:"sbconstants").buttons["favoriteDeselect"].tap()
+        tablesQuery.cells.containingType(.StaticText, identifier:"swamp").buttons["favoriteDeselect"].tap()
+        tablesQuery.cells.containingType(.StaticText, identifier:"SwiftGen").buttons["favoriteDeselect"].tap()
+        tablesQuery.cells.containingType(.StaticText, identifier:"SwiftHub").buttons["favoriteDeselect"].tap()
+
+        let tabBarsQuery = app.tabBars
+        tabBarsQuery.buttons["Favorites"].tap()
+        snapshot("2Fav")
+
+        tabBarsQuery.buttons["Credits"].tap()
+        snapshot("3Credits")
+
+
     }
+
 }

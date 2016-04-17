@@ -8,6 +8,7 @@
 
 import CacheManager
 import DGElasticPullToRefresh_CanStartLoading
+import SafariServices
 import UIKit
 
 class RepositoryListViewController: UIViewController {
@@ -35,12 +36,20 @@ class RepositoryListViewController: UIViewController {
         tableView.dg_setPullToRefreshFillColor(kAwesomeColor)
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
 
-
+        // delay the update of repos
         self.performSelector(
-            #selector(CategoryListViewController.updateWithLittleDelay),
+            #selector(RepositoryListViewController.updateWithLittleDelay),
             withObject: nil,
-            afterDelay: 0.1
+            afterDelay: 0.2
         )
+
+        // check for force touch
+        if traitCollection.forceTouchCapability == .Available {
+            registerForPreviewingWithDelegate(self, sourceView: view)
+        }
+
+
+        // TODO: fix bug refresh reset favorites
     }
 
     func updateWithLittleDelay() {
@@ -70,6 +79,21 @@ extension RepositoryListViewController: UITableViewDelegate {
         cell.tag = indexPath.row
         cell.configCellWithRepository(repositoryManager.itemAt(indexPath.row)!)
         return cell
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+        let repo = repositoryManager.itemAt(indexPath.row)
+
+        // open browser
+        if let requestUrl = NSURL(string: repo!.url) {
+            let sfvc = SFSafariViewController.init(URL: requestUrl)
+
+            self.showViewController(sfvc, sender: self)
+
+        }
+
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
 }
 
@@ -118,6 +142,44 @@ extension RepositoryListViewController: UISearchBarDelegate {
 
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+
+}
+
+extension RepositoryListViewController: UIViewControllerPreviewingDelegate {
+
+    override func traitCollectionDidChange(
+        previousTraitCollection: UITraitCollection?
+        ) {
+
+    }
+
+    func previewingContext(
+        previewingContext: UIViewControllerPreviewing,
+        viewControllerForLocation location: CGPoint
+        ) -> UIViewController? {
+
+        let indexPath = self.tableView.indexPathForRowAtPoint(location)
+
+        guard let repo = repositoryManager.itemAt(indexPath!.row) else {
+            return nil
+        }
+
+        // open browser
+        if let requestUrl = NSURL(string: repo.url) {
+            let sfvc = SFSafariViewController.init(URL: requestUrl)
+            return sfvc
+        }
+
+        return nil
+    }
+
+    func previewingContext(
+        previewingContext: UIViewControllerPreviewing,
+        commitViewController viewControllerToCommit: UIViewController) {
+
+        showViewController(viewControllerToCommit, sender: self)
+
     }
 
 }

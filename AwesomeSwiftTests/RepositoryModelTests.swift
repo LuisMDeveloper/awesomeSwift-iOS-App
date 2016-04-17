@@ -8,7 +8,6 @@
 
 import Nimble
 import Quick
-import SwiftyJSON
 @testable import AwesomeSwift
 
 class RepositoryModelTests: QuickSpec {
