@@ -14,37 +14,6 @@ import Quick
 class CategoryCellTests: QuickSpec {
     override func spec() {
 
-        var cell: CategoryCell!
-
-        var firstCat: CategoryModel!
-
-        beforeEach() {
-            firstCat = CategoryModel()
-            firstCat.name = "name"
-
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            // swiftlint:disable force_cast
-            let vc = storyboard.instantiateViewControllerWithIdentifier("CategoryListViewController") as! CategoryListViewController
-            _ = vc.view
-            let tv = vc.tableView
-            let fakeDataSource = FakeDataSource()
-            tv.dataSource = fakeDataSource
-            // swiftlint:disable force_cast
-            cell = tv.dequeueReusableCellWithIdentifier(
-                "CategoryCell",
-                forIndexPath: NSIndexPath(forRow: 0, inSection: 0)
-            ) as! CategoryCell
-        }
-
-        describe("a category cell") {
-            it("has name label") {
-                expect(cell.textLabel).toNot(beNil())
-            }
-            it("sets cat name label") {
-                cell.configCellWithCategory(firstCat)
-                expect(cell.textLabel!.text).to(equal("name"))
-            }
-        }
     }
 }
 

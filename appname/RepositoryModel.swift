@@ -22,10 +22,6 @@ class RepositoryModel: Object, Equatable {
         return "name"
     }
 
-    override static func ignoredProperties() -> [String] {
-        return ["favorite"]
-    }
-
     convenience init(json: JSON) {
         self.init()
         mapping(json)

@@ -2,13 +2,14 @@
 //  AwesomeSwiftUITests.swift
 //  AwesomeSwiftUITests
 //
-//  Created by Matteo Crippa on 27/03/2016.
+//  Created by Matteo Crippa on 17/04/2016.
 //  Copyright © 2016 boostco.de. All rights reserved.
 //
 
 import XCTest
 
 class AwesomeSwiftUITests: XCTestCase {
+
 
     let app = XCUIApplication()
 
@@ -22,7 +23,7 @@ class AwesomeSwiftUITests: XCTestCase {
         super.tearDown()
     }
     func testExample() {
-    snapshot("0Lanch")
+        snapshot("0Lanch")
 
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Misc"].tap()
@@ -43,4 +44,5 @@ class AwesomeSwiftUITests: XCTestCase {
 
     }
 
+    
 }
