@@ -98,18 +98,18 @@ extension RepositoryListViewController: UISearchBarDelegate {
 
         if searchText.characters.count == 0 {
 
-            repositoryManager.filter = nil
+            let predicate = NSPredicate(format: "category = %@", self.title!)
+            repositoryManager.filter = predicate
 
         } else {
             let filter = NSPredicate(
-                format: "name CONTAINS[NC] %@ || descr CONTAINS[NC] %@",
+                format: "category = %@ && (name CONTAINS[NC] %@ || descr CONTAINS[NC] %@)",
+                self.title!,
                 searchText,
                 searchText
             )
             repositoryManager.filter = filter
         }
-
-        // TODO: add filter
     }
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
