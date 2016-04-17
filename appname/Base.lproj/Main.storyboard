@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Categories-->
@@ -224,9 +223,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dvh-iA-XJ6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VUS-cw-4fN">
                                 <rect key="frame" x="8" y="64" width="584" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Awesome Swift app is powered by those awesome libraries and the great work of seach contributor in Github.
 
 - DGEElasticPullToRefresh
@@ -241,34 +239,18 @@
 
 
 Feel free to contribute opening a PR at https://github.com/matteocrippa/awesome-swift</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Dvh-iA-XJ6" firstAttribute="bottom" secondItem="Q09-cX-FGb" secondAttribute="top" id="9OZ-Wp-SQk"/>
-                            <constraint firstAttribute="trailing" secondItem="Dvh-iA-XJ6" secondAttribute="trailing" constant="8" id="Ghm-Jr-H6s"/>
-                            <constraint firstItem="Dvh-iA-XJ6" firstAttribute="leading" secondItem="Z1w-Eb-Sa7" secondAttribute="leadingMargin" constant="-12" id="IGo-eh-XQM"/>
-                            <constraint firstItem="Dvh-iA-XJ6" firstAttribute="centerX" secondItem="Z1w-Eb-Sa7" secondAttribute="centerX" id="Kts-Lv-WbV"/>
-                            <constraint firstItem="Dvh-iA-XJ6" firstAttribute="top" secondItem="Pcl-Uq-NrJ" secondAttribute="bottom" id="f30-O0-hg9"/>
-                            <constraint firstItem="Q09-cX-FGb" firstAttribute="top" secondItem="Dvh-iA-XJ6" secondAttribute="bottom" id="hSN-hl-9Bj"/>
-                            <constraint firstItem="Dvh-iA-XJ6" firstAttribute="top" secondItem="Pcl-Uq-NrJ" secondAttribute="bottom" id="hdX-6G-a8t"/>
-                            <constraint firstItem="Dvh-iA-XJ6" firstAttribute="top" secondItem="Pcl-Uq-NrJ" secondAttribute="bottom" id="t0B-Hw-JzX"/>
-                            <constraint firstItem="Dvh-iA-XJ6" firstAttribute="leading" secondItem="Z1w-Eb-Sa7" secondAttribute="leading" constant="8" id="tB3-Qt-RU4"/>
-                            <constraint firstItem="Q09-cX-FGb" firstAttribute="top" secondItem="Dvh-iA-XJ6" secondAttribute="bottom" id="x3R-9l-Wnl"/>
+                            <constraint firstItem="VUS-cw-4fN" firstAttribute="leading" secondItem="Z1w-Eb-Sa7" secondAttribute="leading" constant="8" id="Huf-nB-Hk3"/>
+                            <constraint firstItem="VUS-cw-4fN" firstAttribute="top" secondItem="Pcl-Uq-NrJ" secondAttribute="bottom" id="cFI-NH-QSH"/>
+                            <constraint firstAttribute="trailing" secondItem="VUS-cw-4fN" secondAttribute="trailing" constant="8" id="j9u-Xx-JQ0"/>
+                            <constraint firstItem="Q09-cX-FGb" firstAttribute="top" secondItem="VUS-cw-4fN" secondAttribute="bottom" id="jYx-Bx-nWt"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="9OZ-Wp-SQk"/>
-                                <exclude reference="IGo-eh-XQM"/>
-                                <exclude reference="Kts-Lv-WbV"/>
-                                <exclude reference="f30-O0-hg9"/>
-                                <exclude reference="t0B-Hw-JzX"/>
-                                <exclude reference="x3R-9l-Wnl"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Credits" id="cIS-yx-SGr"/>
                 </viewController>
