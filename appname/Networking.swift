@@ -14,6 +14,7 @@ import SwiftyJSON
 enum AwesomeSwift {
     case Cats()
     case Repos()
+    case Push(String)
 }
 
 extension AwesomeSwift: TargetType {
@@ -26,13 +27,20 @@ extension AwesomeSwift: TargetType {
             return "/cats.php"
         case .Repos():
             return "/repos.php"
+        case .Push(_):
+            return "/push.php"
         }
     }
     var method: Moya.Method {
         return .GET
     }
     var parameters: [String: AnyObject]? {
-        return nil
+        switch self {
+        case .Push(let token):
+            return ["token": token]
+        default:
+            return nil
+        }
     }
     var sampleData: NSData {
         switch self {
@@ -40,12 +48,27 @@ extension AwesomeSwift: TargetType {
             return "{}".dataUsingEncoding(NSUTF8StringEncoding)!
         case .Repos():
             return "{}".dataUsingEncoding(NSUTF8StringEncoding)!
+        case .Push(_):
+            return "{}".dataUsingEncoding(NSUTF8StringEncoding)!
         }
     }
 }
 
 struct Networking {
     let provider = MoyaProvider<AwesomeSwift>()
+
+    func setPush(token: String, callback: (NSError?) -> Void ) {
+        self.provider
+            .request(AwesomeSwift.Push(token)) {
+                result in
+                switch result {
+                case .Success(_):
+                        callback(nil)
+                case let .Failure(err):
+                        callback(err.nsError)
+                }
+        }
+    }
 
     func getCats(callback: ([CategoryModel]?, NSError?) -> Void) {
         self.provider

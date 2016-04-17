@@ -27,7 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
 
         // white status bar
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        UIApplication.sharedApplication()
+            .setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
 
         // push notifications enabled
         let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
@@ -71,13 +72,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
 
         // push token retrieved and cleaned
-        //let token = deviceToken.description.componentsSeparatedByCharactersInSet(NSCharacterSet.alphanumericCharacterSet().invertedSet).joinWithSeparator("")
+        let token = deviceToken.description.componentsSeparatedByCharactersInSet(NSCharacterSet.alphanumericCharacterSet().invertedSet).joinWithSeparator("")
 
-        // now need to store somewhere
-        /*Alamofire.request(.GET, pushEndpoint, parameters: ["token": token])
-            .responseJSON { response in
-                print(response)
-        }*/
+        let net = Networking()
+
+        net.setPush(token) { (err) in
+            if (err != nil) {
+                log.error(err)
+            }
+        }
 
     }
 
