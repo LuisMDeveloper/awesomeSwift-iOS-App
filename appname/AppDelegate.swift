@@ -39,6 +39,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // crashlytics enabled
         Fabric.with([Crashlytics.self])
 
+        // force purge realm
+        if NSUserDefaults.standardUserDefaults().objectForKey("realmResetv1") == nil {
+            // swiftlint:disable force_try
+            let realm = try! Realm()
+            // swiftlint:disable force_try
+            try! realm.write() {
+                realm.deleteAll()
+            }
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "realmResetv1")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            log.debug("Realm reset")
+        }
+
         return true
     }
 
