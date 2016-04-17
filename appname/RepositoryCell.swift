@@ -8,26 +8,43 @@
 
 import UIKit
 
+protocol RepositoryCellDelegate {
+    func tappedFavorite(repo: RepositoryModel)
+}
+
 class RepositoryCell: UITableViewCell {
 
     @IBOutlet weak var btnFavorite: UIButton!
     @IBOutlet weak var lblName: UILabel!
 
+    var repo: RepositoryModel!
+    var delegate: RepositoryCellDelegate?
+
+
+    @IBAction func tappedStar(sender: UIButton) {
+
+        //repo.favorite = !repo.favorite
+
+        btnFavorite.selected = !repo.favorite
+        delegate?.tappedFavorite(repo)
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        super.setSelected(false, animated: animated)
     }
 
     func configCellWithRepository(repo: RepositoryModel) {
+
+        self.repo = repo
+
         lblName.text = repo.name
-        btnFavorite.selected = rand() % 2 == 0 ? true : false
+
+        btnFavorite.tag = self.tag
+        btnFavorite.selected = repo.favorite
     }
 
 }

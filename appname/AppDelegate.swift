@@ -9,9 +9,8 @@
 import UIKit
 import Fabric
 import Crashlytics
-import Log
+import RealmSwift
 
-let log = Logger()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         log.enabled = true
         log.minLevel = .Trace
+        log.debug(Realm.Configuration.defaultConfiguration.path!)
         #else
         log.enabled = false
         #endif

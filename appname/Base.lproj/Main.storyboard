@@ -88,6 +88,9 @@
                                                     <rect key="frame" x="11" y="9" width="25" height="25"/>
                                                     <state key="normal" image="favoriteDeselect"/>
                                                     <state key="selected" image="favorite"/>
+                                                    <connections>
+                                                        <action selector="tappedStar:" destination="0Hy-qn-r2c" eventType="touchUpInside" id="pko-PQ-eA2"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nF9-q8-RNx">
                                                     <rect key="frame" x="50" y="11" width="542" height="21"/>
@@ -156,7 +159,7 @@
         <!--Favorites-->
         <scene sceneID="ugl-lL-PxB">
             <objects>
-                <viewController id="1ah-Sd-6bs" sceneMemberID="viewController">
+                <viewController id="1ah-Sd-6bs" customClass="FavoriteViewController" customModule="AwesomeSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dCz-tn-wvo"/>
                         <viewControllerLayoutGuide type="bottom" id="cIv-Gw-FGH"/>
@@ -165,12 +168,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TOb-mg-PEZ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="TOb-mg-PEZ">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RepositoryCell" id="3pJ-KT-1X5" customClass="RepositoryCell" customModule="AwesomeSwift" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="65" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3pJ-KT-1X5" id="tIt-dP-r8A">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -180,6 +183,9 @@
                                                     <rect key="frame" x="11" y="9" width="25" height="25"/>
                                                     <state key="normal" image="favoriteDeselect"/>
                                                     <state key="selected" image="favorite"/>
+                                                    <connections>
+                                                        <action selector="tappedStar:" destination="3pJ-KT-1X5" eventType="touchUpInside" id="xmq-kp-y55"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuF-aB-JVU">
                                                     <rect key="frame" x="50" y="11" width="542" height="21"/>
@@ -195,6 +201,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="1ah-Sd-6bs" id="Pnc-da-vhU"/>
+                                    <outlet property="delegate" destination="1ah-Sd-6bs" id="Uxo-7p-eOJ"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -206,6 +216,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Favorites" id="uOF-HH-wIJ"/>
+                    <connections>
+                        <outlet property="tableView" destination="TOb-mg-PEZ" id="1aL-bj-eEK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JTe-3H-c1y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

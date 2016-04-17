@@ -5,7 +5,6 @@ PODS:
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - DGElasticPullToRefresh_CanStartLoading (1.0.3.2)
-  - Dollar (5.0.0)
   - Fabric (1.6.7)
   - Log (0.4)
   - Moya (6.4.0):
@@ -28,7 +27,6 @@ DEPENDENCIES:
   - CacheManager (from `git@gitlab.com:matteocrippa/cachemanager-lib-ios.git`)
   - Crashlytics
   - DGElasticPullToRefresh_CanStartLoading
-  - Dollar
   - Fabric
   - Log
   - Moya
@@ -52,7 +50,6 @@ SPEC CHECKSUMS:
   CacheManager: 7655a79185a86ead9cf68602d5a87590b51be356
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DGElasticPullToRefresh_CanStartLoading: 09aba716bb6dff732ac5eb58b11cc215bbb743bb
-  Dollar: 310893dd6b3799b9b155e3deb61a0492987e4d03
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   Log: 202ae5ea306f3a74440500434b9560db1c4b1f9e
   Moya: 4d526954c8afd79820991393d40d7d8af756ceee
@@ -64,6 +61,6 @@ SPEC CHECKSUMS:
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: cd6afdde46e08a6619202764a8ec344fcc082fbd
+PODFILE CHECKSUM: d22c8e84a3fd408a5b66cd0c7daf47e99d0d2619
 
 COCOAPODS: 1.0.0.beta.8

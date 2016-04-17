@@ -36,7 +36,11 @@ class RepositoryListViewController: UIViewController {
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
 
 
-        self.performSelector(#selector(CategoryListViewController.updateWithLittleDelay), withObject: nil, afterDelay: 0.1)
+        self.performSelector(
+            #selector(CategoryListViewController.updateWithLittleDelay),
+            withObject: nil,
+            afterDelay: 0.1
+        )
     }
 
     func updateWithLittleDelay() {
@@ -58,7 +62,12 @@ extension RepositoryListViewController: CacheManagerDelegate {
 extension RepositoryListViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
-        let cell = tableView.dequeueReusableCellWithIdentifier("RepositoryCell", forIndexPath: indexPath) as! RepositoryCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(
+            "RepositoryCell",
+            forIndexPath: indexPath
+        ) as! RepositoryCell
+        cell.delegate = self
+        cell.tag = indexPath.row
         cell.configCellWithRepository(repositoryManager.itemAt(indexPath.row)!)
         return cell
     }
@@ -70,8 +79,13 @@ extension RepositoryListViewController: UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO: need to filter by category
         return repositoryManager.count
+    }
+}
+
+extension RepositoryListViewController: RepositoryCellDelegate {
+    func tappedFavorite(repo: RepositoryModel) {
+        repositoryManager.itemUpdate(repo, key: "favorite", value: !repo.favorite)
     }
 }
 
