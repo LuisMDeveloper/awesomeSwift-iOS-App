@@ -11,7 +11,7 @@ target 'AwesomeSwift' do
     pod 'Crashlytics' # Crash handler
     #pod 'CryptoSwift' # Cryptography
     pod 'DGElasticPullToRefresh_CanStartLoading' # Elastic Pull refresh
-    pod 'Dollar' # Underscorejs like
+    #pod 'Dollar' # Underscorejs like
     pod 'Fabric' # Crash handler
     #pod 'FileKit' # File handler
     #pod 'KeychainAccess' # Keychain & TouchID handler
