@@ -109,7 +109,8 @@ extension RepositoryListViewController: UITableViewDataSource {
 
 extension RepositoryListViewController: RepositoryCellDelegate {
     func tappedFavorite(repo: RepositoryModel) {
-        repositoryManager.itemUpdate(repo, key: "favorite", value: !repo.favorite)
+        let value = repo.favorite
+        repositoryManager.itemUpdate(repo, key: "favorite", value: !value)
     }
 }
 

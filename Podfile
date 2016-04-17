@@ -38,6 +38,3 @@ target 'AwesomeSwiftTests' do
     testing_pods
 end
 
-target 'AwesomeSwiftUITests' do
-    testing_pods
-end

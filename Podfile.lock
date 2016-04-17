@@ -42,7 +42,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CacheManager:
-    :commit: b618688132eb64630636b76049ee0daea7a94b40
+    :commit: acc8620a118b050efc926572275775e57ec014dc
     :git: git@gitlab.com:matteocrippa/cachemanager-lib-ios.git
 
 SPEC CHECKSUMS:
@@ -61,6 +61,6 @@ SPEC CHECKSUMS:
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: d22c8e84a3fd408a5b66cd0c7daf47e99d0d2619
+PODFILE CHECKSUM: 94b3e36ff60c97f8b6b31e013b9debd0e91f2b11
 
 COCOAPODS: 1.0.0.beta.8

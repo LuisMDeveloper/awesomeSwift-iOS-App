@@ -18,6 +18,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+        // TODO: test migration
+        // force purge realm
+        if NSUserDefaults.standardUserDefaults().objectForKey("realmResetv7") == nil {
+            // swiftlint:disable force_try
+            let realm = try! Realm()
+            // swiftlint:disable force_try
+            try! realm.write() {
+                realm.deleteAll()
+            }
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "realmResetv7")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            log.debug("Realm reset")
+        }
+
         #if DEBUG
         log.enabled = true
         log.minLevel = .Trace
@@ -39,19 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // crashlytics enabled
         Fabric.with([Crashlytics.self])
-
-        // force purge realm
-        if NSUserDefaults.standardUserDefaults().objectForKey("realmResetv3") == nil {
-            // swiftlint:disable force_try
-            let realm = try! Realm()
-            // swiftlint:disable force_try
-            try! realm.write() {
-                realm.deleteAll()
-            }
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "realmResetv3")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            log.debug("Realm reset")
-        }
 
         return true
     }

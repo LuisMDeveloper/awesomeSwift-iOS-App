@@ -14,6 +14,7 @@ class RepositoryManager: CacheManager<RepositoryModel> {
 
     override init() {
         super.init()
+        self.ignoreOnUpdate = ["favorite"]
     }
 
     override func getRemoteItems(completion: (error: NSError?)->()) {
