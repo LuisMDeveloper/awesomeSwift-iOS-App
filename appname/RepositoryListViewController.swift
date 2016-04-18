@@ -48,8 +48,6 @@ class RepositoryListViewController: UIViewController {
             registerForPreviewingWithDelegate(self, sourceView: view)
         }
 
-
-        // TODO: fix bug refresh reset favorites
     }
 
     func updateWithLittleDelay() {

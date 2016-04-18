@@ -11,7 +11,6 @@ import Fabric
 import Crashlytics
 import RealmSwift
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -19,16 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        // TODO: test migration
         // force purge realm
-        if NSUserDefaults.standardUserDefaults().objectForKey("realmResetv7") == nil {
+        if NSUserDefaults.standardUserDefaults().objectForKey("realmResetv9") == nil {
             // swiftlint:disable force_try
             let realm = try! Realm()
             // swiftlint:disable force_try
             try! realm.write() {
                 realm.deleteAll()
             }
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "realmResetv7")
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "realmResetv10")
             NSUserDefaults.standardUserDefaults().synchronize()
             log.debug("Realm reset")
         }
@@ -51,9 +49,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
 
-
         // crashlytics enabled
         Fabric.with([Crashlytics.self])
+
+        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let initialViewController = storyboard.instantiateInitialViewController()
+
+        self.window = UIWindow(frame:UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
 
         return true
     }
@@ -65,8 +69,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(application: UIApplication) {}
 
     func applicationDidBecomeActive(application: UIApplication) {
-      // reset badge counter to 0
-      // UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        // reset badge counter to 0
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(application: UIApplication) {}
