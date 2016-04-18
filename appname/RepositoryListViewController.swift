@@ -13,6 +13,12 @@ import UIKit
 
 class RepositoryListViewController: UIViewController {
 
+    // TODO: search in all repos
+
+    // TODO: search from
+
+    // TODO: animated tab bar
+
     @IBOutlet weak var tableView: UITableView!
 
     var repositoryManager = RepositoryManager()
