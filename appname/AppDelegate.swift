@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try! realm.write() {
                 realm.deleteAll()
             }
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "realmResetv10")
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "realmResetv9")
             NSUserDefaults.standardUserDefaults().synchronize()
             log.debug("Realm reset")
         }

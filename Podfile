@@ -12,7 +12,7 @@ target 'AwesomeSwift' do
     #pod 'CryptoSwift' # Cryptography
     pod 'DGElasticPullToRefresh_CanStartLoading' # Elastic Pull refresh
     #pod 'Dollar' # Underscorejs like
-    pod 'DOFavoriteButton'
+    pod 'DOFavoriteButton', :git => "git@github.com:matteocrippa/DOFavoriteButton.git"
     pod 'Fabric' # Crash handler
     #pod 'FileKit' # File handler
     #pod 'KeychainAccess' # Keychain & TouchID handler

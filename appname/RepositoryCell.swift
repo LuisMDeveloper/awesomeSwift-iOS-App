@@ -6,6 +6,7 @@
 //  Copyright © 2016 boostco.de. All rights reserved.
 //
 
+import DOFavoriteButton
 import UIKit
 
 protocol RepositoryCellDelegate {
@@ -14,16 +15,20 @@ protocol RepositoryCellDelegate {
 
 class RepositoryCell: UITableViewCell {
 
-    @IBOutlet weak var btnFavorite: UIButton!
+    @IBOutlet weak var btnFavorite: DOFavoriteButton!
     @IBOutlet weak var lblName: UILabel!
 
     var repo: RepositoryModel!
     var delegate: RepositoryCellDelegate?
 
 
-    @IBAction func tappedStar(sender: UIButton) {
+    @IBAction func tappedStar(sender: DOFavoriteButton) {
 
-        //repo.favorite = !repo.favorite
+        if sender.selected {
+            sender.deselect()
+        } else {
+            sender.select()
+        }
 
         btnFavorite.selected = !repo.favorite
         delegate?.tappedFavorite(repo)
@@ -44,7 +49,12 @@ class RepositoryCell: UITableViewCell {
         lblName.text = repo.name
 
         btnFavorite.tag = self.tag
-        btnFavorite.selected = repo.favorite
+
+        if repo.favorite {
+            btnFavorite.select()
+        } else {
+            btnFavorite.deselect()
+        }
     }
 
 }
