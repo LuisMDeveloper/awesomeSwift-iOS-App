@@ -20,6 +20,7 @@ target 'AwesomeSwift' do
     pod 'Log' # Logging w/ colors
     pod 'Moya' # Networking
     #pod 'MotionKit' # Sensors handler
+    pod 'RAMAnimatedTabBarController'
     pod 'RealmSwift' # Local database
     #pod 'Sorry' # Permission manager
     pod 'SwiftDate' # Data handler
