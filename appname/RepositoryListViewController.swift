@@ -10,6 +10,7 @@ import CacheManager
 import DGElasticPullToRefresh_CanStartLoading
 import SafariServices
 import UIKit
+import SwiftDate
 
 class RepositoryListViewController: UIViewController {
 
@@ -38,12 +39,26 @@ class RepositoryListViewController: UIViewController {
         tableView.dg_setPullToRefreshFillColor(kAwesomeColor)
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
 
-        // delay the update of repos
-        self.performSelector(
-            #selector(RepositoryListViewController.updateWithLittleDelay),
-            withObject: nil,
-            afterDelay: 0.2
-        )
+        // blacklist update on viewDidLoad for 24h
+        let defaults = NSUserDefaults.standardUserDefaults()
+
+        var lastRepoSync = NSDate()
+
+        // swiftlint:disable force_cast
+        if (defaults.objectForKey("lastRepoSync") != nil) {
+            lastRepoSync = defaults.objectForKey("lastRepoSync") as! NSDate
+        }
+
+        if NSDate() > lastRepoSync {
+
+            // delay the update of repos
+            self.performSelector(
+                #selector(RepositoryListViewController.updateWithLittleDelay),
+                withObject: nil,
+                afterDelay: 0.2
+            )
+            defaults.setObject(NSDate() + 24.hours, forKey: "lastRepoSync")
+        }
 
         // check for force touch
         if traitCollection.forceTouchCapability == .Available {
