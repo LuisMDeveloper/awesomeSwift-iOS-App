@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (3.3.1)
-  - CacheManager (0.0.1):
+  - CacheManager (0.0.2):
     - RealmSwift
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
@@ -26,7 +26,7 @@ PODS:
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
-  - CacheManager (from `git@gitlab.com:matteocrippa/cachemanager-lib-ios.git`)
+  - CacheManager (= 0.0.2)
   - Crashlytics
   - DGElasticPullToRefresh_CanStartLoading
   - DOFavoriteButton (from `git@github.com:matteocrippa/DOFavoriteButton.git`)
@@ -41,22 +41,17 @@ DEPENDENCIES:
   - SwiftyJSON
 
 EXTERNAL SOURCES:
-  CacheManager:
-    :git: git@gitlab.com:matteocrippa/cachemanager-lib-ios.git
   DOFavoriteButton:
     :git: git@github.com:matteocrippa/DOFavoriteButton.git
 
 CHECKOUT OPTIONS:
-  CacheManager:
-    :commit: acc8620a118b050efc926572275775e57ec014dc
-    :git: git@gitlab.com:matteocrippa/cachemanager-lib-ios.git
   DOFavoriteButton:
     :commit: a2c07feb92384e4c12902d721fb078ea4b338189
     :git: git@github.com:matteocrippa/DOFavoriteButton.git
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
-  CacheManager: 7655a79185a86ead9cf68602d5a87590b51be356
+  CacheManager: 736f31ff6a3701d65c034005f3a43e47da0917c5
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DGElasticPullToRefresh_CanStartLoading: 09aba716bb6dff732ac5eb58b11cc215bbb743bb
   DOFavoriteButton: 866e15af173d2dd5233971a1f657a5f31d2491d5
@@ -72,6 +67,6 @@ SPEC CHECKSUMS:
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: a719415a75684b5b270081374a6d002042ca0845
+PODFILE CHECKSUM: 1955455b78e983678a066cd5af43b084486eaec1
 
-COCOAPODS: 1.0.0.rc.1
+COCOAPODS: 1.0.0

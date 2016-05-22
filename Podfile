@@ -5,7 +5,7 @@ use_frameworks!
 target 'AwesomeSwift' do
     #pod 'Appz' # External app linking
     #pod 'BluetoothKit' # BluetoothKit
-    pod 'CacheManager', :git => 'git@gitlab.com:matteocrippa/cachemanager-lib-ios.git' #, :tag => "0.0.1"
+    pod 'CacheManager', '0.0.2'
     #pod 'ChameleonFramework' # Color handler
     #pod 'Compass' # App routing
     pod 'Crashlytics' # Crash handler
