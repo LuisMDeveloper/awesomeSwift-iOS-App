@@ -70,28 +70,6 @@ struct Networking {
         }
     }
 
-    func getCats(callback: ([CategoryModel]?, NSError?) -> Void) {
-        self.provider
-            .request(AwesomeSwift.Cats()) {
-                result in
-                switch result {
-                case let .Success(res):
-                    let cats = JSON(data: res.data)
-                    log.debug(cats)
-                    var items = [CategoryModel]()
-                    for cat in cats.arrayValue {
-                        let item = CategoryModel(json: cat)
-                        items.append(item)
-                    }
-                    callback(items, nil)
-                case let .Failure(err):
-                    log.error(err)
-                    callback(nil, err.nsError)
-                }
-        }
-    }
-
-
     func getRepositories(callback: ([RepositoryModel]?, NSError?) -> Void) {
         self.provider
             .request(AwesomeSwift.Repos()) {

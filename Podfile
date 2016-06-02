@@ -18,6 +18,7 @@ target 'AwesomeSwift' do
     #pod 'KeychainAccess' # Keychain & TouchID handler
     #pod 'Kingfisher' # Image caching & download
     pod 'SwiftyBeaver' # Logging w/ colors
+    pod 'LeeGo'
     pod 'Moya' # Networking
     #pod 'MotionKit' # Sensors handler
     pod 'RAMAnimatedTabBarController'

@@ -34,12 +34,12 @@ class RepositoryModel: Object {
         self.url = json["url"].stringValue
     }
 
-    override func isEqual(object: AnyObject?) -> Bool {
+    /*override func isEqual(object: AnyObject?) -> Bool {
         guard let rhs = object as? CategoryModel else {
             return false
         }
         return self == rhs
-    }
+    }*/
 }
 
 func ==(lhs: RepositoryModel, rhs: RepositoryModel) -> Bool {

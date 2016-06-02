@@ -7,6 +7,7 @@ PODS:
   - DGElasticPullToRefresh_CanStartLoading (1.0.3.2)
   - DOFavoriteButton (0.0.4)
   - Fabric (1.6.7)
+  - LeeGo (0.5.2)
   - Moya (6.5.0):
     - Moya/Core (= 6.5.0)
   - Moya/Core (6.5.0):
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - DGElasticPullToRefresh_CanStartLoading
   - DOFavoriteButton (from `git@github.com:matteocrippa/DOFavoriteButton.git`)
   - Fabric
+  - LeeGo
   - Moya
   - Nimble
   - Quick
@@ -56,6 +58,7 @@ SPEC CHECKSUMS:
   DGElasticPullToRefresh_CanStartLoading: 09aba716bb6dff732ac5eb58b11cc215bbb743bb
   DOFavoriteButton: 866e15af173d2dd5233971a1f657a5f31d2491d5
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  LeeGo: a00c03c051dd49a35f7cedac9fa8b0a6e01875b7
   Moya: f7a4044719381cc6299f9ad3e0ef05f426f0557b
   Nimble: 0f3c8b8b084cda391209c3c5efbb48bedeeb920a
   Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
@@ -67,6 +70,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 1f4ddee4a4fc266b9da99ebbd379df723d5c4241
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: a5518a8c75e800642716b9225ff5175ba42217b4
+PODFILE CHECKSUM: d4653586c310617e38ffc0014bc9e668eae76ec1
 
 COCOAPODS: 1.0.1
