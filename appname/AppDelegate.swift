@@ -6,10 +6,11 @@
 //  Copyright © 2016 boostco.de. All rights reserved.
 //
 
-import UIKit
-import Fabric
 import Crashlytics
+import Fabric
 import RealmSwift
+import SwiftyBeaver
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,11 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         #if DEBUG
-        log.enabled = true
-        log.minLevel = .Trace
-        log.debug(Realm.Configuration.defaultConfiguration.path!)
+        log.addDestination(ConsoleDestination())
+        log.debug(Realm.Configuration.defaultConfiguration.fileURL!)
         #else
-        log.enabled = false
         #endif
 
         // white status bar

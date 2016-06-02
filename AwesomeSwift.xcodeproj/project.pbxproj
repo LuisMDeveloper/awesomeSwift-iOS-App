@@ -343,12 +343,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4819D7871CAD793000271DD3 /* Build configuration list for PBXNativeTarget "AwesomeSwiftTests" */;
 			buildPhases = (
-				754EB6865FEFD5FD9DF0EA83 /* 📦 Check Pods Manifest.lock */,
+				754EB6865FEFD5FD9DF0EA83 /* [CP] Check Pods Manifest.lock */,
 				4819D77C1CAD793000271DD3 /* Sources */,
 				4819D77D1CAD793000271DD3 /* Frameworks */,
 				4819D77E1CAD793000271DD3 /* Resources */,
-				6EC5006BCC64E5E0F838C76C /* 📦 Embed Pods Frameworks */,
-				2E8F5E436951EB2289B97780 /* 📦 Copy Pods Resources */,
+				6EC5006BCC64E5E0F838C76C /* [CP] Embed Pods Frameworks */,
+				2E8F5E436951EB2289B97780 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -382,13 +382,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 488F66F91C94636A00933CA6 /* Build configuration list for PBXNativeTarget "AwesomeSwift" */;
 			buildPhases = (
-				5B673DE9CFF9A38DEC78E207 /* 📦 Check Pods Manifest.lock */,
+				5B673DE9CFF9A38DEC78E207 /* [CP] Check Pods Manifest.lock */,
 				488F66CD1C94636A00933CA6 /* Sources */,
 				488F66CE1C94636A00933CA6 /* Frameworks */,
 				488F66CF1C94636A00933CA6 /* Resources */,
 				4881541A1C94A942000D99EB /* ShellScript */,
-				DD426191554AAD2EB2B67CC5 /* 📦 Embed Pods Frameworks */,
-				D3DFA45B1464349101AEC6FD /* 📦 Copy Pods Resources */,
+				DD426191554AAD2EB2B67CC5 /* [CP] Embed Pods Frameworks */,
+				D3DFA45B1464349101AEC6FD /* [CP] Copy Pods Resources */,
 				4862EBC91CAF42AA002D3A54 /* ShellScript */,
 			);
 			buildRules = (
@@ -424,7 +424,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 488F66CC1C94636A00933CA6 /* Build configuration list for PBXProject "AwesomeSwift" */;
+			buildConfigurationList = 488F66CC1C94636A00933CA6 /* Build configuration list for PBXProject "awesomeswift" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -472,14 +472,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2E8F5E436951EB2289B97780 /* 📦 Copy Pods Resources */ = {
+		2E8F5E436951EB2289B97780 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,14 +513,14 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		5B673DE9CFF9A38DEC78E207 /* 📦 Check Pods Manifest.lock */ = {
+		5B673DE9CFF9A38DEC78E207 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,14 +528,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		6EC5006BCC64E5E0F838C76C /* 📦 Embed Pods Frameworks */ = {
+		6EC5006BCC64E5E0F838C76C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -543,14 +543,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeSwiftTests/Pods-AwesomeSwiftTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		754EB6865FEFD5FD9DF0EA83 /* 📦 Check Pods Manifest.lock */ = {
+		754EB6865FEFD5FD9DF0EA83 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,14 +558,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D3DFA45B1464349101AEC6FD /* 📦 Copy Pods Resources */ = {
+		D3DFA45B1464349101AEC6FD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,14 +573,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeSwift/Pods-AwesomeSwift-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DD426191554AAD2EB2B67CC5 /* 📦 Embed Pods Frameworks */ = {
+		DD426191554AAD2EB2B67CC5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -858,7 +858,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		488F66CC1C94636A00933CA6 /* Build configuration list for PBXProject "AwesomeSwift" */ = {
+		488F66CC1C94636A00933CA6 /* Build configuration list for PBXProject "awesomeswift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				488F66F71C94636A00933CA6 /* Debug */,

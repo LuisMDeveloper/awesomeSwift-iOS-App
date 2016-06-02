@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import SwiftyJSON
 
-class CategoryModel: Object, Equatable {
+class CategoryModel: Object {
     dynamic var name = ""
     dynamic var createdAt = NSDate()
 

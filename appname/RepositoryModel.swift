@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import SwiftyJSON
 
-class RepositoryModel: Object, Equatable {
+class RepositoryModel: Object {
     dynamic var name = ""
     dynamic var descr = ""
     dynamic var category = ""

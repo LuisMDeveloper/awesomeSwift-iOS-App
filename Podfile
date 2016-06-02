@@ -5,7 +5,7 @@ use_frameworks!
 target 'AwesomeSwift' do
     #pod 'Appz' # External app linking
     #pod 'BluetoothKit' # BluetoothKit
-    pod 'CacheManager', '0.0.2'
+    pod 'CacheManager', '~> 0.0'
     #pod 'ChameleonFramework' # Color handler
     #pod 'Compass' # App routing
     pod 'Crashlytics' # Crash handler
@@ -17,7 +17,7 @@ target 'AwesomeSwift' do
     #pod 'FileKit' # File handler
     #pod 'KeychainAccess' # Keychain & TouchID handler
     #pod 'Kingfisher' # Image caching & download
-    pod 'Log' # Logging w/ colors
+    pod 'SwiftyBeaver' # Logging w/ colors
     pod 'Moya' # Networking
     #pod 'MotionKit' # Sensors handler
     pod 'RAMAnimatedTabBarController'
