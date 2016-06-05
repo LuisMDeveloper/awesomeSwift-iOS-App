@@ -6,8 +6,7 @@
 //  Copyright © 2016 boostco.de. All rights reserved.
 //
 
-import CacheManager
-import DGElasticPullToRefresh_CanStartLoading
+/*import DGElasticPullToRefresh_CanStartLoading
 import SafariServices
 import UIKit
 import SwiftDate
@@ -198,4 +197,4 @@ extension RepositoryListViewController: UIViewControllerPreviewingDelegate {
 
     }
 
-}
+}*/

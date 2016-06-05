@@ -9,10 +9,6 @@
 import LeeGo
 import UIKit
 
-protocol BrickConvertible {
-    func brick() -> Brick
-}
-
 enum AwesomeCategoryBrick: BrickBuilderType {
     case Title, Description
 

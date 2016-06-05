@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import RealmSwift
 import SwiftyJSON
 
 enum AwesomeSwiftAPI {

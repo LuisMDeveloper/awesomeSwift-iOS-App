@@ -8,7 +8,6 @@
 
 import LeeGo
 import SwiftyJSON
-import UIKit
 
 struct AwesomeCategory {
     let title: String

@@ -8,6 +8,8 @@
 
 import DGElasticPullToRefresh_CanStartLoading
 import LeeGo
+import SwiftyJSON
+import SwiftyUserDefaults
 import UIKit
 
 class CategoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -20,6 +22,8 @@ class CategoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     private let api = API()
     private let categoryCellEstimatedHeight = CGFloat(40.0)
 
+    private var jsonResponse: JSON?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         for reuseId in AwesomeCategoryBrick.reuseIdentifiers {
@@ -30,9 +34,20 @@ class CategoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // styling
+        collectionView?.backgroundColor = .whiteColor()
+
         // pull to refresh
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = .whiteColor()
+
+        // TODO: add expiration
+        // cache handler
+        /*if let cache = Defaults[.categories] {
+            self.elements = cache
+        } else {*/
+            self.performSelector(#selector(CategoryFeedVC.updateWithLittleDelay), withObject: nil, afterDelay: 0.1)
+        //}
 
         collectionView!.dg_addPullToRefreshWithActionHandler({ [unowned self] () -> Void in
                 // update data
@@ -40,8 +55,10 @@ class CategoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLa
                     if error != nil {
                         log.error(error)
                     } else {
+                        self.jsonResponse = json
                         if let cats = json?["categories"].arrayValue {
                             self.elements = AwesomeCategory.categories(cats).sort({ $0.title.lowercaseString < $1.title.lowercaseString })
+                            //Defaults[.categories] = self.elements
                             self.collectionView!.dg_stopLoading()
                         }
                     }
@@ -55,8 +72,6 @@ class CategoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         // swiftlint:disable force_cast
         (collectionView?.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = CGSizeMake(self.view.frame.width, categoryCellEstimatedHeight)
 
-        // reload
-        self.performSelector(#selector(CategoryFeedVC.updateWithLittleDelay), withObject: nil, afterDelay: 0.1)
 
     }
 
@@ -68,6 +83,24 @@ class CategoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.didReceiveMemoryWarning()
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showRepos" {
+
+            let vc: RepositoryFeedVC = segue.destinationViewController as! RepositoryFeedVC
+            let cell = sender as! UICollectionViewCell
+            let indexPath = collectionView!.indexPathForCell(cell)
+            let catSelected = self.elements[indexPath!.row]
+            vc.title = catSelected.title
+
+            vc.elements = AwesomeRepository
+                .repositories(jsonResponse!["projects"].arrayValue)
+                .sort({ $0.title.lowercaseString < $1.title.lowercaseString })
+                .filter({ $0.category == catSelected.id })
+
+            log.debug(vc.elements)
+
+        }
+    }
 }
 
 extension CategoryFeedVC {
@@ -87,8 +120,13 @@ extension CategoryFeedVC {
         return cell
     }
 
-    // MARK: Collection View Layout
+    // MARK: Collection UICollectionViewDelegateFlowLayout
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("showRepos", sender: collectionView.cellForItemAtIndexPath(indexPath))
+    }
 
+
+    // MARK: Collection View Layout
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(CGRectGetWidth(collectionView.frame), categoryCellEstimatedHeight)
     }
@@ -97,7 +135,7 @@ extension CategoryFeedVC {
         return 0.5
     }
 
-    // MARK: size
+    // MARK: Cell Size
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animateAlongsideTransition({ (context) -> Void in
             // swiftlint:disable force_cast
@@ -108,10 +146,4 @@ extension CategoryFeedVC {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     }
 
-}
-
-extension UICollectionViewCell {
-    override public func preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        return lg_fittingHeightLayoutAttributes(layoutAttributes)
-    }
 }

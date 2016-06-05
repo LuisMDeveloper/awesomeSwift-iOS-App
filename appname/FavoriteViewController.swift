@@ -6,8 +6,7 @@
 //  Copyright © 2016 boostco.de. All rights reserved.
 //
 
-import CacheManager
-import UIKit
+/*import UIKit
 
 class FavoriteViewController: UIViewController {
 
@@ -79,4 +78,4 @@ extension FavoriteViewController: CacheManagerDelegate {
     func cacheHasUpdate() {
         tableView.reloadData()
     }
-}
+}*/

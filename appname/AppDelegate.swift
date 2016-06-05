@@ -8,7 +8,6 @@
 
 import Crashlytics
 import Fabric
-import RealmSwift
 import SwiftyBeaver
 import UIKit
 
@@ -19,22 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        // force purge realm
-        if NSUserDefaults.standardUserDefaults().objectForKey("realmResetv9") == nil {
-            // swiftlint:disable force_try
-            let realm = try! Realm()
-            // swiftlint:disable force_try
-            try! realm.write() {
-                realm.deleteAll()
-            }
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "realmResetv9")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            log.debug("Realm reset")
-        }
-
         #if DEBUG
         log.addDestination(ConsoleDestination())
-        log.debug(Realm.Configuration.defaultConfiguration.fileURL!)
         #else
         #endif
 
@@ -79,13 +64,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // push token retrieved and cleaned
         let token = deviceToken.description.componentsSeparatedByCharactersInSet(NSCharacterSet.alphanumericCharacterSet().invertedSet).joinWithSeparator("")
 
-        let net = Networking()
+        /*let net = Networking()
 
         net.setPush(token) { (err) in
             if (err != nil) {
                 log.error(err)
             }
-        }
+        }*/
 
     }
 

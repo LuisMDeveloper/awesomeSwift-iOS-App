@@ -7,8 +7,6 @@
 //
 
 import SwiftyBeaver
-import UIKit
 
-let kAwesomeColor = UIColor(red: 247/255.0, green: 67/255.0, blue: 151/255.0, alpha: 1.0)
-
+// MARK: - Log
 let log = SwiftyBeaver.self

@@ -8,10 +8,9 @@
 
 import Foundation
 import Moya
-import RealmSwift
 import SwiftyJSON
 
-enum AwesomeSwift {
+/*enum AwesomeSwift {
     case Cats()
     case Repos()
     case Push(String)
@@ -98,4 +97,4 @@ private extension String {
             NSCharacterSet.URLHostAllowedCharacterSet()
             )!
     }
-}
+}*/
