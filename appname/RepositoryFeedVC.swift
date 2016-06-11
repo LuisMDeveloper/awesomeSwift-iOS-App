@@ -14,12 +14,14 @@ import UIKit
 
 class RepositoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    internal var repositories = [AwesomeRepository]()
     internal var elements = [AwesomeRepository]() {
         didSet {
-            collectionView?.reloadData()
+            // force reload only repositories
+            collectionView?.reloadSections(NSIndexSet(index: 1))
         }
     }
-    private let repositoryCellEstimatedHeight = CGFloat(90.0)
+    internal let repositoryCellEstimatedHeight = CGFloat(38.0)
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,17 +45,21 @@ class RepositoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlow
 
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        elements = repositories
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
 }
 
+// MARK: Collection View DataSource
 extension RepositoryFeedVC {
 
-    // TODO: add search filter
-
-    // MARK: Collection View DataSource
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 2
     }
@@ -77,6 +83,11 @@ extension RepositoryFeedVC {
             cell = collectionView.dequeueReusableCellWithReuseIdentifier(searchBrick.name, forIndexPath: indexPath)
             cell.lg_configureAs(searchBrick, dataSource: nil, updatingStrategy: .Always)
 
+            // set handlers
+            if let searchBar = cell.lg_viewForOutletKey(AwesomeRepositoryBrick.SearchBar.brickName) as? UISearchBar {
+                searchBar.delegate = self
+            }
+
         } else { // items
             let repoBrick = AwesomeRepositoryBrick.Repository.brick()
             let item = elements[indexPath.item]
@@ -84,6 +95,7 @@ extension RepositoryFeedVC {
             cell = collectionView.dequeueReusableCellWithReuseIdentifier(repoBrick.name, forIndexPath: indexPath)
             cell.lg_configureAs(repoBrick, dataSource: item, updatingStrategy: .Always)
 
+            // set handlers
             if let favoriteBtn = cell.lg_viewForOutletKey(AwesomeRepositoryBrick.Favorite.brickName) as? UIButton {
                 favoriteBtn.tag = indexPath.item
                 favoriteBtn.addTarget(
@@ -99,6 +111,32 @@ extension RepositoryFeedVC {
         return cell
     }
 
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(CGRectGetWidth(collectionView.frame), repositoryCellEstimatedHeight)
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0.5
+    }
+
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        // TODO: add tap handler
+    }
+
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animateAlongsideTransition({ (context) -> Void in
+            // swiftlint:disable force_cast
+            (self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = CGSizeMake(self.view.frame.width, self.repositoryCellEstimatedHeight)
+            self.collectionView?.reloadData()
+            }, completion: nil)
+
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    }
+
+}
+
+// MARK: Favorite Button
+extension RepositoryFeedVC {
     func favoriteUpdate(btn: UIButton) {
         btn.selected = !btn.selected
 
@@ -121,30 +159,32 @@ extension RepositoryFeedVC {
         }
 
     }
+}
 
-    // MARK: Collection View Layout
+// MARK: SearchBar
+extension RepositoryFeedVC: UISearchBarDelegate {
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(CGRectGetWidth(collectionView.frame), repositoryCellEstimatedHeight)
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.characters.count > 0 {
+
+            elements = repositories
+                .sort({ $0.title.lowercaseString < $1.title.lowercaseString })
+                .filter({
+                    $0.title.lowercaseString.rangeOfString(searchText.lowercaseString) != nil  ||
+                    $0.description.lowercaseString.rangeOfString(searchText.lowercaseString) != nil
+                })
+
+        } else {
+            elements = repositories
+        }
+
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0.5
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 
-    // MARK: Collection UICollectionViewDelegateFlowLayout
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
-
-    // MARK: Collection cell size
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animateAlongsideTransition({ (context) -> Void in
-            // swiftlint:disable force_cast
-            (self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = CGSizeMake(self.view.frame.width, self.repositoryCellEstimatedHeight)
-            self.collectionView?.reloadData()
-            }, completion: nil)
-
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-    }
-
 }

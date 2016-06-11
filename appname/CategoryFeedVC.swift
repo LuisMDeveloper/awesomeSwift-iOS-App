@@ -92,7 +92,7 @@ class CategoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLa
             let catSelected = self.elements[indexPath!.row]
             vc.title = catSelected.title
 
-            vc.elements = AwesomeRepository
+            vc.repositories = AwesomeRepository
                 .repositories(jsonResponse!["projects"].arrayValue)
                 .sort({ $0.title.lowercaseString < $1.title.lowercaseString })
                 .filter({ $0.category == catSelected.id })
