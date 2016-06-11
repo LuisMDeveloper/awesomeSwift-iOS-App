@@ -14,6 +14,7 @@ import UIKit
 
 class RepositoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    internal var fromCategory = false
     internal var repositories = [AwesomeRepository]()
     internal var elements = [AwesomeRepository]() {
         didSet {
@@ -47,6 +48,16 @@ class RepositoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlow
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+        // manage favorites
+        if fromCategory == false {
+            self.title = "Favorites"
+
+            self.repositories = AwesomeRepository
+                .repositories(awesomeJSON!["projects"].arrayValue)
+                .sort({ $0.title.lowercaseString < $1.title.lowercaseString })
+                .filter({ Defaults[.Favorites].contains($0.title) })
+        }
 
         elements = repositories
     }
@@ -131,7 +142,7 @@ extension RepositoryFeedVC {
         }
 
     }
-        
+
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animateAlongsideTransition({ (context) -> Void in
             // swiftlint:disable force_cast

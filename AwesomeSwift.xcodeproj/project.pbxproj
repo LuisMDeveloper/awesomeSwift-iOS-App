@@ -34,7 +34,6 @@
 		488F66DA1C94636A00933CA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 488F66D81C94636A00933CA6 /* Main.storyboard */; };
 		488F66DC1C94636A00933CA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 488F66DB1C94636A00933CA6 /* Assets.xcassets */; };
 		488F66DF1C94636A00933CA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 488F66DD1C94636A00933CA6 /* LaunchScreen.storyboard */; };
-		48D9203D1CC3BA1200B8DB73 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D9203C1CC3BA1200B8DB73 /* FavoriteViewController.swift */; };
 		48D920411CC3BAD000B8DB73 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D920401CC3BAD000B8DB73 /* Configuration.swift */; };
 		48D920431CC3BB2800B8DB73 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D920421CC3BB2800B8DB73 /* Utilities.swift */; };
 		81170BCBF33DD3206F6FEE57 /* Pods_AwesomeSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D733F3BF4200F332C33FA408 /* Pods_AwesomeSwift.framework */; };
@@ -97,7 +96,6 @@
 		4891022B1CA9B68C0035403A /* CategoryListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryListViewControllerTests.swift; sourceTree = "<group>"; };
 		489102341CA9BF170035403A /* CategoryListDataProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryListDataProviderTests.swift; sourceTree = "<group>"; };
 		4891023E1CA9DC640035403A /* CategoryCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCellTests.swift; sourceTree = "<group>"; };
-		48D9203C1CC3BA1200B8DB73 /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		48D920401CC3BAD000B8DB73 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		48D920421CC3BB2800B8DB73 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		75EFAE44D857A6CE68ADA93B /* Pods-AwesomeSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeSwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeSwiftTests/Pods-AwesomeSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -243,7 +241,6 @@
 			children = (
 				488F66D81C94636A00933CA6 /* Main.storyboard */,
 				4880A8721D048A9E0006424E /* Credits */,
-				48D9203B1CC3BA0300B8DB73 /* Favorite */,
 				486C32AB1D00BD53004CB872 /* Category */,
 				4846D5221CC280220052C7BF /* Repository */,
 			);
@@ -330,14 +327,6 @@
 				489102231CA84E880035403A /* CategoryManagerTests.swift */,
 			);
 			name = Category;
-			sourceTree = "<group>";
-		};
-		48D9203B1CC3BA0300B8DB73 /* Favorite */ = {
-			isa = PBXGroup;
-			children = (
-				48D9203C1CC3BA1200B8DB73 /* FavoriteViewController.swift */,
-			);
-			name = Favorite;
 			sourceTree = "<group>";
 		};
 		7F20B049FBF56E30CAB06A67 /* Pods */ = {
@@ -449,7 +438,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 488F66CC1C94636A00933CA6 /* Build configuration list for PBXProject "awesomeswift" */;
+			buildConfigurationList = 488F66CC1C94636A00933CA6 /* Build configuration list for PBXProject "AwesomeSwift" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -656,7 +645,6 @@
 				486C32AF1D00E0C1004CB872 /* RepositoryFeedVC.swift in Sources */,
 				488F66D51C94636A00933CA6 /* AppDelegate.swift in Sources */,
 				486C32A81D00948F004CB872 /* AwesomeSwiftAPI.swift in Sources */,
-				48D9203D1CC3BA1200B8DB73 /* FavoriteViewController.swift in Sources */,
 				486C32A61D0091A0004CB872 /* CategoryFeedVC.swift in Sources */,
 				4880A8741D048ADE0006424E /* CreditsVC.swift in Sources */,
 				486C32B11D00E105004CB872 /* AwesomeRepository.swift in Sources */,
@@ -886,7 +874,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		488F66CC1C94636A00933CA6 /* Build configuration list for PBXProject "awesomeswift" */ = {
+		488F66CC1C94636A00933CA6 /* Build configuration list for PBXProject "AwesomeSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				488F66F71C94636A00933CA6 /* Debug */,

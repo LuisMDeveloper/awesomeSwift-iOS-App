@@ -9,7 +9,10 @@
 import Crashlytics
 import Fabric
 import SwiftyBeaver
+import SwiftyJSON
 import UIKit
+
+var awesomeJSON: JSON?
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
 
         // push notifications enabled
+        // TODO: remove pushes
         let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)

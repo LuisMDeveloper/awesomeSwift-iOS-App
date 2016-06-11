@@ -22,8 +22,6 @@ class CategoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLa
     private let api = API()
     private let categoryCellEstimatedHeight = CGFloat(40.0)
 
-    private var jsonResponse: JSON?
-
     override func awakeFromNib() {
         super.awakeFromNib()
         for reuseId in AwesomeCategoryBrick.reuseIdentifiers {
@@ -41,13 +39,7 @@ class CategoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLa
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = .whiteColor()
 
-        // TODO: add expiration
-        // cache handler
-        /*if let cache = Defaults[.categories] {
-            self.elements = cache
-        } else {*/
-            self.performSelector(#selector(CategoryFeedVC.updateWithLittleDelay), withObject: nil, afterDelay: 0.1)
-        //}
+        self.performSelector(#selector(CategoryFeedVC.updateWithLittleDelay), withObject: nil, afterDelay: 0.1)
 
         collectionView!.dg_addPullToRefreshWithActionHandler({ [unowned self] () -> Void in
                 // update data
@@ -55,7 +47,7 @@ class CategoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLa
                     if error != nil {
                         log.error(error)
                     } else {
-                        self.jsonResponse = json
+                        awesomeJSON = json
                         if let cats = json?["categories"].arrayValue {
                             self.elements = AwesomeCategory.categories(cats).sort({ $0.title.lowercaseString < $1.title.lowercaseString })
                             //Defaults[.categories] = self.elements
@@ -91,9 +83,11 @@ class CategoryFeedVC: UICollectionViewController, UICollectionViewDelegateFlowLa
             let indexPath = collectionView!.indexPathForCell(cell)
             let catSelected = self.elements[indexPath!.row]
             vc.title = catSelected.title
+            
+            vc.fromCategory = true
 
             vc.repositories = AwesomeRepository
-                .repositories(jsonResponse!["projects"].arrayValue)
+                .repositories(awesomeJSON!["projects"].arrayValue)
                 .sort({ $0.title.lowercaseString < $1.title.lowercaseString })
                 .filter({ $0.category == catSelected.id })
 
