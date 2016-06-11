@@ -1,6 +1,4 @@
-# boostco.de iOS project boilerplate
+# Awesome Swift iOS App
 
-Easy to reproduce iOS app boilerplate
+Official app of [Awesome Swift](https://github.com/matteocrippa/awesome-swift) Repository
 
-
-*Edit .swiftlint.yml according new name of the project in order to avoid tests to be checked*
