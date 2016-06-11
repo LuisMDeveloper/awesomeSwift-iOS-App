@@ -18,12 +18,14 @@ struct AwesomeRepository {
     let category: String
     let description: String
     let homepage: String
+    let tags: [JSON]
 
     init(json: JSON) {
         title = json["title"].stringValue
         category = json["category"].stringValue
         description = json["description"].stringValue
         homepage = json["homepage"].stringValue
+        tags = json["tags"].arrayValue
     }
 }
 
@@ -40,7 +42,11 @@ extension AwesomeRepository: BrickDataSource {
     func update(targetView: UIView, with brick: Brick) {
         switch targetView {
         case let label as UILabel where brick == AwesomeRepositoryBrick.Title:
-            label.text = title
+            if tags.contains(JSON("linux")) {
+                label.text = "🐧 \(title)"
+            } else {
+                label.text = title
+            }
         case let button as UIButton where brick == AwesomeRepositoryBrick.Favorite:
             if Defaults[.Favorites].contains(title) {
                 button.selected = true
