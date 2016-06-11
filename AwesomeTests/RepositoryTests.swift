@@ -19,7 +19,7 @@ class RepositoryTests: XCTestCase {
             realm.deleteAll()
         }
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }

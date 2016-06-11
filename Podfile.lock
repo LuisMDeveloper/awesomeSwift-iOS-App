@@ -1,46 +1,68 @@
 PODS:
-  - Alamofire (3.3.0)
-  - Crashlytics (3.7.0):
+  - Alamofire (3.4.0)
+  - Crashlytics (3.7.1):
     - Fabric (~> 1.6.3)
-  - DGElasticPullToRefresh (1.0.3)
+  - DGElasticPullToRefresh_CanStartLoading (1.0.3.2)
   - Fabric (1.6.7)
-  - Log (0.2.1)
-  - Moya (6.3.0):
-    - Moya/Core (= 6.3.0)
-  - Moya/Core (6.3.0):
+  - LeeGo (0.5.2)
+  - Moya (6.5.0):
+    - Moya/Core (= 6.5.0)
+  - Moya/Core (6.5.0):
     - Alamofire (~> 3.0)
-    - Result (~> 1.0)
-  - Realm (0.98.5):
-    - Realm/Headers (= 0.98.5)
-  - Realm/Headers (0.98.5)
-  - RealmSwift (0.98.5):
-    - Realm (= 0.98.5)
-  - Result (1.0.2)
+    - Result (~> 2.0)
+  - Nimble (4.0.1)
+  - Quick (0.9.2)
+  - RAMAnimatedTabBarController (1.5.0)
+  - Realm (1.0.0):
+    - Realm/Headers (= 1.0.0)
+  - Realm/Headers (1.0.0)
+  - RealmSwift (1.0.0):
+    - Realm (= 1.0.0)
+  - Result (2.0.0)
+  - SimpleAnimation (0.1.3)
   - SwiftDate (3.0.8)
+  - SwiftyBeaver (0.6.1)
   - SwiftyJSON (2.3.2)
+  - SwiftyMarkdown (0.2.3)
+  - SwiftyUserDefaults (2.2.0)
 
 DEPENDENCIES:
-  - Alamofire
   - Crashlytics
-  - DGElasticPullToRefresh
+  - DGElasticPullToRefresh_CanStartLoading
   - Fabric
-  - Log
+  - LeeGo
   - Moya
+  - Nimble
+  - Quick
+  - RAMAnimatedTabBarController
   - RealmSwift
+  - SimpleAnimation
   - SwiftDate
+  - SwiftyBeaver
   - SwiftyJSON
+  - SwiftyMarkdown
+  - SwiftyUserDefaults
 
 SPEC CHECKSUMS:
-  Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
-  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
-  DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  Crashlytics: 3cdd4c9655be68032a0cf0379e0fb5ef6af22cad
+  DGElasticPullToRefresh_CanStartLoading: 09aba716bb6dff732ac5eb58b11cc215bbb743bb
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  Log: b97ca4e92642f49600ea4dddfd3e238ca14a3b7a
-  Moya: a202c1d62c950e23437fd4ef5557395f488fdca6
-  Realm: db08379969e45cea2edd1c3c0a090fe9e22d2d2f
-  RealmSwift: cb11ad1c35e15dc982f2dbf5afe2a3124193a358
-  Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
+  LeeGo: a00c03c051dd49a35f7cedac9fa8b0a6e01875b7
+  Moya: f7a4044719381cc6299f9ad3e0ef05f426f0557b
+  Nimble: 0f3c8b8b084cda391209c3c5efbb48bedeeb920a
+  Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
+  RAMAnimatedTabBarController: 2557ba7408d3e36a6d69aac7d098e7256539e7a5
+  Realm: e15cd8e7c11d3e576f628ba0b7cb855269b4991c
+  RealmSwift: 3229306d020d96f83b335f87a0dcbf2cef0e6a2b
+  Result: 9e75e1111c774c6ac594e14907b15057053a7959
+  SimpleAnimation: 3d56984f3852a3199d92137b265349d43f3b60f5
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
+  SwiftyBeaver: 3551cb9d5841d64de902f271adee5a503dd0ed13
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  SwiftyMarkdown: 62920e177bbd441f2e4427e164e1674b1be46b39
+  SwiftyUserDefaults: e7c8197a9d4068702e7f2406a968cae413b8de27
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 4bc17927fd5da093cfef32bdb83f95ac677241d0
+
+COCOAPODS: 1.0.1
