@@ -120,9 +120,18 @@ extension RepositoryFeedVC {
     }
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // TODO: add tap handler
-    }
+        let repo = repositories[indexPath.row]
 
+        // open browser
+        if let requestUrl = NSURL(string: repo.homepage) {
+            let sfvc = SFSafariViewController.init(URL: requestUrl)
+
+            self.showViewController(sfvc, sender: self)
+
+        }
+
+    }
+        
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animateAlongsideTransition({ (context) -> Void in
             // swiftlint:disable force_cast

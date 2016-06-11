@@ -15,7 +15,6 @@
 		4819D78F1CAD795500271DD3 /* CategoryListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891022B1CA9B68C0035403A /* CategoryListViewControllerTests.swift */; };
 		4819D7901CAD795500271DD3 /* CategoryListDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489102341CA9BF170035403A /* CategoryListDataProviderTests.swift */; };
 		4819D7911CAD795500271DD3 /* CategoryCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891023E1CA9DC640035403A /* CategoryCellTests.swift */; };
-		4846D5261CC2805F0052C7BF /* RepositoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4846D5251CC2805F0052C7BF /* RepositoryListViewController.swift */; };
 		4862EBCB1CAFDDDB002D3A54 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4862EBCA1CAFDDDB002D3A54 /* Networking.swift */; };
 		4862EBCE1CAFFA96002D3A54 /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4862EBCD1CAFFA96002D3A54 /* NetworkingTests.swift */; };
 		486C32A01D008B17004CB872 /* RepositoryBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C329F1D008B17004CB872 /* RepositoryBrick.swift */; };
@@ -66,7 +65,6 @@
 		4819D7801CAD793000271DD3 /* AwesomeSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4819D7821CAD793000271DD3 /* AwesomeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeSwiftTests.swift; sourceTree = "<group>"; };
 		4819D7841CAD793000271DD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4846D5251CC2805F0052C7BF /* RepositoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryListViewController.swift; sourceTree = "<group>"; };
 		4862EBCA1CAFDDDB002D3A54 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		4862EBCD1CAFFA96002D3A54 /* NetworkingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
 		486C329F1D008B17004CB872 /* RepositoryBrick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryBrick.swift; sourceTree = "<group>"; };
@@ -152,7 +150,6 @@
 			children = (
 				486C329F1D008B17004CB872 /* RepositoryBrick.swift */,
 				486C32AE1D00E0C1004CB872 /* RepositoryFeedVC.swift */,
-				4846D5251CC2805F0052C7BF /* RepositoryListViewController.swift */,
 			);
 			name = Repository;
 			sourceTree = "<group>";
@@ -452,7 +449,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 488F66CC1C94636A00933CA6 /* Build configuration list for PBXProject "AwesomeSwift" */;
+			buildConfigurationList = 488F66CC1C94636A00933CA6 /* Build configuration list for PBXProject "awesomeswift" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -648,7 +645,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4846D5261CC2805F0052C7BF /* RepositoryListViewController.swift in Sources */,
 				486C32A41D008B9A004CB872 /* AwesomeCategory.swift in Sources */,
 				4880A8711D0488EA0006424E /* CreditsBrick.swift in Sources */,
 				48D920431CC3BB2800B8DB73 /* Utilities.swift in Sources */,
@@ -890,7 +886,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		488F66CC1C94636A00933CA6 /* Build configuration list for PBXProject "AwesomeSwift" */ = {
+		488F66CC1C94636A00933CA6 /* Build configuration list for PBXProject "awesomeswift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				488F66F71C94636A00933CA6 /* Debug */,

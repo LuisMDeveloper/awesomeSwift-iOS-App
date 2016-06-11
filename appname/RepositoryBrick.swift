@@ -11,6 +11,7 @@ import UIKit
 
 enum AwesomeRepositoryBrick: BrickBuilderType {
     case Title, Description, Favorite
+    case LineBreak
 
     case SearchBar
 
@@ -25,10 +26,11 @@ enum AwesomeRepositoryBrick: BrickBuilderType {
     }
 
     static let brickClass: [AwesomeRepositoryBrick: AnyClass] = [
-        SearchBar: UISearchBar.self,
         Title: UILabel.self,
         Description: UILabel.self,
-        Favorite: UIButton.self
+        Favorite: UIButton.self,
+        LineBreak: UIView.self,
+        SearchBar: UISearchBar.self
     ]
 }
 
@@ -47,6 +49,12 @@ extension AwesomeRepositoryBrick {
                 .height(28)
                 .width(28)
                 .LGOutlet("Favorite")
+        case .LineBreak:
+            return build()
+                .height(1)
+                .style([
+                    .backgroundColor(kAwesomeColor)
+                ])
         case .SearchBar:
             return build()
                 .style(Style.searchBarStyle)
@@ -65,17 +73,21 @@ extension AwesomeRepositoryBrick {
             }
         case .Repository:
             return build()
-                .style([.backgroundColor(UIColor.whiteColor())])
+                .style([
+                    .backgroundColor(UIColor.whiteColor())
+                ])
                 .bricks(
                     Favorite.brick(),
                     Title.brick(),
-                    Description.brick()
+                    Description.brick(),
+                    LineBreak.brick()
                 ) {
-                    (Favorite, Title, Description ) in
+                    (Favorite, Title, Description, LineBreak) in
                     Layout([
-                        "V:|-[\(Title)]-[\(Description)]-|",
+                        "V:|-[\(Title)]-[\(Description)]-[\(LineBreak)]|",
                         "H:|-[\(Favorite)]-[\(Title)]-|",
-                        "H:|-44-[\(Description)]-|"
+                        "H:|-44-[\(Description)]-|",
+                        "H:|[\(LineBreak)]|"
                         ])
             }
         }
