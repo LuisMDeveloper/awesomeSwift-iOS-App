@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4819D7831CAD793000271DD3 /* AwesomeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4819D7821CAD793000271DD3 /* AwesomeSwiftTests.swift */; };
-		4862EBCB1CAFDDDB002D3A54 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4862EBCA1CAFDDDB002D3A54 /* Networking.swift */; };
 		486C32A01D008B17004CB872 /* RepositoryBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C329F1D008B17004CB872 /* RepositoryBrick.swift */; };
 		486C32A21D008B26004CB872 /* CategoryBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C32A11D008B26004CB872 /* CategoryBrick.swift */; };
 		486C32A41D008B9A004CB872 /* AwesomeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C32A31D008B9A004CB872 /* AwesomeCategory.swift */; };
@@ -55,7 +54,6 @@
 		4819D7801CAD793000271DD3 /* AwesomeSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4819D7821CAD793000271DD3 /* AwesomeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeSwiftTests.swift; sourceTree = "<group>"; };
 		4819D7841CAD793000271DD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4862EBCA1CAFDDDB002D3A54 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		486C329F1D008B17004CB872 /* RepositoryBrick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryBrick.swift; sourceTree = "<group>"; };
 		486C32A11D008B26004CB872 /* CategoryBrick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryBrick.swift; sourceTree = "<group>"; };
 		486C32A31D008B9A004CB872 /* AwesomeCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwesomeCategory.swift; sourceTree = "<group>"; };
@@ -230,7 +228,6 @@
 		488F67071C94774400933CA6 /* 📡Net */ = {
 			isa = PBXGroup;
 			children = (
-				4862EBCA1CAFDDDB002D3A54 /* Networking.swift */,
 				486C32A71D00948F004CB872 /* AwesomeSwiftAPI.swift */,
 			);
 			name = "📡Net";
@@ -595,7 +592,6 @@
 				486C32A21D008B26004CB872 /* CategoryBrick.swift in Sources */,
 				4880A86F1D0488790006424E /* Credits.swift in Sources */,
 				486C32AA1D00B6DC004CB872 /* Styles.swift in Sources */,
-				4862EBCB1CAFDDDB002D3A54 /* Networking.swift in Sources */,
 				486C32AF1D00E0C1004CB872 /* RepositoryFeedVC.swift in Sources */,
 				488F66D51C94636A00933CA6 /* AppDelegate.swift in Sources */,
 				486C32A81D00948F004CB872 /* AwesomeSwiftAPI.swift in Sources */,
